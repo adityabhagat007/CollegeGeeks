@@ -31,6 +31,6 @@ app.use("/" , require("./server/router/router.js"));
 
 /******** Port setup **********/
 
-app.listen(3000 , () => {
+app.listen(8000 , () => {
   console.log("Server started on port 3000");
 })

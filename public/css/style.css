@@ -1,3 +1,52 @@
-html {
-  background-color: green;
+
+.navbar-nav{
+  margin-left: auto;
+  margin-right: 30px;
+}
+.navbar-brand{
+  margin-left: 30px;
+}
+#main{
+  background-color:#e9eaea;
+}
+.main1{
+  color: gray;
+  
+}
+.sub_header{
+  color: grey;
+}
+.title{
+  padding-bottom: 5%;
+  background-color:#e9eaea;
+}
+
+.carousel-control-prev{
+  color: black ;
+}
+.main_header_left{
+  text-align: center;
+  padding: 5%;
+}
+
+.main_about_right{
+  text-align: center;
+  padding-top: 10%;
+  color: rgb(65, 97, 97);
+}
+.Aim{
+  padding-bottom: 5%;
+}
+
+.f_head{
+  text-align: center;
+  padding-top: 2%;
+  padding-bottom: 3%;
+  color: grey;
+}
+.f_left{
+  padding-top: 5%;
+}
+#aboutus{
+  padding-top: 2%;
 }
