@@ -1,4 +1,5 @@
-<<<<<<< HEAD
+/*Index/main-page css*/
+
 
 .navbar-nav{
   margin-left: auto;
@@ -36,27 +37,78 @@
   color: rgb(65, 97, 97);
 }
 .Aim{
+  background-color: white;
   padding-bottom: 5%;
 }
 
-.f_head{
+.a_head{
   text-align: center;
   padding-top: 2%;
   padding-bottom: 3%;
   color: grey;
 }
-.f_left{
+.a_left{
   padding-top: 5%;
 }
 #aboutus{
-  padding-top: 2%;
+  background-color: #eeeeff;
 }
-=======
+
+
+/* Sign-up page css*/
+
+.title_login{
+  padding-bottom: 5%;
+}
+
+/*login page css*/
+
+.title_login{
+  padding-bottom: 5%;
+}
+
+
+
+/*home page css */
+.body{
+  background-color: #f1f2f2;
+}
+.title_home{
+  padding-bottom: 2%;
+}
+
+.title_home{
+  background-color: #f1f2f2;
+}
+.mainpage{
+  background-color: #f1f2f2;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*footer css*/
 footer {
   padding: 1.5rem;
   text-align: center;
 }
-
 footer .row a {
   display: block;
   text-decoration: none;
@@ -109,4 +161,4 @@ footer .row a {
 .linkedin:hover {
   color: #0073B1;
 }
->>>>>>> a4fa355788b97b6907b0f25991fbca278d86e3ce
+
