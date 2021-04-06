@@ -7,7 +7,7 @@ route.get("/Signup" , (req, res) => {
   res.render("Signup");
 });
 route.get("/about" , (req, res) => {
-  res.render("");
+  res.render("aboutus");
 });
 route.get("/login" , (req, res) => {
   res.render("login");
