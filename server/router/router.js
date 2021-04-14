@@ -1,18 +1,21 @@
 const route = require("express").Router();
+const mongoose = require("mongoose");
+const dbConnection = require(__dirname + "./../db/dbConnection");
 
-route.get("/" , (req, res) => {
+route.get("/", (req, res) => {
   res.render("index");
 });
-route.get("/Signup" , (req, res) => {
+route.get("/Signup", (req, res) => {
   res.render("Signup");
 });
-route.get("/about" , (req, res) => {
+route.get("/about", (req, res) => {
   res.render("aboutus");
 });
-route.get("/login" , (req, res) => {
+route.get("/login", (req, res) => {
   res.render("login");
 });
-route.get("/home" , (req, res) => {
+route.get("/home", (req, res) => {
   res.render("home");
 });
+
 module.exports = route;
