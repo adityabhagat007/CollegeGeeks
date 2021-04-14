@@ -15,4 +15,7 @@ route.get("/login" , (req, res) => {
 route.get("/home" , (req, res) => {
   res.render("home");
 });
+route.get("/myaccount" , (req, res) => {
+  res.render("myaccount");
+});
 module.exports = route;

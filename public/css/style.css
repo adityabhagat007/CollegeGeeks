@@ -87,10 +87,19 @@
 .mainpage{
   background-color: #f1f2f2;
 }
+.home_post_btn{
+  float: right;
+}
 
 
 
-
+/*my-account page css */
+.title_myaccount{
+  padding-bottom: 5%;
+}
+.user_account{
+  width: 70px;
+}
 
 
 

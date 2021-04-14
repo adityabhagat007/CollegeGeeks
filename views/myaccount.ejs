@@ -1,0 +1,58 @@
+<%# ADDING HEADER %>
+<%- include("partials/header.ejs"); -%>
+
+<%# ADDING NAVBAR %>
+<section class="title_myaccount">
+
+    <%- include("partials/navbar.ejs");  -%>
+
+</section>
+<section class="main_acc">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-8">
+            <p><img class="user_account" src="images/user.png">
+                <h3>Name</h3></p>
+            </div>
+            <div class="col-lg-4 col-md-4">
+             <label>Email</label><br>
+             <input type="email" id="user_email"> <button type="button" class="btn btn-outline-success">Success</button>
+             <br>
+            <label>Change password</label><br>
+            <input type="password" id=""> <button type="button" class="btn btn-outline-success">Success</button>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-4">
+                <hr>
+                <h5>You follow</h5>
+                <div class="list-group">
+                    <a href="#" class="list-group-item list-group-item-action" aria-current="true">
+                        The current link item
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action">A second link item</a>
+                    <a href="#" class="list-group-item list-group-item-action">A third link item</a>
+                    <a href="#" class="list-group-item list-group-item-action">A fourth link item</a>
+                </div>
+            </div>
+            <div class="col-lg-8 col-md-8">
+                <p>
+                    <hr>
+                </p>
+                <h5>Questions You have Answered </h5>
+                        <div class="list-group">
+                            <a href="#" class="list-group-item list-group-item-action" aria-current="true">
+                                The current link item
+                            </a>
+                            <a href="#" class="list-group-item list-group-item-action">Question No 1</a>
+                            <a href="#" class="list-group-item list-group-item-action">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Neque, illum! Lorem ipsum, dolor sit amet consectetur adipisicing elit. Omnis at atque asperiores sit aut cumque.
+                            </a>
+                            <a href="#" class="list-group-item list-group-item-action">Question No 3</a>
+                        </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+</section>
+
+<%-include("partials/footer.ejs")  -%> 
