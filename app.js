@@ -31,6 +31,8 @@ app.use("/Signup", require("./server/router/router"));
 
 app.use("/login", require("./server/router/router"));
 
+app.use("/myaccount", require("./server/router/router"));
+
 /******** Port setup **********/
 
 app.listen(3000, () => {

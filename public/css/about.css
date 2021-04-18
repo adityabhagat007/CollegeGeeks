@@ -12,7 +12,24 @@ body{
     align-items: center;
     justify-content: center;
     background-color: #f1f1f1;
+    flex-direction: column;
 }
+
+/********NAVBAR START**********/
+
+.navbar-nav{
+  margin-left: auto;
+  margin-right: 30px;
+}
+.navbar-brand{
+  margin-left: 30px;
+}
+
+.title{
+  width: 100%;
+}
+
+/*******NAVBAR END*********/
 
 .about-section{
     background: url("../images/pic.jpg") no-repeat left;
@@ -49,6 +66,66 @@ body{
     font-weight: 700;
     font-size: 13px;
 }
+
+/*footer css*/
+footer {
+  padding: 1.5rem;
+  text-align: center;
+  width: 100%;
+}
+footer .row a {
+  display: block;
+  text-decoration: none;
+  color: black;
+  font-weight: 400;
+  padding: 0.2rem 0;
+}
+
+.footer-icon {
+  font-size: 2.2rem;
+  margin: 0.3rem;
+}
+
+.facebook {
+  color: #1773EA;
+}
+
+.facebook:hover {
+  color: #1773EA;
+}
+
+.instagram {
+  color: #7C3CAB;
+}
+
+.instagram:hover {
+  color: #7C3CAB;
+}
+
+.youtube {
+  color: #F70000;
+}
+
+.youtube:hover {
+  color: #F70000;
+}
+
+.mail {
+  color: #E44134;
+}
+
+.mail:hover {
+  color: #E44134;
+}
+
+.linkedin {
+  color: #0073B1;
+}
+
+.linkedin:hover {
+  color: #0073B1;
+}
+
 
 @media screen and (max-width:1200px){
     .inner-container{
