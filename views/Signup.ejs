@@ -21,27 +21,27 @@
         <!-- Registeration Form -->
   
         <div class="col-md-7 col-lg-6 ml-auto">
-            <form action="#">
+            <form action="#" onsubmit="return validation()">
                 <div class="row">
-  
-                    <!-- First Name -->
+                    <span id="checking" class="alert " style="text-align: center;"></span>
+                    <!--Name -->
                     <div class="input-group col-lg-6 mb-4">
                         <div class="input-group-prepend">
                             <span class="input-group-text bg-white px-4 border-md border-right-0">
                                 <i class="fa fa-user text-muted"></i>
                             </span>
                         </div>
-                        <input id="firstName" type="text" name="firstname" placeholder="First Name" class="form-control bg-white border-left-0 border-md" required>
+                        <input id="name" type="text" name="name" placeholder="Name" autocomplete="off" class="form-control bg-white border-left-0 border-md" >
                     </div>
   
-                    <!-- Last Name -->
+                    <!-- branch Name -->
                     <div class="input-group col-lg-6 mb-4">
                         <div class="input-group-prepend">
                             <span class="input-group-text bg-white px-4 border-md border-right-0">
                                 <i class="fa fa-user text-muted"></i>
                             </span>
                         </div>
-                        <input id="lastName" type="text" name="lastname" placeholder="Last Name" class="form-control bg-white border-left-0 border-md" required>
+                        <input id="BranchName" type="text" name="" placeholder="Branch Name" autocomplete="off" class="form-control bg-white border-left-0 border-md" >
                     </div>
   
                     <!-- Email Address -->
@@ -51,7 +51,7 @@
                                 <i class="fa fa-envelope text-muted"></i>
                             </span>
                         </div>
-                        <input id="email" type="email" name="email" placeholder="Email Address" class="form-control bg-white border-left-0 border-md" required>
+                        <input id="email" type="email" name="email" placeholder="Email Address" autocomplete="off" class="form-control bg-white border-left-0 border-md">
                     </div>
   
                     <!-- Phone Number -->
@@ -61,7 +61,8 @@
                                 <i class="fa fa-phone-square text-muted"></i>
                             </span>
                         </div>
-                        <input id="phoneNumber" type="tel" name="phone" placeholder="Phone Number" class="form-control bg-white border-md border-left-0 pl-3" required>
+                        <input id="phoneNumber" type="tel" name="phone" placeholder="Phone Number" 
+                        autocomplete="off" class="form-control bg-white border-md border-left-0 pl-3" >
                     </div>.
   
                     <!-- Password -->
@@ -71,7 +72,7 @@
                                 <i class="fa fa-lock text-muted" ></i>
                             </span>
                         </div>
-                        <input id="password" type="password" name="password" placeholder="Password" class="form-control bg-white border-left-0 border-md" required>
+                        <input id="password" type="password" name="password" placeholder="Password" autocomplete="off" class="form-control bg-white border-left-0 border-md" >
                     </div>
   
                     <!-- Password Confirmation -->
@@ -81,12 +82,12 @@
                                 <i class="fa fa-lock text-muted"></i>
                             </span>
                         </div>
-                        <input id="passwordConfirmation" type="text" name="passwordConfirmation" placeholder="Confirm Password" class="form-control bg-white border-left-0 border-md" required>
+                        <input id="passwordConfirmation" type="text" name="passwordConfirmation" placeholder="Confirm Password" autocomplete="off" class="form-control bg-white border-left-0 border-md">
                     </div>
   
                     <!-- Submit Button -->
                     <div class="form-group col-lg-12 mx-auto mb-0">
-                        <a href="#" class="btn btn-primary btn-block py-2">
+                        <button type="submit" id="submit" value="submit" class="btn btn-primary btn-block py-2">
                             <span class="font-weight-bold">Create your account</span>
                         </a>
                     </div>
@@ -109,5 +110,6 @@
         </div>
     </div>
   </div>
-  
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script src="js/signup.js"></script>
 <%-include("partials/footer.ejs")  -%> 
