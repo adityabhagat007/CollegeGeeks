@@ -2,6 +2,11 @@ const route = require("express").Router();
 const mongoose = require("mongoose");
 const dbConnection = require(__dirname + "./../db/dbConnection");
 
+const middleware= (req, res,next)=>{
+  console.log("hello middleware ")
+};
+middleware();
+
 route.get("/", (req, res) => {
   res.render("index");
 });

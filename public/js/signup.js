@@ -94,5 +94,8 @@ submit.addEventListener('click',(event)=>{
         var password =document.getElementById("password").value=''
         var conform=document.getElementById("passwordConfirmation").value=''
         var email=document.getElementById("email").value=''
+        var c=document.getElementById('checking');
+        c.classList.remove('alert-danger');
+        c.innerHTML="";
     }
 })
