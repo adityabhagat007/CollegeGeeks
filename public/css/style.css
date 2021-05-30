@@ -66,9 +66,15 @@
   padding-bottom: 5%;
 }
 
-.user_login{
-  width: 70px;
-  padding-bottom: 1%;
+
+
+@media(min-width:768px){
+  .login_card{
+    width:50%;
+  }
+  .main_login{
+    margin-left: 30%;
+  }
 }
 
 
