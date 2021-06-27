@@ -3,12 +3,13 @@ const path = require("path");
 
 /********** NPM MODULES ***********/
 
+require("dotenv").config();
 const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
 const mongoose = require("mongoose");
-
-// const dbConnection = require("./server/db/dbConnection");
+const session = require("express-session");
+const MongoStore = require("connect-mongo");
 
 /************* CUSTOM MODULES  *************/
 
@@ -27,6 +28,22 @@ app.use(
   })
 );
 
+/*****************SESSION SETUP *************/
+
+const store = MongoStore.create({
+  mongoUrl: process.env.DB_URL,
+  collectionName: "sessions",
+});
+
+app.use(
+  session({
+    secret: process.env.SECRET,
+    resave: false,
+    saveUninitialized: false,
+    store: store,
+  })
+);
+
 /************* Static files ***********/
 
 app.use(express.static(path.join(__dirname, "public")));
@@ -36,13 +53,26 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(feedRoutes);
 app.use(authRoutes);
 
+/************* Error Handling ************/
+
+app.use((error, req, res, next) => {
+  console.log(error);
+  res.send("Something went wrong.");
+});
+
+/************* 404 Not Found  */
+
+app.use((req, res, next) => {
+  res.send("404 Not found!!");
+});
+
 /******** SERVER SETUP **********/
 
 mongoose
-  .connect(
-    "mongodb+srv://Admin-CollegeGeeks:CollegeGeeks@2021@cluster0.olwlm.mongodb.net/CollegeGeeksDB",
-    { useNewUrlParser: true, useUnifiedTopology: true }
-  )
+  .connect(process.env.DB_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
   .then(() => {
     console.log("Conneted to DB server");
     app.listen(3000, () => {
