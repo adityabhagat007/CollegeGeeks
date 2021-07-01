@@ -53,7 +53,15 @@
 #aboutus{
   background-color: #eeeeff;
 }
-
+a{
+  text-decoration: none;
+}
+.offcanvas-body{
+  text-align: center;
+}
+.offcanvas-list{
+  text-align: left;
+}
 
 /* Sign-up page css*/
 
