@@ -8,6 +8,8 @@
 
 <section class="main_login">
     <div class="container">
+     <div class="login-title"> <span class=" display-6"><b>Welcome to CollegeGeeks</b>
+      </span></div>
         <div class="card shadow login_card">
             <div class="card-header">
                 LOGIN   
@@ -16,17 +18,38 @@
                 <form action="/login" method="POST">
                     <div class="mb-3">
                       <label for="exampleInputEmail1" class="form-label">Email address</label>
-                      <input type="email" class="form-control" id="email" name="email">
+                      <input type="email" class="form-control" id="email" name="email" autocomplete="true" required>
                       <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
                     </div>
                     <div class="mb-3">
+                      <div class="forgetPassword form-text" style="float: right;" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo"> 
+                        Forget your Password?</div>
                       <label for="exampleInputPassword1" class="form-label">Password</label>
-                      <input name="password" type="password" id="password" class="form-control" autocomplete="off">
+                      <input name="password" type="password" id="password" class="form-control" autocomplete="off" required>
                     </div>
                     <button type="submit" id="submit" class="btn btn-primary">Submit</button>
                   </form>
             </div>
           </div>
+          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Verification form</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Enter your Register Email</label>
+            <input type="email" class="form-control" id="recipient-name" required>
+          </div>
+          <button type="submit" style="float: right;" class="btn btn-danger rounded-bottom">Send</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
     </div>
     </div>
 </section>

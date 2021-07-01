@@ -65,7 +65,12 @@
 .title_login{
   padding-bottom: 5%;
 }
-
+.login-title{
+  padding-bottom: 20px;
+}
+.forgetPassword:hover{
+  color: #E44134;
+}
 
 
 @media(min-width:768px){
