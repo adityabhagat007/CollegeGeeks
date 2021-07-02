@@ -119,7 +119,16 @@ a{
   width: 70px;
 }
 
-
+/*404 page*/
+#page404{
+  margin-top:7% ;
+}
+.Head404{
+  font-size: 150px;
+}
+.msg404{
+  font-size: 20px;
+}
 
 
 

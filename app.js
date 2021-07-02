@@ -63,7 +63,7 @@ app.use((error, req, res, next) => {
 /************* 404 Not Found  */
 
 app.use((req, res, next) => {
-  res.send("404 Not found!!");
+  res.render("page404");
 });
 
 /******** SERVER SETUP **********/
