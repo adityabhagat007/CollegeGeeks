@@ -9,70 +9,61 @@
 <section class="mainpage">
     <div class="container">
     <div class="row">
-        <div class="col-lg-8 col-md-8 col-12 col-12">
-            <div class="card" style="margin-bottom: 2%;">
-                <div class="card-body">
-                  <h5 class="card-title">Ask Any thing</h5>
-                  <h6 class="card-subtitle mb-2 text-muted">Username</h6>
-                  <div class="mb-3">
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                  </div>
-                  <hr>
-                  <span class="home_post_btn"><button type="button" class="btn btn-outline-secondary">post</button></span>
-                </div>
-              </div>
-              <div class="card">
-                <div class="card-body">
-                  <h6 class="card-subtitle mb-2 text-muted">Answer Recommended for you</h6>
-                  <hr>
-                  <div class="question">
-                      <h5>Question...........</h5><hr>
-                  </div>
-                  <div class="answer">
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Excepturi beatae doloremque adipisci mollitia distinctio rerum, iure, quasi cumque culpa eveniet reiciendis fugit, possimus aut saepe expedita quaerat reprehenderit asperiores totam dolorem! Ullam possimus assumenda dolorum, ex facilis neque doloribus dolor. Et eveniet, laborum repellendus voluptates unde suscipit eligendi aut incidunt.
-                  </div>
-                  <!-- user answer section-->
-                  <div class="user_answer">
-                    <hr>
-                    <div class="mb-3">
-                      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                    </div>
-                    <span class="home_post_btn"><button type="button" class="btn btn-outline-secondary">post</button></span>
-                  </div>
-
-                  <div class="question">
-                    <h5>Question...........</h5><hr>
-                </div>
-                <div class="answer">
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Excepturi beatae doloremque adipisci mollitia distinctio rerum, iure, quasi cumque culpa eveniet reiciendis fugit, possimus aut saepe expedita quaerat reprehenderit asperiores totam dolorem! Ullam possimus assumenda dolorum, ex facilis neque doloribus dolor. Et eveniet, laborum repellendus voluptates unde suscipit eligendi aut incidunt.
-                </div>
-                <div class="user_answer">
-                  <hr>
-                  <div class="mb-3">
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                  </div>
-                  <span class="home_post_btn"><button type="button" class="btn btn-outline-secondary">post</button></span>
-                </div>
-                </div>
-              </div>
+      <div class="card mb-2">
+        <div class="card-body">
+          <span><b>UserName</b></span>
+          <div class="card-title display-6" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo" style="color: gray;"><b>Ask Your Question</b></div>
         </div>
-        <div class="col-lg-4 col-md-6 d-none d-md-block">
-            <div class="card" style="width: 14rem;">
-                <div class="card-body">
-                  <h5 class="card-title">Spaces you follow</h5>
-                  <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                </div>
-              </div>
+      </div>
+      <div class="card mb-1">
+        <div class="card-body">
+          <div class="card-title"><h5>Question </h5> </div><hr>
+          <div class="answer">
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Corporis soluta quo modi magnam vero quos veritatis officia dolore nisi, nam, explicabo id ullam sequi, fugiat neque sed tenetur unde amet. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque error cupiditate ad quaerat! Repudiandae, quod? Distinctio quisquam cum adipisci perspiciatis, temporibus excepturi vero unde reiciendis illum explicabo nemo et magnam?
+            Inventore praesentium distinctio tempore perspiciatis. Dolores tempore at dolor assumenda voluptas excepturi aliquam aliquid, consequuntur officiis doloremque error dolore tenetur est, tempora, consectetur sapiente laboriosam rerum expedita obcaecati nobis voluptatum?
+          </div>
+          <button type="button" class="openanswer btn btn-light rounded-pill m-1"><a href="/questionPage">Read more</a></button>
         </div>
+      </div>
+      <div class="card mb-1">
+        <div class="card-body">
+          <div class="card-title"><h5>Question </h5> </div><hr>
+          <div class="answer">
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Corporis soluta quo modi magnam vero quos veritatis officia dolore nisi, nam, explicabo id ullam sequi, fugiat neque sed tenetur unde amet. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque error cupiditate ad quaerat! Repudiandae, quod? Distinctio quisquam cum adipisci perspiciatis, temporibus excepturi vero unde reiciendis illum explicabo nemo et magnam?
+            Inventore praesentium distinctio tempore perspiciatis. Dolores tempore at dolor assumenda voluptas excepturi aliquam aliquid, consequuntur officiis doloremque error dolore tenetur est, tempora, consectetur sapiente laboriosam rerum expedita obcaecati nobis voluptatum?
+          </div>
+          <button type="button" class="openanswer btn btn-light rounded-pill m-1"><a href="/questionPage">Read more</a></button>
+        </div>
+      </div>
     </div>
     </div>
 </section>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">New Question</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Ask Here</label>
+            <input type="text" class="form-control" id="question" required>
+          </div>
+          <button style="float: right;"type="submit" class="btn btn-outline-success rounded-pill">Add Question</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 
 <script src="js/main.js"></script>
 <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
       crossorigin="anonymous">
-    </script>
+</script>
 </body>
 </html>

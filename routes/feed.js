@@ -13,4 +13,6 @@ router.get("/home", isAuth, feedController.getHomePage);
 
 router.get("/myaccount", isAuth, feedController.getMyAccount);
 
+router.get("/questionPage", isAuth, feedController.getQuestionPage);
+
 module.exports = router;

@@ -1,5 +1,7 @@
 /*Index/main-page css*/
-
+.btn:hover{
+  transform: scale(1.06);
+}
 
 .navbar-nav{
   margin-left: auto;
@@ -105,10 +107,14 @@ a{
 .mainpage{
   background-color: #f1f2f2;
 }
-.home_post_btn{
+.openanswer{
   float: right;
+  background-color:#f1f2f2;
+  text-decoration: none;
 }
-
+.openanswer:hover{
+  transform: scale(1.06);
+}
 
 
 /*my-account page css */
