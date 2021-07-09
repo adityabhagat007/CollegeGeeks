@@ -1,9 +1,66 @@
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
 <%- include("partials/header.ejs" , {pageTitle : "CollegeGeeks: :: Home" , style: "css/style.css"}); -%>
+
 
 <%# ADDING NAVBAR %>
 <section class="title_home">
 <%- include("partials/navbar.ejs",{ Profile:"Profile"});  -%>
 </section>
+<body class="body">
+<section id="questionPage">
+      <div class="container">
+            <div class="row">
+                  <div class =" Ans-question card mb-2">
+                        <div class="card-body">
+                              <div class="card-title"><h3>QUESTION</h3></div>
+                              <div style="float: right;" data-bs-toggle="modal" data-bs-target="#ansModal" >Answer the question</div>
+                        </div>
+                  </div>
+                  <div class="Answer mdl-card mb-2">
+                        <div class ="card-body">
+                              <div class="card-title">UserName</div><hr>
+                              Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio corrupti natus quo adipisci! Eum quae praesentium inventore illo ipsam nemo numquam voluptates in quia, obcaecati atque iusto et sed possimus.
+                              Repudiandae, ratione asperiores, voluptas optio odit tempora ea laborum possimus, quo praesentium qui vel sapiente at? Voluptatem harum exercitationem omnis, tenetur temporibus odio consequuntur amet dolor ut rerum veniam provident?
+                        </div>
+                  </div>
+                  <div class="Answer mdl-card mb-2">
+                        <div class ="card-body">
+                              <div class="card-title">UserName</div><hr>
+                              Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio corrupti natus quo adipisci! Eum quae praesentium inventore illo ipsam nemo numquam voluptates in quia, obcaecati atque iusto et sed possimus.
+                              Repudiandae, ratione asperiores, voluptas optio odit tempora ea laborum possimus, quo praesentium qui vel sapiente at? Voluptatem harum exercitationem omnis, tenetur temporibus odio consequuntur amet dolor ut rerum veniam provident?
+                        </div>
+                  </div>
+            </div>
+            <div class="modal fade" id="ansModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" >New message</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        <form action="#">
+                              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <textarea class="mdl-textfield__input" type="text" id="sample3"></textarea>
+                                <label class="mdl-textfield__label" for="sample3">Text...</label>
+                              </div>
+                            </form>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Send message</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+      </div>
+</section>
+
+
+
+
+
 
 
 <script
@@ -11,5 +68,6 @@
       integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
       crossorigin="anonymous">
 </script>
+<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
 </body>
 </html>

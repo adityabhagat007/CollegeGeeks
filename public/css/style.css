@@ -135,6 +135,10 @@ a{
 .msg404{
   font-size: 20px;
 }
+/* Question Ans page CSS */
+.mdl-textfield{
+  width:100%;
+}
 
 
 
