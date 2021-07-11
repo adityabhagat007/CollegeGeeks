@@ -81,6 +81,14 @@ a{
 .forgetPassword:hover{
   color: #E44134;
 }
+.notHavelogin{
+  padding-left: 120px;
+}
+@media(max-width:768px){
+  .notHavelogin{
+    padding-left: 90px;
+  }
+}
 
 
 @media(min-width:768px){
@@ -107,13 +115,21 @@ a{
 .mainpage{
   background-color: #f1f2f2;
 }
+.openanswer a{
+  text-decoration: none;
+  color: black;
+}
 .openanswer{
   float: right;
-  background-color:#f1f2f2;
-  text-decoration: none;
+  background-color: #e7ebeb ;
 }
 .openanswer:hover{
   transform: scale(1.06);
+}
+@media(min-width:800px){
+  .mainpage{
+    
+  }
 }
 
 
