@@ -5,15 +5,13 @@
 
  .navbar-nav{
   margin-left: auto;
-  margin-right: 30px;
+  margin-right: 50px;
 }
 .navbar-brand{
   text-align:center;
   padding-left: 50px;
 }
-.navbar-nav{
-  padding-right: 0px;
-}
+
 #main{
   background-color:#e9eaea;
 }
