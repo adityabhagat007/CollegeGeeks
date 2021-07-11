@@ -10,7 +10,7 @@ const ejs = require("ejs");
 const mongoose = require("mongoose");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
-
+const flash = require("connect-flash");
 /************* CUSTOM MODULES  *************/
 
 const feedRoutes = require("./routes/feed");
@@ -43,6 +43,9 @@ app.use(
     store: store,
   })
 );
+
+/************* Flash Setup ***********/
+app.use(flash());
 
 /************* Static files ***********/
 
@@ -78,4 +81,7 @@ mongoose
     app.listen(3000, () => {
       console.log("Server started on port 3000");
     });
+  })
+  .catch((err) => {
+    console.log(err);
   });

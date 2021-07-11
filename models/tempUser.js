@@ -22,6 +22,10 @@ const tempUserSchema = Schema({
     type: String,
     required: true,
   },
+  expirationTime: {
+    type: Date,
+    required: true,
+  },
 });
 
 module.exports = mongoose.model("TempUser", tempUserSchema);
