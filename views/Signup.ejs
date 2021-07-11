@@ -4,7 +4,7 @@
 <%# ADDING NAVBAR %>
 <section class="title_login">
 
-<%- include("partials/navbar.ejs",{Login: "login"});  -%>
+<%- include("partials/navbar.ejs",{ Profile: ""});  -%>
 
 </section>
 
@@ -38,10 +38,20 @@
                     <div class="input-group col-lg-6 mb-4">
                         <div class="input-group-prepend">
                             <span class="input-group-text bg-white px-4 border-md border-right-0">
-                                <i class="fa fa-user text-muted"></i>
+                                <i class="fa fa-book text-muted"></i>
                             </span>
                         </div>
-                        <input id="BranchName" type="text" name="branch" placeholder="Branch Name" autocomplete="off" class="form-control bg-white border-left-0 border-md" required>
+                        <select class="form-select" aria-label="Default select example" name="branch">
+                            <option selected>Open this select menu</option>
+                            <option value="CSE">Computer Science Engineering OR IT</option>
+                            <option value="ECE">Electronic and Communication Engineering</option>
+                            <option value="EE">Electrical Engineering</option>
+                            <option value="ME">Mechanical Engineering</option>
+                            <option value="CE"> Chemical Engineering</option>
+                            <option value="CT">Ceramic Engineering</option>
+                            <option value="LT">Leather Technology</option>
+                            <option value="FT">Food Technology</option>
+                          </select>
                     </div>
 
                     <!-- Email Address -->
@@ -52,10 +62,12 @@
                             </span>
                         </div>
                         <input id="email" type="email" name="email" placeholder="Email Address" autocomplete="off" class="form-control bg-white border-left-0 border-md" required>
+                        <br>
                     </div>
+                    
 
                     <!-- Phone Number -->
-                    <div class="input-group col-lg-12 mb-4">
+                    <!-- <div class="input-group col-lg-12 mb-4">
                         <div class="input-group-prepend">
                             <span class="input-group-text bg-white px-4 border-md border-right-0">
                                 <i class="fa fa-phone-square text-muted"></i>
@@ -63,7 +75,7 @@
                         </div>
                         <input id="phoneNumber" type="tel" name="phone" placeholder="Phone Number" 
                         autocomplete="off" class="form-control bg-white border-md border-left-0 pl-3" required>
-                    </div>.
+                    </div>. -->
 
                     <!-- Password -->
                     <div class="input-group col-lg-6 mb-4">
@@ -82,7 +94,7 @@
                                 <i class="fa fa-lock text-muted"></i>
                             </span>
                         </div>
-                        <input id="passwordConfirmation" type="text" name="confirmPassword" placeholder="Confirm Password" autocomplete="off" class="form-control bg-white border-left-0 border-md" required>
+                        <input id="passwordConfirmation" type="password" name="confirmPassword" placeholder="Confirm Password" autocomplete="off" class="form-control bg-white border-left-0 border-md" required>
                     </div>
 
                     <!-- Submit Button -->

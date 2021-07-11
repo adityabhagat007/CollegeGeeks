@@ -10,7 +10,7 @@ const ejs = require("ejs");
 const mongoose = require("mongoose");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
-
+const flash = require("connect-flash");
 /************* CUSTOM MODULES  *************/
 
 const feedRoutes = require("./routes/feed");
@@ -44,6 +44,9 @@ app.use(
   })
 );
 
+/************* Flash Setup ***********/
+app.use(flash());
+
 /************* Static files ***********/
 
 app.use(express.static(path.join(__dirname, "public")));
@@ -63,7 +66,7 @@ app.use((error, req, res, next) => {
 /************* 404 Not Found  */
 
 app.use((req, res, next) => {
-  res.send("404 Not found!!");
+  res.render("page404");
 });
 
 /******** SERVER SETUP **********/
@@ -78,4 +81,7 @@ mongoose
     app.listen(3000, () => {
       console.log("Server started on port 3000");
     });
+  })
+  .catch((err) => {
+    console.log(err);
   });

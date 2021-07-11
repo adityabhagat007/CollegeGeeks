@@ -4,55 +4,79 @@
 <%# ADDING NAVBAR %>
 <section class="title_myaccount">
 
-    <%- include("partials/navbar.ejs",{Login: "Logout"});  -%>
+    <%- include("partials/navbar.ejs",{Profile: "Profile"});  -%>
 
 </section>
 <section class="main_acc">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-md-8">
-            <p><img class="user_account" src="images/user.png">
-                <h3>Name</h3></p>
-            </div>
-            <div class="col-lg-4 col-md-4">
-             <label>Email</label><br>
-             <input type="email" id="user_email"> <button type="button" class="btn btn-outline-success">Success</button>
-             <br>
-            <label>Change password</label><br>
-            <input type="password" id=""> <button type="button" class="btn btn-outline-success">Success</button>
-        </div>
-        <div class="row">
-            <div class="col-lg-4 col-md-4">
-                <hr>
-                <h5>You follow</h5>
-                <div class="list-group">
-                    <a href="#" class="list-group-item list-group-item-action" aria-current="true">
-                        The current link item
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action">A second link item</a>
-                    <a href="#" class="list-group-item list-group-item-action">A third link item</a>
-                    <a href="#" class="list-group-item list-group-item-action">A fourth link item</a>
-                </div>
-            </div>
-            <div class="col-lg-8 col-md-8">
-                <p>
-                    <hr>
-                </p>
-                <h5>Questions You have Answered </h5>
-                        <div class="list-group">
-                            <a href="#" class="list-group-item list-group-item-action" aria-current="true">
-                                The current link item
-                            </a>
-                            <a href="#" class="list-group-item list-group-item-action">Question No 1</a>
-                            <a href="#" class="list-group-item list-group-item-action">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Neque, illum! Lorem ipsum, dolor sit amet consectetur adipisicing elit. Omnis at atque asperiores sit aut cumque.
-                            </a>
-                            <a href="#" class="list-group-item list-group-item-action">Question No 3</a>
+        <div class="myaccountcard card shadow rounded">
+            <div class ="usersection1 row">
+            <div class="col-xl-4 col-lg-4 col-md-4 col-12">
+                        <div class="profile-img">
+                            <img src="https://picsum.photos/id/7/200" alt=""/>
+                            <div class="file btn btn-lg btn-primary">
+                                Change Photo
+                                <input type="file" name="file"/>
+                            </div>
                         </div>
             </div>
+            <div class="col-xl-6 col-lg-6 col-md-6 col-12">
+                <h4>UserName</h4>
+                <h6>Bio</h6>
+                <p>Question Answered: <b>10</b> </p>
+                <p>Followers: 9</p>
+            </div>
+            <div class="col-xl-2 col-lg-2 col-md-2 col-12">
+                <div class="btn openanswer rounded-pill"><i class="fas fa-edit"></i> Edit Profile</div>
+            </div>
+            </div>
+            <div class="usersection2 row ">
+                <div class="col-xl-4 col-lg-4 col-md-4 col-12">
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-12">
+                    <h5>About</h5>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-6 col-6">
+                            <label><b>Name</b></label>
+                        </div>
+                        <div class="col-md-6 col-6">
+                            <p>UserName</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-6">
+                            <label><b>Stream</b></label>
+                        </div>
+                        <div class="col-md-6 col-6">
+                            <p>StreamName</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-6">
+                            <label><b>Email</b></label>
+                        </div>
+                        <div class="col-md-6 col-6">
+                            <p>User Email</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-6">
+                            <label><b>Password</b></label>
+                        </div>
+                        <div class="col-md-6 col-6">
+                            <p>OldPassword</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-2 col-lg-2 col-md-2 col-12">
+                   
+               </div>
+            </div>
+
         </div>
     </div>
-    </div>
-    </div>
+    
 </section>
 <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
