@@ -8,7 +8,11 @@ const sendEmail = require("../utils/sendEmail");
 const genText = require("../texts/verificationText");
 
 exports.getLoginPage = (req, res, next) => {
-  res.render("login");
+  res.render("login", {
+    success: req.flash("success"),
+    error: req.flash("error"),
+    isLoggedIn: req.loginStatus,
+  });
 };
 
 exports.postLogin = async (req, res, next) => {
@@ -26,7 +30,7 @@ exports.postLogin = async (req, res, next) => {
     const isCorrect = await bcrypt.compare(password, user.password);
     if (!isCorrect) {
       req.flash("error", "Please enter correct password.");
-      res.redirect("/login");
+      return res.redirect("/login");
     }
     //If password is correct then setting a session
     req.session.isLoggedIn = true;
@@ -40,7 +44,11 @@ exports.postLogin = async (req, res, next) => {
 };
 
 exports.getSignupPage = (req, res, next) => {
-  res.render("Signup");
+  res.render("Signup", {
+    success: req.flash("success"),
+    error: req.flash("error"),
+    isLoggedIn: req.loginStatus,
+  });
 };
 
 exports.postSignup = async (req, res, next) => {

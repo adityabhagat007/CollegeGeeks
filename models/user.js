@@ -18,6 +18,20 @@ const userSchema = Schema({
     type: String,
     required: true,
   },
+  intro: {
+    type: String,
+    default: "Hello! I am new to CollegeGeeks.",
+  },
+  dp: {
+    type: String,
+    default: "/images/user.png",
+  },
+  questions: [{ type: Schema.Types.ObjectId }],
+  followers: [{ type: Schema.Types.ObjectId, ref: "User" }],
+  likedQuestions: [{ type: Schema.Types.ObjectId }],
+  likedAnswers: [{ type: Schema.Types.ObjectId }],
+  answers: [{ type: Schema.Types.ObjectId }],
+  followings: [{ type: Schema.Types.ObjectId, ref: "User" }],
 });
 
 module.exports = mongoose.model("User", userSchema);
