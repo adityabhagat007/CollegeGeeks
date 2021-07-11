@@ -3,12 +3,16 @@
   transform: scale(1.06);
 }
 
-.navbar-nav{
+ .navbar-nav{
   margin-left: auto;
   margin-right: 30px;
 }
 .navbar-brand{
-  margin-left: 30px;
+  text-align:center;
+  padding-left: 50px;
+}
+.navbar-nav{
+  padding-right: 0px;
 }
 #main{
   background-color:#e9eaea;
@@ -78,6 +82,10 @@ a{
 .login-title{
   padding-bottom: 20px;
 }
+.login_card{
+  justify-content: center;
+}
+
 .forgetPassword:hover{
   color: #E44134;
 }
@@ -99,9 +107,17 @@ a{
     margin-left: 30%;
   }
 }
+/* offcanvas css */
+.profile-offcanvas{
+  text-decoration: none;
+  color: black;
+}
 
 
 /*home page css */
+
+
+
 .body{
   background-color: #f1f2f2;
 }

@@ -1,13 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light shadow sticky-top">
   <div class="container-fluid">
-    <a
-      class="navbar-brand"
-      data-bs-toggle="offcanvas"
-      href="#offcanvasExample"
-      role="button"
-      aria-controls="offcanvasExample"
-      ><%= Profile %></a
-    >
     <button
       class="navbar-toggler"
       type="button"
@@ -19,13 +11,11 @@
     >
       <span class="navbar-toggler-icon"></span>
     </button>
+    <a class="navbar-brand" href="#">CollegeGeeks</a>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav">
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="/">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/about">About</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/login">Login</a>
@@ -56,8 +46,19 @@
             <li><a class="dropdown-item" href="#">Civil</a></li>
           </ul>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/about">About</a>
+        </li>
       </ul>
     </div>
+    <a
+    class="profile-offcanvas"
+    data-bs-toggle="offcanvas"
+    href="#offcanvasExample"
+    role="button"
+    aria-controls="offcanvasExample"
+    ><%= Profile %></a
+  >
   </div>
 </nav>
 
