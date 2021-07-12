@@ -6,7 +6,7 @@
 <%- include("partials/navbar.ejs",{ Profile:"Profile"});  -%>
 </section>
 <body class="body">
-<section class="mainpage">
+<section class="container mainpage">
     <div class="container">
     <div class="row">
       <div class="card mb-2">
@@ -48,6 +48,20 @@
       </div>
       <div class="modal-body">
         <form>
+          <div class="mb-3">
+              <label for="question-type" class="mb-2">Enter your Subject of your Question </label>
+              <select id="question-type" class="form-select" name="question-type" required>
+                <option value="CSE">Computer Science Engineering OR IT</option>
+                            <option value="ECE">Electronic and Communication Engineering</option>
+                            <option value="EE">Electrical Engineering</option>
+                            <option value="ME">Mechanical Engineering</option>
+                            <option value="CE"> Chemical Engineering</option>
+                            <option value="CT">Ceramic Engineering</option>
+                            <option value="LT">Leather Technology</option>
+                            <option value="FT">Food Technology</option>
+                            <option value="OT">Others</option>
+              </select>
+          </div>
           <div class="mb-3">
             <label for="recipient-name" class="col-form-label">Ask Here</label>
             <input type="text" class="form-control" id="question" required>
