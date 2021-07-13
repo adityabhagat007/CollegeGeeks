@@ -16,4 +16,6 @@ router.get("/myaccount", isAuth, feedController.getMyAccount);
 
 router.get("/questionPage", isAuth, feedController.getQuestionPage);
 
+router.post("/askquestion", isAuth, feedController.postAskQuestion);
+
 module.exports = router;

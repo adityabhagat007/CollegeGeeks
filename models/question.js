@@ -17,7 +17,7 @@ const questionSchema = new Schema(
       required: true,
     },
     category: {
-      type: String.apply,
+      type: String,
       required: true,
     },
     answers: [
