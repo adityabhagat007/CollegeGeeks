@@ -44,3 +44,23 @@ exports.postAskQuestion = async (req, res, next) => {
     next(err);
   }
 };
+
+exports.getQuestions = async (req, res, next) => {
+  try {
+    //pulling data out from req
+    const page = req.query.page - 1; // - 1 to keep the pagination logic clean
+    const category = req.query.category;
+    //Fiding requested questions
+    const questions = await Question.find({ category })
+      .skip(page * 10)
+      .limit(10);
+    if (!questions) {
+      req.flash("error", "Can not find any questions");
+      return res.redirect("/home");
+    }
+    //If we get questions
+    res.render("/home", { questions });
+  } catch (err) {
+    next(err);
+  }
+};
