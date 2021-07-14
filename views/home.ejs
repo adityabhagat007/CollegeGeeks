@@ -47,10 +47,10 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form>
+        <form action="/askquestion" method="POST">
           <div class="mb-3">
               <label for="question-type" class="mb-2">Enter your Subject of your Question </label>
-              <select id="question-type" class="form-select" name="question-type" required>
+              <select id="question-type" class="form-select" name="category" required>
                 <option value="CSE">Computer Science Engineering OR IT</option>
                             <option value="ECE">Electronic and Communication Engineering</option>
                             <option value="EE">Electrical Engineering</option>
@@ -64,7 +64,7 @@
           </div>
           <div class="mb-3">
             <label for="recipient-name" class="col-form-label">Ask Here</label>
-            <input type="text" class="form-control" id="question" required>
+            <input name="statement" type="text" class="form-control" id="question" required>
           </div>
           <button style="float: right;"type="submit" class="btn btn-outline-success rounded-pill">Add Question</button>
         </form>
