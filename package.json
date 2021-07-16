@@ -30,6 +30,7 @@
     "mongoose": "^5.12.4",
     "nodemailer": "^6.6.2",
     "nodemon": "^2.0.7",
+    "sweetalert": "^2.1.2",
     "validator": "^13.6.0"
   }
 }

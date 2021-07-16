@@ -14,7 +14,7 @@ module.exports = async (req, res, next) => {
       req.flash("error", "Please enter a valid email address");
       return res.redirect("/Signup");
     }
-    //Checking if the email is alraedy Registered
+    //Checking if the email is already Registered
     const user = await User.findOne({ email });
     //If any user is present with that email then rejecting the request
     if (user) {
