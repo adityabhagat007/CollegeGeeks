@@ -31,12 +31,12 @@ module.exports = (token) => {
         </div>
         <div class="email_body" style="font-size: 20px; padding: 0 5%">
           <p>
-            Hello !!! thanks for creating your account in CollegeGeeks. We Are
+            Hello !!! thanks for creating your account in CollegeGeeks. We are
             really happy to see you here Please click the link given below to verify
             your Account
           </p>
           <div style="text-align: center; padding: 5% 0%;">
-            Click Here <a href='http://localhost:3000/auth/${token}'>this</a> to verify your account
+            Click <a href='http://localhost:3000/auth/${token}'>this</a> to verify your account
           </div>
         </div>
       </section>
