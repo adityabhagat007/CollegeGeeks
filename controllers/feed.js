@@ -21,6 +21,9 @@ exports.getQuestionPage = (req, res, next) => {
   res.render("questionPage");
 };
 
+exports.getUserActivity = (req, res, next) => {
+  res.render("userActivity");
+};
 exports.postAskQuestion = async (req, res, next) => {
   try {
     //Pulling the data out from request body

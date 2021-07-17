@@ -17,6 +17,8 @@ router.get("/myaccount", isAuth, feedController.getMyAccount);
 
 router.get("/questionPage", isAuth, feedController.getQuestionPage);
 
+router.get("/userActivity", isAuth, feedController.getUserActivity);
+
 router.post(
   "/askquestion",
   isAuth,

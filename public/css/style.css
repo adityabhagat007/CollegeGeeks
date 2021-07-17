@@ -2,6 +2,9 @@
 .btn:hover{
   transform: scale(1.06);
 }
+a{
+  color: gray;
+}
 
  .navbar-nav{
   margin-left: auto;
@@ -207,10 +210,25 @@ a{
   font-size: 20px;
 }
 /* Question Ans page CSS */
+
 .mdl-textfield{
   width:100%;
 }
 
+/* Activity page Css */
+
+.title_activity{
+  margin-bottom: 2%;
+}
+#activity_head{
+  margin-bottom: 2%;
+}
+.activity{
+  background-color: #f8f9fa;
+}
+.fa-angle-double-right:hover{
+  padding-left: 10px;
+}
 
 
 
