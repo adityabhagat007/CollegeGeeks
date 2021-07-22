@@ -1,29 +1,32 @@
 module.exports = (req, res, next) => {
   try {
-    const page = req.body.page;
-    const category = req.body.category;
+    const page = +req.query.page || 1;
+    const category = req.query.category || req.session.user.branch || "cse";
     //Checking page
     if (page < 1) {
-      req.falsh("error", "Please enter a correct page value!");
-      return req.redirect("/home");
+      return res.render("questions", {
+        error: "Please enter a correct page value!",
+        isLoggedIn: req.loginStatus,
+      });
     }
     //Checking category
     if (
-      category !== "ECE" &&
-      category !== "CSE" &&
-      category !== "EE" &&
-      category !== "ME" &&
-      category !== "CE" &&
-      category !== "CT" &&
-      category !== "ECE" &&
-      category !== "LT" &&
-      category !== "FT" &&
-      category !== "OT"
+      category !== "ece" &&
+      category !== "cse" &&
+      category !== "ee" &&
+      category !== "me" &&
+      category !== "ce" &&
+      category !== "ct" &&
+      category !== "lt" &&
+      category !== "ft" &&
+      category !== "ot"
     ) {
-      req.flash("error", "Invalid category");
-      return res.redirect("/home");
+      return res.render("questions", {
+        error: "Invalid category",
+        isLoggedIn: req.loginStatus,
+      });
     }
-    //If validation is successfull the moving to next
+    //If validation is successfull then moving to next
     next();
   } catch (err) {
     next(err);
