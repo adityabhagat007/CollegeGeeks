@@ -70,13 +70,20 @@ a{
   text-align: left;
 }
 
+
+
 /* Sign-up page css*/
 
 .title_login{
   padding-bottom: 5%;
 }
 
+
+
+
+
 /*login page css*/
+
 .title_login{
   padding-bottom: 5%;
 }
@@ -98,8 +105,6 @@ a{
     padding-left: 90px;
   }
 }
-
-
 @media(min-width:768px){
   .login_card{
     width:50%;
@@ -108,6 +113,9 @@ a{
     margin-left: 30%;
   }
 }
+
+
+
 /* offcanvas css */
 .profile-offcanvas{
   text-decoration: none;
@@ -115,9 +123,12 @@ a{
 }
 
 
+
+
+
+
+
 /*home page css */
-
-
 
 .body{
   background-color: #f1f2f2;
@@ -148,6 +159,8 @@ a{
     
   }
 } */
+
+
 
 
 /*my-account page css */
@@ -199,6 +212,9 @@ a{
   }
 }
 
+
+
+
 /*404 page*/
 #page404{
   margin-top:7% ;
@@ -209,6 +225,35 @@ a{
 .msg404{
   font-size: 20px;
 }
+
+
+/* 500 page Css */
+
+.page_500{
+  margin-top:3%;
+  text-align: center;
+}
+
+@media(max-width:800px){
+  .page_500{
+    margin-top:60%
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* Question Ans page CSS */
 
 .mdl-textfield{
