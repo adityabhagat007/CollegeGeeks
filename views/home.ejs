@@ -3,8 +3,10 @@
 
 <%# ADDING NAVBAR %>
 <section class="title_home">
-<%- include("partials/navbar.ejs",{ Profile:"Profile"});  -%>
+  <%- include("partials/LoggedNavbar.ejs"); -%>
 </section>
+
+
 <body class="body">
   <%= questions %>
 <section class="container mainpage">
@@ -23,7 +25,7 @@
             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Corporis soluta quo modi magnam vero quos veritatis officia dolore nisi, nam, explicabo id ullam sequi, fugiat neque sed tenetur unde amet. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque error cupiditate ad quaerat! Repudiandae, quod? Distinctio quisquam cum adipisci perspiciatis, temporibus excepturi vero unde reiciendis illum explicabo nemo et magnam?
             Inventore praesentium distinctio tempore perspiciatis. Dolores tempore at dolor assumenda voluptas excepturi aliquam aliquid, consequuntur officiis doloremque error dolore tenetur est, tempora, consectetur sapiente laboriosam rerum expedita obcaecati nobis voluptatum?
           </div>
-          <button type="button" class="openanswer btn btn-light rounded-pill m-1"><a href="/questionPage">Read more</a></button>
+          <button type="button" class="openanswer btn btn-sm btn-light rounded-pill m-1"><a href="/questionPage">Read more</a></button>
         </div>
       </div>
       <div class="card mb-1">
@@ -33,13 +35,17 @@
             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Corporis soluta quo modi magnam vero quos veritatis officia dolore nisi, nam, explicabo id ullam sequi, fugiat neque sed tenetur unde amet. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque error cupiditate ad quaerat! Repudiandae, quod? Distinctio quisquam cum adipisci perspiciatis, temporibus excepturi vero unde reiciendis illum explicabo nemo et magnam?
             Inventore praesentium distinctio tempore perspiciatis. Dolores tempore at dolor assumenda voluptas excepturi aliquam aliquid, consequuntur officiis doloremque error dolore tenetur est, tempora, consectetur sapiente laboriosam rerum expedita obcaecati nobis voluptatum?
           </div>
-          <button type="button" class="openanswer btn btn-light rounded-pill m-1"><a href="/questionPage">Read more</a></button>
+          <button type="button" class="openanswer btn btn-sm btn-light rounded-pill m-1"><a href="/questionPage">Read more</a></button>
         </div>
       </div>
     </div>
     </div>
 </section>
 
+
+
+
+<!-- modal part -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">

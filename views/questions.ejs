@@ -4,11 +4,11 @@
 
 <% if(isLoggedIn === true){%>
     <section class="title_home">
-        <%- include("partials/navbar.ejs",{Profile: "Profile"}); -%>
+        <%- include("partials/LoggedNavbar.ejs"); -%>
     </section>
 <%} else {%>
     <section class="title_home">
-        <%- include("partials/navbar.ejs",{Profile: ""}); -%>
+        <%- include("partials/navbar.ejs"); -%>
     </section>
 <%}%>
 

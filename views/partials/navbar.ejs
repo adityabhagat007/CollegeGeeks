@@ -40,14 +40,53 @@
                 >CSE or IT</a
               >
             </li>
-            <li><a class="dropdown-item" href="#">Mechanical/Automobile</a></li>
-            <li><a class="dropdown-item" href="#">ECE</a></li>
-            <li><a class="dropdown-item" href="#">Electrical</a></li>
-            <li><a class="dropdown-item" href="#">Chemical</a></li>
-            <li><a class="dropdown-item" href="#">Leather Technology</a></li>
-            <li><a class="dropdown-item" href="#">Ceramic technology</a></li>
-            <li><a class="dropdown-item" href="#">Food technology</a></li>
-            <li><a class="dropdown-item" href="#">Civil</a></li>
+            <li>
+              <a class="dropdown-item" href="/questions?page=1&category=me"
+                >Mechanical/Automobile</a
+              >
+            </li>
+
+            <li>
+              <a class="dropdown-item" href="/questions?page=1&category=ece"
+                >Electronics</a
+              >
+            </li>
+            <li>
+              <a class="dropdown-item" href="/questions?page=1&category=ee"
+                >Electrical Engineering</a
+              >
+            </li>
+
+            <li>
+              <a class="dropdown-item" href="/questions?page=1&category=ce"
+                >Chemical Engineering</a
+              >
+            </li>
+            <li>
+              <a class="dropdown-item" href="/questions?page=1&category=lt"
+                >Leather Technology</a
+              >
+            </li>
+            <li>
+              <a class="dropdown-item" href="/questions?page=1&category=ct"
+                >Ceramic technology</a
+              >
+            </li>
+            <li>
+              <a class="dropdown-item" href="/questions?page=1&category=ft"
+                >Food technology</a
+              >
+            </li>
+            <li>
+              <a class="dropdown-item" href="/questions?page=1&category=ce"
+                >Civil Engineering</a
+              >
+            </li>
+            <li>
+              <a class="dropdown-item" href="/questions?page=1&category=ot"
+                >Others</a
+              >
+            </li>
           </ul>
         </li>
         <li class="nav-item">
@@ -55,77 +94,5 @@
         </li>
       </ul>
     </div>
-    <a
-      class="profile-offcanvas"
-      data-bs-toggle="offcanvas"
-      data-bs-target="#offcanvasRight"
-      href="#offcanvasExample"
-      aria-controls="offcanvasRight"
-      ><%= Profile %></a
-    >
   </div>
 </nav>
-
-<div
-  class="offcanvas offcanvas-end"
-  tabindex="-1"
-  id="offcanvasRight"
-  aria-labelledby="offcanvasRightLabel"
->
-  <div class="offcanvas-header">
-    <h4 class="offcanvas-title" id="offcanvasRightLabel">Your Account</h4>
-    <button
-      type="button"
-      class="btn-close text-reset"
-      data-bs-dismiss="offcanvas"
-      aria-label="Close"
-    ></button>
-  </div>
-  <div class="offcanvas-body">
-    <i class="fas fa-user-circle fa-7x"></i><br /><br />
-    <h4>UserName</h4>
-    <h4>Stream</h4>
-    <br /><br />
-    <div class="offcanvas-list">
-      <a
-        href="/home"
-        class="
-          border-0
-          rounded
-          list-group-item list-group-item-action list-group-item-light
-          .list-group-flush
-        "
-        ><i class="fas fa-home"></i> Home</a
-      >
-      <hr />
-      <a
-        href="/myaccount"
-        class="
-          border-0
-          list-group-item list-group-item-action list-group-item-light
-        "
-        ><i class="fas fa-user"></i> My Account
-      </a>
-      <hr />
-      <a
-        href="/userActivity"
-        class="
-          border-0
-          list-group-item list-group-item-action list-group-item-light
-        "
-      >
-        <i class="fas fa-question-circle"></i> Your Activity</a
-      >
-      <hr />
-      <a
-        href="/logout"
-        class="
-          border-0
-          list-group-item list-group-item-action list-group-item-light
-        "
-      >
-        <i class="fas fa-sign-out-alt"></i> Logout</a
-      >
-    </div>
-  </div>
-</div>

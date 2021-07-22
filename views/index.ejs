@@ -1,8 +1,16 @@
 <%- include("partials/header.ejs" , {pageTitle : "CollegeGeeks: :: Home" ,
 style: "css/style.css"}); -%>
-<section class="title">
-  <%- include("partials/navbar.ejs",{Profile: ""}); -%>
-</section>
+
+
+<% if(isLoggedIn === true){%>
+  <section class="title">
+      <%- include("partials/LoggedNavbar.ejs"); -%>
+  </section>
+<%} else {%>
+  <section class="title">
+      <%- include("partials/navbar.ejs"); -%>
+  </section>
+<%}%>
 
 <section id="main">
   <div class="container-fluid main_header">
