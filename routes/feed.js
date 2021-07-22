@@ -4,6 +4,8 @@ const feedController = require("../controllers/feed");
 const isAuth = require("../middleware/isAuth");
 const loginStatus = require("../middleware/loginStatus");
 const newQuestionValidator = require("../middleware/validators/newQuestion");
+const getHomePageValidator = require("../middleware/validators/getHome");
+const getQuestionsValidator = require("../middleware/validators/getQuestions");
 
 const router = express.Router();
 
@@ -11,13 +13,20 @@ router.get("/", loginStatus, feedController.getLandingPage);
 
 router.get("/about", loginStatus, feedController.getAboutPage);
 
-router.get("/home", isAuth, feedController.getHomePage);
+router.get("/home", isAuth, getHomePageValidator, feedController.getHomePage);
 
 router.get("/myaccount", isAuth, feedController.getMyAccount);
 
 router.get("/questionPage", isAuth, feedController.getQuestionPage);
 
 router.get("/userActivity", isAuth, feedController.getUserActivity);
+
+router.get(
+  "/questions",
+  loginStatus,
+  getQuestionsValidator,
+  feedController.getQuestions
+);
 
 router.post(
   "/askquestion",

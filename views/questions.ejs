@@ -1,0 +1,16 @@
+<%# ADDING HEADER %>
+<%- include("partials/header.ejs" , {pageTitle : "CollegeGeeks: :: Questions" , style: "css/style.css"}); -%>
+
+<h1>isLoggedIn</h1>
+<h4><%= isLoggedIn %></h4>
+
+<h2>Data : </h2>
+<% if(error.length > 0) { %>
+    <%= error %>
+<% } else { %>
+    <%= questions %>
+<% } %>
+
+</body>
+
+</html>

@@ -111,3 +111,12 @@ exports.verifyToken = async (req, res, next) => {
     next(err);
   }
 };
+
+exports.logout = async (req, res, next) => {
+  try {
+    const response = await req.session.destroy();
+    res.redirect("/");
+  } catch (err) {
+    next(err);
+  }
+};

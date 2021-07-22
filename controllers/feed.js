@@ -1,5 +1,6 @@
 const User = require("../models/user");
 const Question = require("../models/question");
+const user = require("../models/user");
 
 exports.getLandingPage = (req, res, next) => {
   res.render("index", { isLoggedIn: req.loginStatus });
@@ -9,8 +10,23 @@ exports.getAboutPage = (req, res, next) => {
   res.render("aboutus", { isLoggedIn: req.loginStatus });
 };
 
-exports.getHomePage = (req, res, next) => {
-  res.render("home");
+exports.getHomePage = async (req, res, next) => {
+  try {
+    //pulling data out from req
+    const page = req.query.page || 1; //Default 1
+    const category = req.session.user.branch.toLowerCase();
+    //Finding requested questions
+    const questions = await Question.find({ category })
+      .skip((page - 1) * 10)
+      .limit(10);
+    if (!questions) {
+      return res.render("home", { error: "Can not find any questions" });
+    }
+    //If we get questions
+    res.render("home", { questions, error: "" });
+  } catch (err) {
+    next(err);
+  }
 };
 
 exports.getMyAccount = (req, res, next) => {
@@ -51,18 +67,24 @@ exports.postAskQuestion = async (req, res, next) => {
 exports.getQuestions = async (req, res, next) => {
   try {
     //pulling data out from req
-    const page = req.query.page - 1; // - 1 to keep the pagination logic clean
-    const category = req.query.category;
-    //Fiding requested questions
+    const page = req.query.page || 1; //Default 1
+    const category = req.query.category || req.session.user.category || "cse";
+    //Finding requested questions
     const questions = await Question.find({ category })
-      .skip(page * 10)
+      .skip((page - 1) * 10)
       .limit(10);
     if (!questions) {
-      req.flash("error", "Can not find any questions");
-      return res.redirect("/home");
+      return res.render("questions", {
+        error: "Can not find any questions",
+        isLoggedIn: req.loginStatus,
+      });
     }
     //If we get questions
-    res.render("/home", { questions });
+    res.render("questions", {
+      questions,
+      error: "",
+      isLoggedIn: req.loginStatus,
+    });
   } catch (err) {
     next(err);
   }
