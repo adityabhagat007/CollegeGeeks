@@ -2,6 +2,17 @@
 .btn:hover{
   transform: scale(1.06);
 }
+.card{
+  border-radius: 8px;
+}
+.card:hover{
+  box-shadow: 0 0 11px rgba(33,33,33,.2);
+}
+.author_name{
+  text-transform: capitalize;
+}
+
+
 a{
   color: gray;
 }
