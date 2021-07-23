@@ -30,6 +30,8 @@ router.get(
   feedController.getQuestions
 );
 
+router.get("/questions/details", feedController.getQuestion);
+
 router.post(
   "/askquestion",
   isAuth,

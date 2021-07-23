@@ -1,6 +1,6 @@
 const User = require("../models/user");
+const Answer = require("../models/answer");
 const Question = require("../models/question");
-const user = require("../models/user");
 
 exports.getLandingPage = (req, res, next) => {
   res.render("index", { isLoggedIn: req.loginStatus });
@@ -90,6 +90,28 @@ exports.getQuestions = async (req, res, next) => {
       error: "",
       isLoggedIn: req.loginStatus,
     });
+  } catch (err) {
+    next(err);
+  }
+};
+
+exports.getQuestion = async (req, res, next) => {
+  try {
+    const questionId = req.query.questionId;
+    if (questionId === undefined || questionId.length !== 24) {
+      return res.render("questionPage", {
+        error: "Please attach a valid question id!",
+      });
+    }
+    //If an id is found
+    const question = await Question.findById(questionId).populate("answers");
+    if (!question) {
+      return res.render("questionPage", {
+        error: "Sorry! this question can not be found.",
+      });
+    }
+    //If we get a question
+    res.render("questionPage", { question, error: "" });
   } catch (err) {
     next(err);
   }
