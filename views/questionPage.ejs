@@ -9,6 +9,12 @@
 </section>
 
 <body class="body">
+      <% if(error.length > 0) { %>
+            <h3>Error : <%= error %></h3>
+      <% } else { %>
+            <%= question %>
+      <% } %>
+
 <section id="questionPage ">
       <div class="container">
             <div class="row container">
