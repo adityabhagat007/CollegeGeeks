@@ -12,6 +12,10 @@
     </section>
 <%}%>
 
+
+
+
+
 <body class="body">
 <section class="container">
     <div class="container">
@@ -19,15 +23,29 @@
             <% if(error.length > 0) { %>
                 <%= error %>
             <% } else { %>
-                <%questions.forEach(element => {%>
-                    <div class="card mb-1">
-                        <div class="card-body">
-                          <div class="author_name"><%=element.authorName%></div>  
-                          <div class="card-title"><h5><%= element.statement%> </h5> </div><hr>
-                          <button type="button" class="openanswer btn btn-sm btn-light rounded-pill m-1"><a href="/questionPage">Read more</a></button>
-                        </div>
+                <% if(questions.length === 0){ %>
+                    <div class="no_qna">
+                     <h3 class="display-4">Be the first to ask Question</h3>
                     </div>
-                <%});%>
+                <%}else{ %>
+                    <%questions.forEach(element => {%>
+                        <div class="card mb-1">
+                            <div class="card-body">
+
+
+                                <div class="author_name"><a href="/PublicProfile"><%=element.authorName%></a>
+
+
+                                <span style="float: right;"><%= element.createdAt.toLocaleDateString() %></span>
+                                </div>
+                                
+                                
+                              <div class="card-title"><h5><%= element.statement%>?</h5> </div><hr>
+                              <button type="button" class="openanswer btn btn-sm btn-light rounded-pill m-1"><a href="/questionPage">Read more</a></button>
+                            </div>
+                        </div>
+                    <%});%>
+                <%}%>
             <% } %> 
         </div>
     </div>
