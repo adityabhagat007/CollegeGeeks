@@ -1,0 +1,142 @@
+<%- include("partials/header.ejs" , {pageTitle : "CollegeGeeks: :: My Account" , style: "css/style.css"}); -%>
+
+<%# ADDING NAVBAR %>
+<section class="title_myaccount">
+    <%- include("partials/LoggedNavbar.ejs"); -%>
+</section>
+
+<section class="my_acc">
+    <div class="container">
+        <div class="row">
+            <div class = "my_background rounded">
+                <button class="edit_profile btn btn-sm btn-secondary" type="button">Follow</button>
+            </div>
+            <div class="user_profile">
+            <i class="user_icon fas fa-user-circle fa-10x"></i>
+            <div class=" upload">
+                <input type="file" id="actual-btn" hidden>
+                <label for="actual-btn" style="cursor: pointer; color: black;"><i class="fas fa-camera fa-2x"></i></label>
+            </div>
+            </div>
+            <div class="usename">
+                    <span class="display-6">UserName</span>
+                    <p>Bio</p>
+            </div>
+        </div>
+    </div>  
+</section>
+<section class="my_acc_body">
+    <div class="container">
+        <div class="row">
+            <div class="mdl-card">
+                <div class="card-body">
+                    <div class="card">
+                        <div class="card-body">
+                            <table class="table table-hover">
+                                <thead>
+                                    <h4>UserName Stats</h4>
+                                </thead>
+                                <hr>
+                                  <tbody>
+                                    <tr>
+                                      <td><b>Followers</b></td>
+                                      <td><b>Answered</b></td>
+                                      <td><b>Asked</b></td>
+                                    </tr>
+                                    <tr>
+                                      <td>10</td>
+                                      <td>10</td>
+                                      <td>10</td>
+                                    </tr>
+                                  </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> 
+</section>
+<section class="my_acc_body">
+    <div class="container">
+        <div class="row">
+            <div class="mdl-card">
+                <div class="card-body">
+                    <div class="card">
+                        <div class="card-body">
+                            <table class="table table-hover">
+                                <thead>
+                                    <h4>About</h4>
+                                </thead>
+                                <hr>
+                                  <tbody>
+                                    <tr>
+                                      <td><b>Name</b></td>
+                                      <td><b>UserName</b></td>
+                                    </tr>
+                                    <tr>
+                                    <td><b>Stream</b></td>
+                                    <td><b>CSE</b></td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Email</b></td>
+                                        <td><b>UserEmail</b></td>
+                                    </tr>
+                                  </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> 
+
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+      crossorigin="anonymous">
+</script>
+</body>
+</html>

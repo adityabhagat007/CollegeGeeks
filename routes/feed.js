@@ -21,6 +21,8 @@ router.get("/questionPage", isAuth, feedController.getQuestionPage);
 
 router.get("/userActivity", isAuth, feedController.getUserActivity);
 
+router.get("/PublicProfile", isAuth, feedController.getPublicProfile);
+
 router.get(
   "/questions",
   loginStatus,
