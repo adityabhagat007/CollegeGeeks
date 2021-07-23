@@ -6,6 +6,11 @@
 <%- include("partials/navbar.ejs",{ Profile:"Profile"});  -%>
 </section>
 <body class="body">
+  <% if(error.length > 0) { %>
+    <h4>Error: <%= error %> </h4>
+  <% } else { %>
+    <h5>Total Pages: <%=totalPages%> :::: current pgae: <%= currentPage %></h5>
+  <% } %>
   <%= questions %>
 <section class="container mainpage">
     <div class="container">
