@@ -43,6 +43,11 @@ exports.getQuestionPage = (req, res, next) => {
 exports.getUserActivity = (req, res, next) => {
   res.render("userActivity");
 };
+
+exports.getPublicProfile = (req, res, next) => {
+  res.render("PublicProfile");
+};
+
 exports.postAskQuestion = async (req, res, next) => {
   try {
     //Pulling the data out from request body

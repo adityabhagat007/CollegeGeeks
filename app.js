@@ -61,7 +61,7 @@ app.use(authRoutes);
 
 app.use((error, req, res, next) => {
   console.log(error);
-  res.send("Something went wrong.");
+  res.render("500");
 });
 
 /************* 404 Not Found  */

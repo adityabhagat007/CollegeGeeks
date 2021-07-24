@@ -3,15 +3,12 @@
 
 <%# ADDING NAVBAR %>
 <section class="title_home">
-<%- include("partials/navbar.ejs",{ Profile:"Profile"});  -%>
+  <%- include("partials/LoggedNavbar.ejs"); -%>
 </section>
+
+
 <body class="body">
-  <% if(error.length > 0) { %>
-    <h4>Error: <%= error %> </h4>
-  <% } else { %>
-    <h5>Total Pages: <%=totalPages%> :::: current pgae: <%= currentPage %></h5>
-  <% } %>
-  <%= questions %>
+   <!-- <%= questions %>  -->
 <section class="container mainpage">
     <div class="container">
     <div class="row">
@@ -21,29 +18,36 @@
           <div class="card-title display-6" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo" style="color: gray;"><b>Ask Your Question</b></div>
         </div>
       </div>
+
+      <% questions.forEach(element=>{%>
       <div class="card mb-1">
         <div class="card-body">
-          <div class="card-title"><h5>Question </h5> </div><hr>
-          <div class="answer">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Corporis soluta quo modi magnam vero quos veritatis officia dolore nisi, nam, explicabo id ullam sequi, fugiat neque sed tenetur unde amet. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque error cupiditate ad quaerat! Repudiandae, quod? Distinctio quisquam cum adipisci perspiciatis, temporibus excepturi vero unde reiciendis illum explicabo nemo et magnam?
-            Inventore praesentium distinctio tempore perspiciatis. Dolores tempore at dolor assumenda voluptas excepturi aliquam aliquid, consequuntur officiis doloremque error dolore tenetur est, tempora, consectetur sapiente laboriosam rerum expedita obcaecati nobis voluptatum?
+          <div class="author_name">
+            <a href="/PublicProfile"><%=element.authorName%></a>
+            <span style="float: right;"><%= element.createdAt.toLocaleDateString() %></span>
           </div>
-          <button type="button" class="openanswer btn btn-light rounded-pill m-1"><a href="/questionPage">Read more</a></button>
+
+
+          <div class="card-title"><h5><%= element.statement%>?</h5> </div><hr>
+
+          
+          <button type="button" class="openanswer btn btn-sm btn-light rounded-pill m-1"><a href="/questionPage">Read more</a></button>
         </div>
       </div>
-      <div class="card mb-1">
-        <div class="card-body">
-          <div class="card-title"><h5>Question </h5> </div><hr>
-          <div class="answer">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Corporis soluta quo modi magnam vero quos veritatis officia dolore nisi, nam, explicabo id ullam sequi, fugiat neque sed tenetur unde amet. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque error cupiditate ad quaerat! Repudiandae, quod? Distinctio quisquam cum adipisci perspiciatis, temporibus excepturi vero unde reiciendis illum explicabo nemo et magnam?
-            Inventore praesentium distinctio tempore perspiciatis. Dolores tempore at dolor assumenda voluptas excepturi aliquam aliquid, consequuntur officiis doloremque error dolore tenetur est, tempora, consectetur sapiente laboriosam rerum expedita obcaecati nobis voluptatum?
-          </div>
-          <button type="button" class="openanswer btn btn-light rounded-pill m-1"><a href="/questionPage">Read more</a></button>
-        </div>
-      </div>
+     <% }) %> 
     </div>
     </div>
 </section>
+
+
+
+
+
+
+
+
+<!-- modal part -->
+
 
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
@@ -58,13 +62,14 @@
               <label for="question-type" class="mb-2">Enter your Subject of your Question </label>
               <select id="question-type" class="form-select" name="category" required>
                 <option value="CSE">Computer Science Engineering OR IT</option>
-                            <option value="ECE">Electronic and Communication Engineering</option>
+                            <option value="ece">Electronic and Communication Engineering</option>
                             <option value="EE">Electrical Engineering</option>
                             <option value="ME">Mechanical Engineering</option>
                             <option value="CE"> Chemical Engineering</option>
                             <option value="CT">Ceramic Engineering</option>
                             <option value="LT">Leather Technology</option>
                             <option value="FT">Food Technology</option>
+                            <option value="CV">Civil Engineering</option>
                             <option value="OT">Others</option>
               </select>
           </div>
@@ -78,6 +83,11 @@
     </div>
   </div>
 </div>
+  
+
+
+
+
 
 <script src="js/main.js"></script>
 <script

@@ -2,6 +2,17 @@
 .btn:hover{
   transform: scale(1.06);
 }
+.card{
+  border-radius: 8px;
+}
+.card:hover{
+  box-shadow: 0 0 11px rgba(33,33,33,.2);
+}
+.author_name{
+  text-transform: capitalize;
+}
+
+
 a{
   color: gray;
 }
@@ -70,13 +81,20 @@ a{
   text-align: left;
 }
 
+
+
 /* Sign-up page css*/
 
 .title_login{
   padding-bottom: 5%;
 }
 
+
+
+
+
 /*login page css*/
+
 .title_login{
   padding-bottom: 5%;
 }
@@ -98,8 +116,6 @@ a{
     padding-left: 90px;
   }
 }
-
-
 @media(min-width:768px){
   .login_card{
     width:50%;
@@ -108,6 +124,9 @@ a{
     margin-left: 30%;
   }
 }
+
+
+
 /* offcanvas css */
 .profile-offcanvas{
   text-decoration: none;
@@ -115,9 +134,12 @@ a{
 }
 
 
+
+
+
+
+
 /*home page css */
-
-
 
 .body{
   background-color: #f1f2f2;
@@ -150,54 +172,48 @@ a{
 } */
 
 
+
+
 /*my-account page css */
-.main_acc{
-  margin-top: 30px;
-  margin-bottom: 30px;
-}
-.title_myaccount{
-  padding-bottom: 5%;
-}
-.profile-img{
+
+.my_acc{
   text-align: center;
+  align-items: center;
 }
-.profile-img img{
-  width: 50%;
-  height: 100%;
+
+.user_profile{
+position: relative;
+color: gray;
 }
-.profile-img .file {
+
+.my_background{
   position: relative;
-  overflow: hidden;
-  margin-top: -20%;
-  width: 70%;
-  border: none;
-  border-radius: 0;
-  font-size: 15px;
-  background: #212529b8;
 }
-.profile-img .file input {
-  position: absolute;
-  opacity: 0;
-  right: 0;
-  top: 0;
+.user_icon:hover{
+  color: rgba(122, 115, 115, 0.918);
 }
-.myaccountcard{
-  padding:2% ;
+.edit_profile{
+  margin-top:15px;
+  float: right;
 }
-@media(max-width:768px){
-  .usersection1{
-    text-align: center;
-  }
+.upload{
+  top:-25px;
+  bottom: 0;
+  position: relative;
+  padding-left: 100px;
 }
-.datasection{
+.username{
+  top:-50px;
+}
+.my_acc_body{
   text-align: center;
 }
-@media(max-width:768px){
-  .datasection{
-    padding-left: 20px;
-    text-align: left;
-  }
+.my_card{
+  margin-top: 20px;
+  text-align: center;
 }
+
+
 
 /*404 page*/
 #page404{
@@ -209,6 +225,46 @@ a{
 .msg404{
   font-size: 20px;
 }
+
+
+/* 500 page Css */
+
+.page_500{
+  margin-top:3%;
+  text-align: center;
+}
+
+@media(max-width:800px){
+  .page_500{
+    margin-top:60%
+  }
+}
+
+/* stream Question page */
+.no_qna{
+  text-align: center;
+}
+
+@media(max-width:800px){
+  .no_qna{
+    margin-top:60%
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* Question Ans page CSS */
 
 .mdl-textfield{
