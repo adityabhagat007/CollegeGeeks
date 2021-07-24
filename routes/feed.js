@@ -15,7 +15,7 @@ router.get("/about", loginStatus, feedController.getAboutPage);
 
 router.get("/home", isAuth, getHomePageValidator, feedController.getHomePage);
 
-router.get("/myaccount", isAuth, feedController.getMyAccount);
+router.get("/myaccount", isAuth, feedController.getProfile);
 
 router.get("/questionPage", isAuth, feedController.getQuestionPage);
 

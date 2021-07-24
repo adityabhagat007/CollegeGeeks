@@ -1,6 +1,6 @@
-const User = require("../models/user");
 const Answer = require("../models/answer");
 const Question = require("../models/question");
+const User = require("../models/user");
 
 exports.getLandingPage = (req, res, next) => {
   res.render("index", { isLoggedIn: req.loginStatus });
@@ -115,6 +115,33 @@ exports.getQuestion = async (req, res, next) => {
     }
     //If we get a question
     res.render("questionPage", { question, error: "" });
+  } catch (err) {
+    next(err);
+  }
+};
+
+exports.getProfile = async (req, res, next) => {
+  try {
+    const userId = req.session.user._id;
+
+    const user = await User.findById(userId).select("-password");
+    if (!user) {
+      const error = new Error("No user is found");
+      throw error;
+    }
+    //console.log(user);
+    const profile = {
+      ...user._doc,
+      questions: user.questions.length,
+      followers: user.followers.length,
+      likedQuestions: user.likedQuestions.length,
+      likedAnswers: user.likedAnswers.length,
+      answers: user.answers.length,
+      followings: user.followings.length,
+      answeredQuestions: user.answeredQuestions.length,
+    };
+    console.log(profile);
+    res.render("myaccount", { profile });
   } catch (err) {
     next(err);
   }
