@@ -9,6 +9,7 @@
 
 <body class="body">
    <!-- <%= questions %>  -->
+
 <section class="container mainpage">
     <div class="container">
     <div class="row">
@@ -18,23 +19,34 @@
           <div class="card-title display-6" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo" style="color: gray;"><b>Ask Your Question</b></div>
         </div>
       </div>
+      <% if(error.length > 0) { %>
 
-      <% questions.forEach(element=>{%>
-      <div class="card mb-1">
-        <div class="card-body">
-          <div class="author_name">
-            <a href="/PublicProfile"><%=element.authorName%></a>
-            <span style="float: right;"><%= element.createdAt.toLocaleDateString() %></span>
+        <div class="alert alert-danger d-flex align-items-center" role="alert">
+          <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+          <div>
+            <%= error %> 
           </div>
-
-
-          <div class="card-title"><h5><%= element.statement%>?</h5> </div><hr>
-
-          
-          <button type="button" class="openanswer btn btn-sm btn-light rounded-pill m-1"><a href="/questionPage">Read more</a></button>
         </div>
-      </div>
-     <% }) %> 
+
+      <% } else { %>
+
+        <% questions.forEach(element=>{%>
+          <div class="card mb-1">
+            <div class="card-body">
+              <div class="author_name">
+                <a href="/PublicProfile"><%=element.authorName%></a>
+                <span style="float: right;"><%= element.createdAt.toLocaleDateString() %></span>
+              </div>
+
+              <div class="card-title"><h5><%= element.statement%>?</h5> </div><hr>
+
+              
+              <button type="button" class="openanswer btn btn-sm btn-light rounded-pill m-1"><a href="/questionPage">Read more</a></button>
+            </div>
+          </div>
+         <% }) %> 
+
+       <% } %> 
     </div>
     </div>
 </section>

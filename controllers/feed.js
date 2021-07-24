@@ -48,6 +48,11 @@ exports.getPublicProfile = (req, res, next) => {
   res.render("PublicProfile");
 };
 
+exports.getEditprofile = (req, res, next) => {
+  res.render("Editprofile");
+};
+
+
 exports.postAskQuestion = async (req, res, next) => {
   try {
     //Pulling the data out from request body

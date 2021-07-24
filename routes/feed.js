@@ -23,6 +23,8 @@ router.get("/userActivity", isAuth, feedController.getUserActivity);
 
 router.get("/PublicProfile", isAuth, feedController.getPublicProfile);
 
+router.get("/Editprofile", isAuth, feedController.getEditprofile);
+
 router.get(
   "/questions",
   loginStatus,
