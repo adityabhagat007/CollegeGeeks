@@ -17,9 +17,9 @@ router.get("/home", isAuth, getHomePageValidator, feedController.getHomePage);
 
 router.get("/myaccount", isAuth, feedController.getProfile);
 
-router.get("/questionPage", isAuth, feedController.getQuestionPage);
+router.get("/questionPage", isAuth, feedController.getQuestion);
 
-router.get("/userActivity", isAuth, feedController.getUserActivity);
+router.get("/userActivity", isAuth, feedController.getActivity);
 
 router.get("/PublicProfile", isAuth, feedController.getPublicProfile);
 
