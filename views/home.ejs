@@ -8,7 +8,7 @@
 
 
 <body class="body">
-   <!-- <%= questions %>  -->
+    <!-- <%= questions %>  -->
 
 <section class="container mainpage">
     <div class="container">
@@ -41,11 +41,10 @@
               <div class="card-title"><h5><%= element.statement%>?</h5> </div><hr>
 
               
-              <button type="button" class="openanswer btn btn-sm btn-light rounded-pill m-1"><a href="/questionPage">Read more</a></button>
+              <button type="button" class="openanswer btn btn-sm btn-light rounded-pill m-1"><a href="/questionPage?questionId=<%=element._id  %> ">Read more</a></button>
             </div>
           </div>
          <% }) %> 
-
        <% } %> 
     </div>
     </div>
@@ -74,7 +73,7 @@
               <label for="question-type" class="mb-2">Enter your Subject of your Question </label>
               <select id="question-type" class="form-select" name="category" required>
                 <option value="CSE">Computer Science Engineering OR IT</option>
-                            <option value="ece">Electronic and Communication Engineering</option>
+                            <option value="ECE">Electronic and Communication Engineering</option>
                             <option value="EE">Electrical Engineering</option>
                             <option value="ME">Mechanical Engineering</option>
                             <option value="CE"> Chemical Engineering</option>

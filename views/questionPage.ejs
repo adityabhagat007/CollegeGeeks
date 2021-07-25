@@ -9,35 +9,33 @@
 </section>
 
 <body class="body">
-      <% if(error.length > 0) { %>
-            <%= error %>
-      <% } else { %>
-            <%= question %>
-      <% } %> 
 
 <section id="questionPage ">
       <div class="container">
             <div class="row container">
+                  <% if(error.length > 0) { %>
+                        <%= error %>; 
+                  <% } else { %>
+                  <!-- <%= question %> -->
                   <div class =" Ans-question card mb-2">
                         <div class="card-body">
-                              <div class="card-title"><h3>QUESTION</h3></div>
+                              <div class="card-title"><h3><%= question.statement %>?  </h3></div>
                               <div style="float: right;" data-bs-toggle="modal" data-bs-target="#ansModal" >Click Here to answer</div>
                         </div>
                   </div>
-                  <div class="Answer card mdl-card mb-2">
+                  <% if(question.answers.length>0){ %> 
+                  <% question.answers.forEach(element=>{%> 
+                  <div class="Answer card mb-2">
                         <div class ="card-body">
                               <div class="card-title">UserName</div><hr>
-                              Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio corrupti natus quo adipisci! Eum quae praesentium inventore illo ipsam nemo numquam voluptates in quia, obcaecati atque iusto et sed possimus.
-                              Repudiandae, ratione asperiores, voluptas optio odit tempora ea laborum possimus, quo praesentium qui vel sapiente at? Voluptatem harum exercitationem omnis, tenetur temporibus odio consequuntur amet dolor ut rerum veniam provident?
                         </div>
                   </div>
-                  <div class="Answer card mdl-card mb-2">
-                        <div class ="card-body">
-                              <div class="card-title">UserName</div><hr>
-                              Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio corrupti natus quo adipisci! Eum quae praesentium inventore illo ipsam nemo numquam voluptates in quia, obcaecati atque iusto et sed possimus.
-                              Repudiandae, ratione asperiores, voluptas optio odit tempora ea laborum possimus, quo praesentium qui vel sapiente at? Voluptatem harum exercitationem omnis, tenetur temporibus odio consequuntur amet dolor ut rerum veniam provident?
-                        </div>
-                  </div>
+                  <% }) %> 
+                  <% } else{ %>
+                        <span class="display-6 mt-2" style="text-align: center;">Be The first to answer Question<br>
+                        </span>
+                  <%}%>
+                  <% } %> 
             </div>
 
 
