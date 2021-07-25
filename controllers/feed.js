@@ -36,10 +36,6 @@ exports.getMyAccount = (req, res, next) => {
   res.render("myaccount");
 };
 
-exports.getQuestionPage = (req, res, next) => {
-  res.render("questionPage");
-};
-
 exports.getUserActivity = (req, res, next) => {
   res.render("userActivity");
 };
@@ -70,6 +66,11 @@ exports.postAskQuestion = async (req, res, next) => {
     });
 
     const question = await newQuestion.save();
+    //Connecting the question with the author
+    const questions = user.questions;
+    questions.push(question._id);
+    user.questions = questions;
+    const updatedUser = await user.save();
     //If everything goes alright
     res.redirect("/home");
   } catch (err) {
@@ -109,6 +110,7 @@ exports.getQuestions = async (req, res, next) => {
 };
 
 exports.getQuestion = async (req, res, next) => {
+  console.log(req.body);
   try {
     const questionId = req.query.questionId;
     if (questionId === undefined || questionId.length !== 24) {
@@ -150,8 +152,29 @@ exports.getProfile = async (req, res, next) => {
       followings: user.followings.length,
       answeredQuestions: user.answeredQuestions.length,
     };
-    console.log(profile);
     res.render("myaccount", { profile });
+  } catch (err) {
+    next(err);
+  }
+};
+
+exports.getActivity = async (req, res, next) => {
+  try {
+    const userId = req.session.user._id;
+
+    const activity = await User.findById(userId)
+      .select("questions answeredQuestions")
+      .populate({
+        path: "questions answeredQuestions",
+        select: "-answers",
+      });
+
+    if (!activity) {
+      return res.render("userActivity", { error: "no activity found!" });
+    }
+    //If activity is found;
+    console.log(activity);
+    res.render("userActivity", { error: "", activity });
   } catch (err) {
     next(err);
   }
