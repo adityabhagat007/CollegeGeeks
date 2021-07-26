@@ -25,52 +25,33 @@ a{
   text-align:center;
   padding-left: 50px;
 }
-
-#main{
-  background-color:#e9eaea;
-}
-.main1{
-  color: gray;
-  
-}
-.sub_header{
-  color: grey;
-}
 .title{
-  padding-bottom: 5%;
-  background-color:#e9eaea;
+  margin-bottom: 5%;
 }
 
-.carousel-control-prev{
-  color: black ;
-}
-.main_header_left{
-  text-align: center;
-  padding: 5%;
+.Welcome_msg{
+  color: rgb(70, 67, 200);
+  font-size: 3rem;
+
 }
 
-.main_about_right{
-  text-align: center;
-  padding-top: 10%;
-  color: rgb(65, 97, 97);
+.home_page_content{
+  margin-top: 7%;
 }
-.Aim{
-  background-color: white;
-  padding-bottom: 5%;
+@media(max-width:800px){
+  .home_page_content{
+    text-align:center;
+    margin-top: 7%;
+  }
+}
+.features_head{
+  margin-top: 3%;
+  text-align: center;
 }
 
-.a_head{
-  text-align: center;
-  padding-top: 2%;
-  padding-bottom: 3%;
-  color: grey;
-}
-.a_left{
-  padding-top: 5%;
-}
-#aboutus{
-  background-color: #eeeeff;
-}
+
+
+
 a{
   text-decoration: none;
 }
@@ -212,6 +193,9 @@ color: gray;
   margin-top: 20px;
   text-align: center;
 }
+
+
+
 
 
 

@@ -7,7 +7,7 @@
     <!-- <p>answers ::: <%=profile.answers%></p>
     <p>likedAnswers ::: <%=profile.likedAnswers%></p> -->
 </section>
-
+<body class="body">
 <section class="my_acc">
     <div class="container">
         <div class="row">
@@ -33,29 +33,47 @@
 <section class="my_acc_body">
     <div class="container">
         <div class="row">
-            <div class="mdl-card">
-                <div class="card-body">
-                    <div class="card">
-                        <div class="card-body">
-                            <table class="table table-hover">
-                                <thead>
-                                    <h4> Your Stats</h4>
-                                </thead>
-                                <hr>
-                                  <tbody>
-                                    <tr>
-                                      <td><b>Followers</b></td>
-                                      <td><b>Answered</b></td>
-                                      <td><b>Asked</b></td>
-                                    </tr>
-                                    <tr>
-                                      <td><%=profile.followings%></td>
-                                      <td><%=profile.answeredQuestions%></td>
-                                      <td><%=profile.questions%></td>
-                                    </tr>
-                                  </tbody>
-                            </table>
-                        </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-6 mb-2">
+                <div class="card">
+                    <div class="card-body">
+                    <div class ="card-title mt-1">
+                        <h4>Following</h4>
+                        <hr>
+                    </div>
+                      <h3> <span> <%=profile.followings%> </span></h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-6 mb-2">
+                <div class="card">
+                    <div class="card-body">
+                    <div class ="card-title mt-1">
+                        <h4>Followers</h4>
+                        <hr>
+                    </div>
+                      <h3> <span> <%=profile.answeredQuestions%> </span></h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-6 mb-2">
+                <div class="card">
+                    <div class="card-body">
+                    <div class ="card-title mt-1">
+                        <h4>Answered</h4>
+                        <hr>
+                    </div>
+                      <h3> <span> <%=profile.answeredQuestions%> </span></h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-6 mb-2">
+                <div class="card">
+                    <div class="card-body">
+                    <div class ="card-title mt-1">
+                        <h4>Asked</h4>
+                        <hr>
+                    </div>
+                      <h3> <span> <%=profile.questions%> </span></h3>
                     </div>
                 </div>
             </div>
@@ -64,37 +82,52 @@
 </section>
 
 
-<section class="my_acc_body">
-    <div class="container">
+
+
+
+
+ <section class="container my_acc_body">
+    <div class="container-sm">
         <div class="row">
-            <div class="mdl-card">
-                <div class="card-body">
-                    <div class="card">
-                        <div class="card-body">
-                            <table class="table table-hover">
-                                <thead>
-                                    <h4>About</h4>
-                                </thead>
-                                <hr>
-                                  <tbody>
-                                    <tr>
-                                      <td><b>Name</b></td>
-                                      <td><b><%=profile.name%></b></td>
-                                    </tr>
-                                    <tr>
-                                    <td><b>Stream</b></td>
-                                    <td><b><%=profile.branch%></b></td>
-                                    </tr>
-                                    <tr>
-                                        <td><b>Email</b></td>
-                                        <td><b><%=profile.email%></b></td>
-                                    </tr>
-                                  </tbody>
-                            </table>
+               <div class="card mb-4">
+                   <div class="card-body">
+                       <div class="card-title"><h4>INFO</h4></div><hr>
+                       <div class="row gy-2 g-2">
+                        <div class="col-lg-4 col-md-4 col-12 mb-3">
+                            
+                            <div class ="row">
+                            <div class="col-4">
+                                <b>Name : </b>
+                            </div>
+                            <div class="col-8">
+                                <b><%= profile.name%></b>
+                            </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-            </div>
+                        <div class="col-lg-4 col-md-4 col-12 mb-3">
+                            <div class ="row">
+                            <div class="col-4">
+                                <b>Email :</b>
+                            </div>
+                            <div class="col-8">
+                               <b> <%= profile.email%></b>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-12 mb-3">
+                            <div class ="row">
+                                <div class="col-4">
+                                    <b>Stream :</b>
+                                </div>
+                                <div class="col-6">
+                                    <b><%= profile.branch%></b>
+                                </div>
+                             </div>
+                        </div>
+                        
+                       </div>
+                   </div>
+               </div>
         </div>
     </div> 
 </section>

@@ -1,9 +1,10 @@
 <%- include("partials/header.ejs" , {pageTitle : "CollegeGeeks: :: Home" , style: "css/style.css"}); -%>
 
-<section class="title_home">
+<section class="title_myaccount">
     <%- include("partials/LoggedNavbar.ejs"); -%>
 </section>
 
+<body style="background-color: #fafafa;">
 <section class="my_acc">
     <div class="container">
         <div class="row">
@@ -37,27 +38,27 @@
 <section>
     <div class="container">
         <div class="row">
-            <div class="mdl-card">
+            <div class="card">
                 <div class="card-body">
-                    <div class="card-title">
-                        <form>
-                            <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Name</label>
-                                <input type="text" class="form-control" 
-                                name="name">
-                              </div>
-                              <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Email address</label>
-                                <input type="email" class="form-control"
-                                name="email">
-                              </div>
-                              <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">stream</label>
-                                <input type="text" class="form-control" 
-                                name="stream">
-                              </div>
-                              <button class="btn btn-primary" type="submit">Submit</button>
-                        </form>
+                    <div class="container">
+                        <form class="row g-3">
+                            <div class="col-md-6">
+                              <label for="inputEmail4" class="form-label">Email</label>
+                              <input type="email" name="email" class="form-control" id="inputEmail4">
+                            </div>
+                            <div class="col-md-6">
+                              <label for="anme" class="form-label">Name</label>
+                              <input type="text" name="name" class="form-control" >
+                            </div>
+                            <div class="col-12">
+                              <label for="inputbio" class="form-label">BIO</label>
+                              <textarea type="text" class="form-control" name="bio">
+                                  </textarea>
+                            </div>
+                            <div class="col-12">
+                              <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                          </form>
                     </div>
                 </div>
             </div>
@@ -94,7 +95,6 @@
 
 
   </div>
-
 
 
 

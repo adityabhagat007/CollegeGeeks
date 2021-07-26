@@ -14,8 +14,8 @@
 
 
 
-
-
+<%= totalPages  %> 
+<%= currentPage  %> 
 <body class="body">
 <section class="container">
     <div class="container">
@@ -28,7 +28,7 @@
                      <h3 class="display-4">Be the first to ask Question</h3>
                     </div>
                 <%}else{ %>
-                    <%= questions %>
+                    <!-- <%= questions %> -->
                     <%questions.forEach(element => {%>
                         <div class="card mb-1">
                             <div class="card-body">

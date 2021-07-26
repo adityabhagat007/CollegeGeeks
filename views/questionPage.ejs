@@ -49,17 +49,13 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                       </div>
                       <div class="modal-body">
-                        <form action="#">
+                        <form action="/newAnswer?questionId=<%= question._id %>">
                               <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                                 <textarea class="mdl-textfield__input" type="text" id="sample3"></textarea>
                                 <label class="mdl-textfield__label" for="sample3">Text...</label>
                               </div>
-                            </form>
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Send message</button>
-                      </div>
+                              <button type="submit" class="btn btn-primary" style="float: right;">Send message</button>
+                        </form>
                     </div>
                   </div>
                 </div>
