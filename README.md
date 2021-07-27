@@ -20,7 +20,12 @@ Now go to your browser and type https://localhost:3000 and hit enter
 
 
 # Contributors ✨
-<1> https://github.com/adityabhagat007
-<2> https://github.com/Bijoy-007
+<1> Aditya Bhagat https://github.com/adityabhagat007
+<2> Bijoy Das https://github.com/Bijoy-007
 <3> https://github.com/mannasoumo
+
+
+# Copyright  ©
+
+© CollegeGeeks2021
 
