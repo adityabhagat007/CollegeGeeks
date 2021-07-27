@@ -13,7 +13,11 @@ Now go to your browser and type https://localhost:3000 and hit enter
 
 
 # Technologies used 🛠️
-
+EJS
+ 
+JavaScript
+ 
+CSS
 
 # Illustrations 🍥
 
