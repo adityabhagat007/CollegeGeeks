@@ -9,17 +9,17 @@ First cd/go to your project folder via cmd then run the commands 1 . npm install
 Now go to your browser and type https://localhost:3000 and hit enter
 
 # Sections ✨
-Public Profiles   
+⍣Public Profiles   
 
-Home   
+⍣Home   
 
-Question Page   
+⍣Question Page   
 
-Questions   
+⍣Questions   
 
-Login  
+⍣Login  
 
-User Activity  
+⍣User Activity  
 
 
 
