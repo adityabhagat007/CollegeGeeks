@@ -19,7 +19,7 @@ Questions
 
 Login  
 
-User Activity  .
+User Activity  
 
 
 
