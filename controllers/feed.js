@@ -48,12 +48,11 @@ exports.getEditprofile = (req, res, next) => {
   res.render("Editprofile");
 };
 
-
 exports.postAskQuestion = async (req, res, next) => {
   try {
     //Pulling the data out from request body
     const statement = req.body.statement;
-    const category = req.body.category;
+    const category = req.body.category.toLowerCase();
     //Getting the user data
     const userId = req.session.user._id;
     const user = await User.findById(userId);
@@ -61,8 +60,8 @@ exports.postAskQuestion = async (req, res, next) => {
     const newQuestion = new Question({
       author: user._id,
       authorName: user.name,
-      statement: req.body.statement,
-      category: req.body.category,
+      statement: statement,
+      category: category,
     });
 
     const question = await newQuestion.save();
@@ -126,7 +125,7 @@ exports.getQuestion = async (req, res, next) => {
       });
     }
     //If we get a question
-    res.render("questionPage", { question, error: "" });
+    res.render("questionPage", { question, error: req.flash("error") });
   } catch (err) {
     next(err);
   }
@@ -175,6 +174,60 @@ exports.getActivity = async (req, res, next) => {
     //If activity is found;
     console.log(activity);
     res.render("userActivity", { error: "", activity });
+  } catch (err) {
+    next(err);
+  }
+};
+
+exports.postNewAnswer = async (req, res, next) => {
+  try {
+    const answerContent = req.body.answer;
+    const questionId = req.body.questionId;
+    const userId = req.session.user._id;
+    //Validation of answer
+    if (!answerContent || answerContent.length === 0) {
+      req.flash("error", "Answer can not be empty!");
+      return res.redirect(`/questionPage?questionId=${questionId}`);
+    }
+
+    //Getting the user and the question
+    const user = await User.findById(userId);
+    const question = await Question.findById(questionId);
+    if (!user) {
+      req.flash("error", "User not found!");
+      return res.redirect(`/questionPage?questionId=${questionId}`);
+    }
+    if (!question) {
+      req.flash("error", "Question not found!");
+      return res.redirect(`/questionPage?questionId=${questionId}`);
+    }
+    //Creating a new answer doc
+    const newAnswer = new Answer({
+      author: user._id,
+      authorName: user.name,
+      content: answerContent,
+      question: questionId,
+    });
+
+    const answer = await newAnswer.save();
+    //connecting docs
+    const updatedAnswers = question.answers;
+    updatedAnswers.push(answer);
+    question.answers = updatedAnswers;
+
+    const updatedUserAnswers = user.answers;
+    updatedUserAnswers.push(answer);
+    user.answers = updatedUserAnswers;
+
+    const updatedAnsweredQuestions = user.answeredQuestions;
+    updatedAnsweredQuestions.push(questionId);
+    user.answeredQuestions = updatedAnsweredQuestions;
+
+    const updatedUser = await user.save();
+    const updatedQuestion = await question.save();
+
+    //If everything is successfull;
+    res.redirect(`/questionPage?questionId=${questionId}`);
   } catch (err) {
     next(err);
   }
