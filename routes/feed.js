@@ -32,7 +32,7 @@ router.get(
   feedController.getQuestions
 );
 
-router.get("/questions/details", feedController.getQuestion);
+//router.get("/questions/details", feedController.getQuestion);
 
 router.post(
   "/askquestion",
@@ -40,5 +40,7 @@ router.post(
   newQuestionValidator,
   feedController.postAskQuestion
 );
+
+router.post("/newanswer", isAuth, feedController.postNewAnswer);
 
 module.exports = router;
