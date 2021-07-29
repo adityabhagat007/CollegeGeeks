@@ -1,6 +1,12 @@
 # CollegeGeeks⭐
 A clean, beautiful, responsive and 100% customizable Question answer platform
 
+
+
+https://user-images.githubusercontent.com/75923589/127480491-646a1ace-5de1-4735-b7f0-a1ad0b201053.mp4
+
+
+
 # Getting Started⭐
 🛠️ Download Nodejs from https://nodejs.org/en/download/ according to system specification
 
