@@ -11,17 +11,17 @@ A clean, beautiful, responsive and 100% customizable Question answer platform
 
 ![Download _ Node js - Google Chrome 29-07-2021 15_31_11 (2)](https://user-images.githubusercontent.com/75923589/127473086-04b44aa5-5507-440e-97ad-4c682eeaf7f0.png)
 
-If you download First cd/go to your project folder via cmd then run the commands 1 . npm install 2 . npm start .Now go to your browser and type https://localhost:3000 and hit enter
+👉 If you download First cd/go to your project folder via cmd then run the commands 1 . npm install 2 . npm start .Now go to your browser and type https://localhost:3000 and hit enter
 
-If you want to clone the file then download GitBash from https://git-scm.com/downloads
+👉 If you want to clone the file then download GitBash from https://git-scm.com/downloads
 
 ![Git - Downloads - Google Chrome 29-07-2021 15_43_19](https://user-images.githubusercontent.com/75923589/127474857-c8fdf6b4-488a-439d-b674-48c650f94c16.png)
 
-Then go to the desired place and rightclick and click opengitbash here ,then use the command    
+👉 Then go to the desired place and rightclick and click opengitbash here ,then use the command    
 
-$ git clone git@github.com:adityabhagat007/CollegeGeeks.git  
+$ git clone git@github.com:adityabhagat007/CollegeGeeks.git  👈👈
 
-then run the commands 1 . npm install 2 . npm start .Now go to your browser and type https://localhost:3000 and hit enter
+👉then run the commands 1 . npm install 2 . npm start .Now go to your browser and type https://localhost:3000 and hit enter
 
 ![MINGW64__c_Users_pupam_Desktop 29-07-2021 15_42_43](https://user-images.githubusercontent.com/75923589/127475276-50d9444f-1fa7-46d8-896a-067d87da2f80.png)
 
