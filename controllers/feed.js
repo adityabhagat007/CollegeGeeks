@@ -137,8 +137,7 @@ exports.getProfile = async (req, res, next) => {
 
     const user = await User.findById(userId).select("-password");
     if (!user) {
-      const error = new Error("No user is found");
-      throw error;
+      return res.render("myaccount", { error: "No user is found!" });
     }
     //console.log(user);
     const profile = {
@@ -151,7 +150,7 @@ exports.getProfile = async (req, res, next) => {
       followings: user.followings.length,
       answeredQuestions: user.answeredQuestions.length,
     };
-    res.render("myaccount", { profile });
+    res.render("myaccount", { profile, error: req.flash("error") });
   } catch (err) {
     next(err);
   }
