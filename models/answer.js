@@ -16,6 +16,11 @@ const answerSchema = new Schema(
       type: String,
       required: true,
     },
+    question: {
+      type: Schema.Types.ObjectId,
+      required: true,
+      ref: "Question",
+    },
   },
   { timestamps: true }
 );

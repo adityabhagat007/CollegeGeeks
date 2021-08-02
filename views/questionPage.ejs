@@ -49,10 +49,11 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                       </div>
                       <div class="modal-body">
-                        <form action="/newAnswer?questionId=<%= question._id %>">
+                        <form method="POST" action="/newanswer">
                               <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                                 <textarea class="mdl-textfield__input" type="text" id="sample3" required></textarea>
                                 <label class="mdl-textfield__label" for="sample3">Text...</label>
+                                <input type="hidden" name="questionId" value="<%= question._id %>" />
                               </div>
                               <button type="submit" class="btn btn-primary" style="float: right;">Send message</button>
                         </form>

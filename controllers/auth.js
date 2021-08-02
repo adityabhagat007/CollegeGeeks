@@ -28,7 +28,7 @@ exports.postLogin = async (req, res, next) => {
       return res.redirect("/Signup");
     }
     //checking password
-    
+
     const isCorrect = await bcrypt.compare(password, user.password);
     if (!isCorrect) {
       req.flash("error", "Please enter correct password.");
@@ -125,6 +125,35 @@ exports.logout = async (req, res, next) => {
   try {
     const response = await req.session.destroy();
     res.redirect("/");
+  } catch (err) {
+    next(err);
+  }
+};
+
+exports.postChangePassword = async (req, res, next) => {
+  try {
+    const oldPassword = req.body.oldPassword;
+    const newPassword = req.body.newPassword;
+    const userId = req.session.user._id;
+
+    const user = await User.findById(userId);
+    if (!user) {
+      req.flash("error", "User not found!");
+      return res.redirect("/myaccount");
+    }
+    //Validating oldPassword
+    const isCorrect = await bcrypt.compare(oldPassword, user.password);
+    if (!isCorrect) {
+      req.flash("error", "Entered old password is wrong!");
+      return res.redirect("/myaccount");
+    }
+    //If password matched
+    const newHashedPassword = await bcrypt.hash(newPassword, 12);
+    //Manipulating user doc
+    user.password = newHashedPassword;
+
+    const updatedUser = await user.save();
+    res.redirect("/myaccount");
   } catch (err) {
     next(err);
   }
