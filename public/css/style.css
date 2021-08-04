@@ -262,6 +262,9 @@ color: gray;
 .mdl-textfield{
   width:100%;
 }
+.answer_content p{
+  font-size: 16px;
+}
 
 /* Activity page Css */
 
@@ -279,7 +282,11 @@ color: gray;
 }
 
 
+/* forgetpassword */
 
+.forgetPassword_body{
+  align-items: center;
+}
 
 
 

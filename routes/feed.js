@@ -13,6 +13,8 @@ router.get("/", loginStatus, feedController.getLandingPage);
 
 router.get("/about", loginStatus, feedController.getAboutPage);
 
+router.post("/forgetPassword", loginStatus, feedController.getForgetPassword);
+
 router.get("/home", isAuth, getHomePageValidator, feedController.getHomePage);
 
 router.get("/myaccount", isAuth, feedController.getProfile);

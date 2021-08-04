@@ -48,6 +48,10 @@ exports.getEditprofile = (req, res, next) => {
   res.render("Editprofile");
 };
 
+exports.getForgetPassword = (req, res, next) => {
+  res.render("forgetPassword");
+};
+
 exports.postAskQuestion = async (req, res, next) => {
   try {
     //Pulling the data out from request body
