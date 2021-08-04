@@ -40,10 +40,6 @@ exports.getUserActivity = (req, res, next) => {
   res.render("userActivity");
 };
 
-exports.getPublicProfile = (req, res, next) => {
-  res.render("PublicProfile");
-};
-
 exports.getEditprofile = (req, res, next) => {
   res.render("Editprofile");
 };
@@ -227,6 +223,36 @@ exports.postNewAnswer = async (req, res, next) => {
 
     //If everything is successfull;
     res.redirect(`/questionPage?questionId=${questionId}`);
+  } catch (err) {
+    next(err);
+  }
+};
+
+exports.getPublicProfile = async (req, res, next) => {
+  try {
+    const id = req.session.user._id;
+    const userId = req.query.userId;
+    //If the user is visiting his/her own profile
+    if (id === userId) {
+      return res.redirect("/myaccount");
+    }
+    //If it's not his/her own profile
+    const user = await User.findById(userId).select(
+      "-password -likedQuestions -likedAnswers -email -answeredQuestions"
+    );
+    if (!user) {
+      const error = new Error("No user found!");
+      next(error);
+    }
+    const userDetails = {
+      ...user._doc,
+      questions: user.questions.length,
+      followers: user.followers.length,
+      followings: user.followings.length,
+      answers: user.answers.length,
+    };
+    console.log(userDetails);
+    res.render("PublicProfile", { profile: userDetails });
   } catch (err) {
     next(err);
   }
