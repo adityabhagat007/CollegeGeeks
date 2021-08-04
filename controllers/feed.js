@@ -251,8 +251,14 @@ exports.getPublicProfile = async (req, res, next) => {
       followings: user.followings.length,
       answers: user.answers.length,
     };
+    const isFound = user.followings.find((followingUser) => {
+      followingUser === userId;
+    });
+
+    const isFollowing = isFound === undefined ? false : true;
+    console.log(isFollowing);
     console.log(userDetails);
-    res.render("PublicProfile", { profile: userDetails });
+    res.render("PublicProfile", { profile: userDetails, isFollowing });
   } catch (err) {
     next(err);
   }
