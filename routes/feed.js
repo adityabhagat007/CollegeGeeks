@@ -36,6 +36,7 @@ router.get(
 //router.get("/questions/details", feedController.getQuestion);
 
 router.get("/follow", isAuthAPI, feedController.follow);
+router.get("/unfollow", isAuthAPI, feedController.unfollow);
 
 router.post(
   "/askquestion",
