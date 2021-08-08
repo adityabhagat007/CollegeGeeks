@@ -2,59 +2,62 @@
 .btn:hover{
   transform: scale(1.06);
 }
+.card{
+  border-radius: 8px;
+}
+.card:hover{
+  box-shadow: 0 0 11px rgba(33,33,33,.2);
+}
+.author_name{
+  text-transform: capitalize;
+}
+body{
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
 
-.navbar-nav{
+
+a{
+  color: gray;
+}
+
+ .navbar-nav{
   margin-left: auto;
-  margin-right: 30px;
+  margin-right: 50px;
 }
 .navbar-brand{
-  margin-left: 30px;
-}
-#main{
-  background-color:#e9eaea;
-}
-.main1{
-  color: gray;
-  
-}
-.sub_header{
-  color: grey;
+  text-align:center;
+  padding-left: 50px;
 }
 .title{
-  padding-bottom: 5%;
-  background-color:#e9eaea;
+  margin-bottom: 5%;
 }
 
-.carousel-control-prev{
-  color: black ;
-}
-.main_header_left{
-  text-align: center;
-  padding: 5%;
+.Welcome_msg{
+  color: rgb(70, 67, 200);
+  font-size: 3rem;
+
 }
 
-.main_about_right{
-  text-align: center;
-  padding-top: 10%;
-  color: rgb(65, 97, 97);
+.home_page_content{
+  margin-top: 7%;
 }
-.Aim{
-  background-color: white;
-  padding-bottom: 5%;
+@media(max-width:800px){
+  .home_page_content{
+    text-align:center;
+    margin-top: 7%;
+  }
+}
+.features_head{
+  margin-top: 3%;
+  text-align: center;
 }
 
-.a_head{
-  text-align: center;
-  padding-top: 2%;
-  padding-bottom: 3%;
-  color: grey;
-}
-.a_left{
-  padding-top: 5%;
-}
-#aboutus{
-  background-color: #eeeeff;
-}
+
+
+
 a{
   text-decoration: none;
 }
@@ -65,24 +68,240 @@ a{
   text-align: left;
 }
 
+/*--------------------------------------------------------------
+# App Features
+--------------------------------------------------------------*/
+.features .content {
+  padding: 30px 0;
+}
+
+.features .content .icon-box {
+  margin-top: 25px;
+}
+
+.features .content .icon-box h4 {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 5px 0 10px 60px;
+}
+
+.features .content .icon-box i {
+  font-size: 48px;
+  float: left;
+  color: #5777ba;
+}
+
+.features .content .icon-box p {
+  font-size: 15px;
+  color: #979aa1;
+  margin-left: 60px;
+}
+
+@media (max-width: 991px) {
+  .features .image {
+    text-align: center;
+  }
+  .features .image img {
+    max-width: 80%;
+  }
+}
+
+@media (max-width: 667px) {
+  .features .image img {
+    max-width: 100%;
+  }
+}
+
+/*--------------------------------------------------------------
+# Sections General
+--------------------------------------------------------------*/
+
+.section-title {
+  text-align: center;
+  padding-bottom: 30px;
+}
+
+.section-title h2 {
+  font-size: 32px;
+  font-weight: 400;
+  margin-bottom: 20px;
+  padding-bottom: 0;
+  color: #5777ba;
+  font-family: "Poppins", sans-serif;
+}
+
+.section-title p {
+  margin-bottom: 0;
+}
+
+
+
+
 /* Sign-up page css*/
 
 .title_login{
   padding-bottom: 5%;
 }
 
+
+
+
+/*--------------------------------------------------------------
+# Details
+--------------------------------------------------------------*/
+.details .content + .content {
+  margin-top: 100px;
+}
+
+.details .content h3 {
+  font-weight: 700;
+  font-size: 32px;
+  color: #47536e;
+}
+
+.details .content ul {
+  list-style: none;
+  padding: 0;
+}
+
+.details .content ul li {
+  padding-bottom: 10px;
+}
+
+.details .content ul i {
+  font-size: 24px;
+  padding-right: 2px;
+  color: #5777ba;
+  line-height: 0;
+}
+
+.details .content p:last-child {
+  margin-bottom: 0;
+}
+
+
+
+/*--------------------------------------------------------------
+# Frequently Asked Questions
+--------------------------------------------------------------*/
+
+
+.faq .accordion-list {
+  padding: 0 100px;
+}
+
+.faq .accordion-list ul {
+  padding: 0;
+  list-style: none;
+}
+
+.faq .accordion-list li + li {
+  margin-top: 15px;
+}
+
+.faq .accordion-list li {
+  padding: 20px;
+  background: #fff;
+  border-radius: 4px;
+  position: relative;
+  background-color: #c1f1fa;
+}
+
+.faq .accordion-list a {
+  display: block;
+  position: relative;
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 500;
+  padding: 0 30px;
+  outline: none;
+  cursor: pointer;
+
+}
+
+.faq .accordion-list .icon-help {
+  font-size: 24px;
+  position: absolute;
+  right: 0;
+  left: 20px;
+  color: #b1c0df;
+}
+
+.faq .accordion-list .icon-show, .faq .accordion-list .icon-close {
+  font-size: 24px;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.faq .accordion-list p {
+  margin-bottom: 0;
+  padding: 10px 0 0 0;
+}
+
+.faq .accordion-list .icon-show {
+  display: none;
+}
+
+.faq .accordion-list a.collapsed {
+  color: #343a40;
+}
+
+.faq .accordion-list a.collapsed:hover {
+  color: #5777ba;
+}
+
+.faq .accordion-list a.collapsed .icon-show {
+  display: inline-block;
+}
+
+.faq .accordion-list a.collapsed .icon-close {
+  display: none;
+}
+
+@media (max-width: 1200px) {
+  .faq .accordion-list {
+    padding: 0;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*login page css*/
+
 .title_login{
   padding-bottom: 5%;
 }
 .login-title{
   padding-bottom: 20px;
 }
+.login_card{
+  justify-content: center;
+}
+
 .forgetPassword:hover{
   color: #E44134;
 }
-
-
+.notHavelogin{
+  padding-left: 120px;
+}
+@media(max-width:768px){
+  .notHavelogin{
+    padding-left: 90px;
+  }
+}
 @media(min-width:768px){
   .login_card{
     width:50%;
@@ -93,7 +312,23 @@ a{
 }
 
 
+
+/* offcanvas css */
+.profile-offcanvas{
+  text-decoration: none;
+  color: black;
+}
+/* pagination section */
+
+.pagination{
+margin-top: auto;
+}
+
+
+
+
 /*home page css */
+
 .body{
   background-color: #f1f2f2;
 }
@@ -107,51 +342,69 @@ a{
 .mainpage{
   background-color: #f1f2f2;
 }
+.openanswer a{
+  text-decoration: none;
+  color: black;
+}
 .openanswer{
   float: right;
-  background-color:#f1f2f2;
-  text-decoration: none;
+  background-color: #e7ebeb ;
 }
 .openanswer:hover{
   transform: scale(1.06);
 }
+/* @media(min-width:800px){
+  .mainpage{
+    
+  }
+} */
+
+
 
 
 /*my-account page css */
-.title_myaccount{
-  padding-bottom: 5%;
+
+.my_acc{
+  text-align: center;
+  align-items: center;
 }
-.profile-img{
+
+.user_profile{
+position: relative;
+color: gray;
+}
+
+.my_background{
+  position: relative;
+}
+.user_icon:hover{
+  color: rgba(122, 115, 115, 0.918);
+}
+.edit_profile{
+  margin-top:15px;
+  float: right;
+}
+.upload{
+  top:-25px;
+  bottom: 0;
+  position: relative;
+  padding-left: 100px;
+}
+.username{
+  top:-50px;
+}
+.my_acc_body{
   text-align: center;
 }
-.profile-img img{
-  width: 70%;
-  height: 100%;
+.my_card{
+  margin-top: 20px;
+  text-align: center;
 }
-.profile-img .file {
-  position: relative;
-  overflow: hidden;
-  margin-top: -20%;
-  width: 70%;
-  border: none;
-  border-radius: 0;
-  font-size: 15px;
-  background: #212529b8;
-}
-.profile-img .file input {
-  position: absolute;
-  opacity: 0;
-  right: 0;
-  top: 0;
-}
-.myaccountcard{
-  padding:2% ;
-}
-@media(max-width:768px){
-  .usersection1{
-    text-align: center;
-  }
-}
+
+
+
+
+
 
 /*404 page*/
 #page404{
@@ -163,14 +416,76 @@ a{
 .msg404{
   font-size: 20px;
 }
-/* Question Ans page CSS */
-.mdl-textfield{
-  width:100%;
+
+
+/* 500 page Css */
+
+.page_500{
+  margin-top:3%;
+  text-align: center;
+}
+
+@media(max-width:800px){
+  .page_500{
+    margin-top:60%
+  }
+}
+
+/* stream Question page */
+.no_qna{
+  text-align: center;
+}
+
+@media(max-width:800px){
+  .no_qna{
+    margin-top:60%
+  }
 }
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+/* Question Ans page CSS */
+
+.mdl-textfield{
+  width:100%;
+}
+.answer_content p{
+  font-size: 16px;
+}
+
+/* Activity page Css */
+
+.title_activity{
+  margin-bottom: 2%;
+}
+#activity_head{
+  margin-bottom: 2%;
+}
+.activity{
+  background-color: #f8f9fa;
+}
+.fa-angle-double-right:hover{
+  padding-left: 10px;
+}
+
+
+/* forgetpassword */
+
+.forgetPassword_body{
+  align-items: center;
+}
 
 
 
