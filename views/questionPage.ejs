@@ -51,7 +51,7 @@
                       <div class="modal-body">
                         <form method="POST" action="/newanswer">
                               <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <textarea name="answer" class="mdl-textfield__input" type="text" id="sample3"></textarea>
+                                <textarea class="mdl-textfield__input" type="text" id="sample3" required></textarea>
                                 <label class="mdl-textfield__label" for="sample3">Text...</label>
                                 <input type="hidden" name="questionId" value="<%= question._id %>" />
                               </div>
