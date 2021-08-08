@@ -2,6 +2,7 @@ const express = require("express");
 
 const feedController = require("../controllers/feed");
 const isAuth = require("../middleware/isAuth");
+const isAuthAPI = require("../middleware/isAuthAPI");
 const loginStatus = require("../middleware/loginStatus");
 const newQuestionValidator = require("../middleware/validators/newQuestion");
 const getHomePageValidator = require("../middleware/validators/getHome");
@@ -35,6 +36,9 @@ router.get(
 );
 
 //router.get("/questions/details", feedController.getQuestion);
+
+router.get("/follow", isAuthAPI, feedController.follow);
+router.get("/unfollow", isAuthAPI, feedController.unfollow);
 
 router.post(
   "/askquestion",

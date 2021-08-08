@@ -40,10 +40,6 @@ exports.getUserActivity = (req, res, next) => {
   res.render("userActivity");
 };
 
-exports.getPublicProfile = (req, res, next) => {
-  res.render("PublicProfile");
-};
-
 exports.getEditprofile = (req, res, next) => {
   res.render("Editprofile");
 };
@@ -233,5 +229,166 @@ exports.postNewAnswer = async (req, res, next) => {
     res.redirect(`/questionPage?questionId=${questionId}`);
   } catch (err) {
     next(err);
+  }
+};
+
+exports.getPublicProfile = async (req, res, next) => {
+  try {
+    const id = req.session.user._id;
+    const userId = req.query.userId;
+    //If the user is visiting his/her own profile
+    if (id === userId) {
+      return res.redirect("/myaccount");
+    }
+    //If it's not his/her own profile
+    const user = await User.findById(userId).select(
+      "-password -likedQuestions -likedAnswers -email -answeredQuestions"
+    );
+    if (!user) {
+      const error = new Error("No user found!");
+      next(error);
+    }
+    const userDetails = {
+      ...user._doc,
+      questions: user.questions.length,
+      followers: user.followers.length,
+      followings: user.followings.length,
+      answers: user.answers.length,
+    };
+    const isFound = user.followings.find((followingUser) => {
+      followingUser === userId;
+    });
+
+    const isFollowing = isFound === undefined ? false : true;
+    console.log(isFollowing);
+    console.log(userDetails);
+    res.render("PublicProfile", { profile: userDetails, isFollowing });
+  } catch (err) {
+    next(err);
+  }
+};
+
+exports.follow = async (req, res, next) => {
+  try {
+    const id = req.session.user._id;
+    const userId = req.query.userId;
+
+    if (userId === undefined) {
+      const error = new Error("No userId found!");
+      error.statusCode(404);
+      throw error;
+    }
+
+    if (id === userId) {
+      const error = new Error("Can not follow himself/herself");
+      error.statusCode = 400;
+      throw error;
+    }
+
+    const followerUser = await User.findById(id).select("followings");
+    const followingUser = await User.findById(userId).select("followers");
+
+    if (!followerUser || !followingUser) {
+      const error = new Error("User not found!");
+      error.statusCode = 404;
+      throw error;
+    }
+
+    const isFollowing = followerUser.followings.find(
+      (followingUserId) => followingUserId == userId
+    );
+    //If the user is already following
+    if (isFollowing !== undefined) {
+      const error = new Error("Already following this user");
+      error.statusCode = 422;
+      throw error;
+    }
+    //If the user is not following already
+    const updatedFollowings = followerUser.followings;
+    updatedFollowings.push(userId);
+    followerUser.followings = updatedFollowings;
+
+    const updatedFollowers = followingUser.followers;
+    updatedFollowers.push(id);
+    followingUser.followers = updatedFollowers;
+
+    const updatedFollowerUser = await followerUser.save();
+    const updatedFollowingUser = await followingUser.save();
+
+    res.status(200).json({
+      message: "successfull",
+    });
+  } catch (err) {
+    if (!err.statusCode) {
+      err.statusCode = 500;
+    }
+    res.status(err.statusCode).json({
+      message: err.message,
+    });
+  }
+};
+
+exports.unfollow = async (req, res, next) => {
+  try {
+    const id = req.session.user._id;
+    const userId = req.query.userId;
+
+    if (userId === undefined) {
+      const error = new Error("No userId found!");
+      error.statusCode(404);
+      throw error;
+    }
+
+    if (id === userId) {
+      const error = new Error("Can not unfollow himself/herself");
+      error.statusCode = 400;
+      throw error;
+    }
+    //followerUser is the user who is going to follow and followingUser is the user
+    //who will be followed.
+    const followerUser = await User.findById(id).select("followings");
+    const followingUser = await User.findById(userId).select("followers");
+
+    if (!followerUser || !followingUser) {
+      const error = new Error("User not found!");
+      error.statusCode = 404;
+      throw error;
+    }
+
+    const followingIndex = followerUser.followings.find(
+      (followingUserId) => followingUserId == userId
+    );
+
+    const followerIndex = followingUser.followers.find(
+      (followerUserId) => followerUserId == id
+    );
+    //If the user is NOT already following
+    if (followingIndex === undefined || followerIndex === undefined) {
+      const error = new Error("First follow to unfollow");
+      error.statusCode = 422;
+      throw error;
+    }
+    //If the user following already
+    const updatedFollowings = followerUser.followings;
+    updatedFollowings.splice(followingIndex, 1);
+    followerUser.followings = updatedFollowings;
+
+    const updatedFollowers = followingUser.followers;
+    updatedFollowers.splice(followerIndex, 1);
+    followingUser.followers = updatedFollowers;
+
+    const updatedFollowerUser = await followerUser.save();
+    const updatedFollowingUser = await followingUser.save();
+
+    res.status(200).json({
+      message: "successfull",
+    });
+  } catch (err) {
+    if (!err.statusCode) {
+      err.statusCode = 500;
+    }
+    res.status(err.statusCode).json({
+      message: err.message,
+    });
   }
 };
