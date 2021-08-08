@@ -26,11 +26,12 @@ const userSchema = Schema({
     type: String,
     default: "/images/user.png",
   },
-  questions: [{ type: Schema.Types.ObjectId }],
+  questions: [{ type: Schema.Types.ObjectId, ref: "Question" }],
   followers: [{ type: Schema.Types.ObjectId, ref: "User" }],
-  likedQuestions: [{ type: Schema.Types.ObjectId }],
-  likedAnswers: [{ type: Schema.Types.ObjectId }],
-  answers: [{ type: Schema.Types.ObjectId }],
+  likedQuestions: [{ type: Schema.Types.ObjectId, ref: "Question" }],
+  likedAnswers: [{ type: Schema.Types.ObjectId, ref: "Answer" }],
+  answeredQuestions: [{ type: Schema.Types.ObjectId, ref: "Question" }],
+  answers: [{ type: Schema.Types.ObjectId, ref: "Answer" }],
   followings: [{ type: Schema.Types.ObjectId, ref: "User" }],
 });
 

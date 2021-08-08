@@ -50,6 +50,7 @@ app.use(flash());
 /************* Static files ***********/
 
 app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, 'css')));
 
 /********** SETTING UP ROUTES *************/
 
@@ -60,12 +61,12 @@ app.use(authRoutes);
 
 app.use((error, req, res, next) => {
   console.log(error);
-  res.send("Something went wrong.");
+  res.render("500");
 });
 
 /************* 404 Not Found  */
 
-app.use((req, res, next) => {
+app.use('*',(req, res, next) => {
   res.render("page404");
 });
 

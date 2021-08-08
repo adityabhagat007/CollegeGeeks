@@ -22,11 +22,13 @@ exports.postLogin = async (req, res, next) => {
 
     const user = await User.findOne({ email });
     //If no user is found
+
     if (!user) {
       req.flash("error", `${email} this email is not registered please signup`);
       return res.redirect("/Signup");
     }
     //checking password
+
     const isCorrect = await bcrypt.compare(password, user.password);
     if (!isCorrect) {
       req.flash("error", "Please enter correct password.");
@@ -57,9 +59,11 @@ exports.postSignup = async (req, res, next) => {
     const text = genText(token);
     const hash = await bcrypt.hash(req.body.password, 12);
     //Calculating expiration time
+
     const currDate = new Date();
     const expirationTime = new Date(currDate.getTime() + 30 * 60000);
     //Creating a new temp user
+
     const tempUser = new TempUser({
       name: req.body.name,
       email: req.body.email,
@@ -90,23 +94,66 @@ exports.verifyToken = async (req, res, next) => {
       token,
       expirationTime: { $gte: currDate },
     });
+
     //If no user is found then sending to signup
     if (!tempUser) {
       req.flash("error", "Email verification failed");
       return res.redirect("/Signup");
     }
-    //If email verification is successfull then creating a new user
+
+    //If email verification is successfully then creating a new user
+
     const user = new User({
       name: tempUser.name,
       email: tempUser.email,
       password: tempUser.password,
       branch: tempUser.branch,
     });
+
     const savedUser = await user.save();
     const result = await TempUser.deleteOne({ token: token });
-    //If everything is successfull
-    req.flash("success", "Email verification is successfull.");
+    //If everything is successfully
+
+    req.flash("success", "Email verification is successfully.");
     res.redirect("/login");
+  } catch (err) {
+    next(err);
+  }
+};
+
+exports.logout = async (req, res, next) => {
+  try {
+    const response = await req.session.destroy();
+    res.redirect("/");
+  } catch (err) {
+    next(err);
+  }
+};
+
+exports.postChangePassword = async (req, res, next) => {
+  try {
+    const oldPassword = req.body.oldPassword;
+    const newPassword = req.body.newPassword;
+    const userId = req.session.user._id;
+
+    const user = await User.findById(userId);
+    if (!user) {
+      req.flash("error", "User not found!");
+      return res.redirect("/myaccount");
+    }
+    //Validating oldPassword
+    const isCorrect = await bcrypt.compare(oldPassword, user.password);
+    if (!isCorrect) {
+      req.flash("error", "Entered old password is wrong!");
+      return res.redirect("/myaccount");
+    }
+    //If password matched
+    const newHashedPassword = await bcrypt.hash(newPassword, 12);
+    //Manipulating user doc
+    user.password = newHashedPassword;
+
+    const updatedUser = await user.save();
+    res.redirect("/myaccount");
   } catch (err) {
     next(err);
   }

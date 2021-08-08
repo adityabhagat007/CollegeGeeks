@@ -4,18 +4,17 @@
 <%# ADDING NAVBAR %>
 <section class="title_myaccount">
     <%- include("partials/LoggedNavbar.ejs");  -%>
-    <!-- <p>answers ::: <%=profile.answers%></p>
-    <p>likedAnswers ::: <%=profile.likedAnswers%></p> -->
 </section>
+
+
 <body class="body">
 <section class="my_acc">
     <div class="container">
         <div class="row">
             <div class = "my_background rounded">
-               <a href="/Editprofile" ><button class="edit_profile btn btn-sm btn-secondary" type="button">Edit Profile</button></a>
+               <a href="#" ><button class="edit_profile btn btn-sm btn-secondary" type="button">Follow</button></a>
             </div>
             <div class="user_profile">
-                <!-- <%=profile.dp%> -->
                 <i class="user_icon fas fa-user-circle fa-10x"></i>
             <div class=" upload">
                 <input type="file" id="actual-btn" hidden>
@@ -23,8 +22,8 @@
             </div>
             </div>
             <div class="usename">
-                    <span class="display-6"><%=profile.name%></span>
-                    <p><%=profile.intro%></p>
+                    <span class="display-6">UserName</span>
+                    <p>Bio</p>
             </div>
         </div>
     </div>  
@@ -40,7 +39,7 @@
                         <h4>Following</h4>
                         <hr>
                     </div>
-                      <h3> <span id ="following"> <%=profile.followings%> </span></h3>
+                      <h3> <span> </span></h3>
                     </div>
                 </div>
             </div>
@@ -51,7 +50,7 @@
                         <h4>Followers</h4>
                         <hr>
                     </div>
-                      <h3> <span id ="followers"> <%=profile.followers%></span></h3>
+                      <h3> <span> </span></h3>
                     </div>
                 </div>
             </div>
@@ -62,7 +61,7 @@
                         <h4>Answered</h4>
                         <hr>
                     </div>
-                      <h3> <span id ="answered"> <%=profile.answeredQuestions%> </span></h3>
+                      <h3> <span>  </span></h3>
                     </div>
                 </div>
             </div>
@@ -73,7 +72,7 @@
                         <h4>Asked</h4>
                         <hr>
                     </div>
-                      <h3> <span id ="asked"> <%=profile.questions%> </span></h3>
+                      <h3> <span> </span></h3>
                     </div>
                 </div>
             </div>
@@ -85,11 +84,9 @@
 
 
 
-
- <section class="my_acc_body">
+<section class="container my_acc_body">
     <div class="container-sm">
         <div class="row">
-            <div class="col-lg-8 col-md-8 col-12">
                <div class="card mb-4">
                    <div class="card-body">
                        <div class="card-title"><h4>INFO</h4></div><hr>
@@ -98,30 +95,30 @@
                             
                             <div class ="row">
                             <div class="col-4">
-                                <b>Name: </b>
+                                <b>Name : </b>
                             </div>
                             <div class="col-8">
-                                <b><%= profile.name%></b>
+                                <b>profile.name</b>
                             </div>
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-4 col-12 mb-3">
                             <div class ="row">
                             <div class="col-4">
-                                <b>Email:</b>
+                                <b>Email :</b>
                             </div>
                             <div class="col-8">
-                               <b> <%= profile.email%></b>
+                               <b>profile.email</b>
                             </div>
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-4 col-12 mb-3">
                             <div class ="row">
                                 <div class="col-4">
-                                    <b>Stream:</b>
+                                    <b>Stream :</b>
                                 </div>
                                 <div class="col-8">
-                                    <b><%= profile.branch%></b>
+                                    <b> profile branch</b>
                                 </div>
                              </div>
                         </div>
@@ -129,19 +126,38 @@
                        </div>
                    </div>
                </div>
-               </div>
-               <div class="col-lg-4 col-md-4 col-12">
-                <div class="card mb-4">
-                    <div class="card-body">
-                        <div class="card-title"><h4>INFO</h4></div><hr>
-                        <canvas id="myChart"></canvas>
-                        </div>
-                    </div>
-                </div>
-                </div>
         </div>
     </div> 
 </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -172,55 +188,5 @@
       integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
       crossorigin="anonymous">
 </script>
-<script>
-    let following = document.getElementById('following').textContent
-    following = Number(following)+0.1;
-    let followers = document.getElementById('followers').textContent
-    followers = Number(followers)+0.1;
-    let answered = document.getElementById('answered').textContent
-    answered = Number(answered)+0.1;
-    let asked = document.getElementById('asked').textContent
-    asked = Number(asked)+0.1;
-
-    
-    var ctx = document.getElementById('myChart').getContext('2d');
-    var myChart = new Chart(ctx, {
-        type: 'doughnut',
-        data: {
-            labels: ['followers' ,'following', 'Answered', 'Asked'],
-            datasets: [{
-                label: '# of Actions',
-                data: [followers,following ,answered ,asked ],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(153, 102, 255, 1)',
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(153, 102, 255, 1)',
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            tooltips: {
-                enabled: false,
-            },
-            animation:{
-                duration: 1000,
-                easing:'easeInOutCubic',
-            },
-            title : {
-                display: true,
-                text: "your activity",
-            }
-        },
-    });
-    </script>
-
 </body>
 </html>

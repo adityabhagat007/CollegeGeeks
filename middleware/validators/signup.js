@@ -6,7 +6,7 @@ module.exports = async (req, res, next) => {
   try {
     const email = req.body.email;
     const name = req.body.name;
-    const branch = req.body.branch;
+    const branch = req.body.branch.toLowerCase();
     const password = req.body.password;
     const confirmPassword = req.body.confirmPassword;
     //Email validation
@@ -14,7 +14,7 @@ module.exports = async (req, res, next) => {
       req.flash("error", "Please enter a valid email address");
       return res.redirect("/Signup");
     }
-    //Checking if the email is alraedy Registered
+    //Checking if the email is already Registered
     const user = await User.findOne({ email });
     //If any user is present with that email then rejecting the request
     if (user) {
@@ -31,14 +31,14 @@ module.exports = async (req, res, next) => {
     }
     //Branch validation
     if (
-      branch !== "CSE" &&
-      branch !== "ECE" &&
-      branch !== "EE" &&
-      branch !== "ME" &&
-      branch !== "CE" &&
-      branch !== "CT" &&
-      branch !== "LT" &&
-      branch !== "FT"
+      branch !== "cse" &&
+      branch !== "ece" &&
+      branch !== "ee" &&
+      branch !== "me" &&
+      branch !== "ce" &&
+      branch !== "ct" &&
+      branch !== "lt" &&
+      branch !== "ft"
     ) {
       req.flash("error", "Invalid branch");
       return res.redirect("/Signup");

@@ -1,0 +1,84 @@
+<%- include("partials/header.ejs" , {pageTitle : "CollegeGeeks: :: YourActivity" , style: "css/style.css" }); -%>
+
+    <section class="title_activity">
+        <%- include("partials/LoggedNavbar.ejs"); -%>
+    </section>
+
+    <body class="activity">
+        <section id="activity_head">
+            <div class="container">
+                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                    <button class="nav-link active" id="nav-answers-tab" data-bs-toggle="tab" data-bs-target="#answers"
+                        type="button" role="tab" aria-controls="nav-answers" aria-selected="true">Asked</button>
+                    <button class="nav-link" id="nav-asked-tab" data-bs-toggle="tab" data-bs-target="#asked"
+                        type="button" role="tab" aria-controls="nav-asked" aria-selected="false">Answered</button>
+                </div>
+                </nav>
+            </div>
+        </section>
+
+
+        <div class="tab-content container" id="nav-tabContent">
+            <div class="tab-pane fade show active" role="tabpanel"  aria-labelledby="answers-tab" id="answers" >
+                <div class="container">
+                    <div class="row">
+                        <% if(error.length>0) {%>
+                            <%= error %>
+                        <%} else {%>
+                        <!-- <%= activity %> -->
+                        <% activity.questions.forEach(element=>{%>
+                        <div class="card mb-1">
+                            <div class="card-body">
+                                <span style="text-transform: capitalize;">Category : <%= element.category %></span>
+                                <span style="float: right;">
+                                    <%= element.createdAt.toLocaleDateString() %>
+                                </span>
+                               <a href="/questionPage?questionId=<%=element._id %>"><h5> <%= element.statement %> ? <i class="fas fa-angle-double-right"></i></h5></a><hr>
+                            </div>
+                        </div>
+                        <%})%>
+                        <%}%>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="tab-pane fade container" role="tabpanel"  aria-labelledby="asked-tab"id="asked"
+            >
+            <div class="container">
+                <div class="row">
+                   <% if(error.length>0) {%>
+                        <%= error %>
+                    <%} else {%>
+                        <%if(activity.answeredQuestions.length === 0){ %>
+                            <span class="display-5 mt-5">You have not answered any Questions</span>
+                        <%} else { %>
+                    <% activity.answeredQuestions.forEach(element=>{%>
+                            <div class="card mb-1">
+                                <div class="card-body">
+                                    <span style="text-transform: capitalize;">Category : <%= element.category %></span>
+                                    <span style="float: right;">
+                                        <%= element.createdAt.toLocaleDateString() %>
+                                    </span>
+                                   <a href="/questionPage?questionId=<%=element._id %>"><h5> <%= element.statement %> ? <i class="fas fa-angle-double-right"></i></h5></a><hr>
+                                </div>
+                            </div>
+                        <%})%>
+                    <% } %>
+                    <%}%>
+                </div>
+            </div>
+        </div>
+          </div>
+
+        
+        
+
+
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+            crossorigin="anonymous"></script>
+    </body>
+    </html>

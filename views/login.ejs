@@ -3,14 +3,14 @@
 
 <%# ADDING NAVBAR %>
 <section class="title_login">
-    <%- include("partials/navbar.ejs",{ Profile: ""});  -%>
+    <%- include("partials/navbar.ejs");  -%>
 </section>
 
 <section class="main_login">
-    <div class="container">
-     <div class="login-title"> <span class=" display-6"><b>Welcome to CollegeGeeks</b>
+    <div class="container align-items-center">
+     <div class="login-title animate__animated animate__backInDown"> <span class=" display-6"><b>Welcome to CollegeGeeks</b>
       </span></div>
-        <div class="card shadow login_card">
+        <div class="card shadow login_card animate__animated animate__backInDown">
             <div class="card-header">
                 LOGIN   
             </div>
@@ -18,7 +18,7 @@
                 <form action="/login" method="POST">
                     <div class="mb-3">
                       <label for="exampleInputEmail1" class="form-label">Email address</label>
-                      <input type="email" class="form-control" id="email" name="email" autocomplete="true" required>
+                      <input type="email" class="form-control" id="email" name="email" autocomplete="true" autocomplete="on"   required>
                       <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
                     </div>
                     <div class="mb-3">
@@ -31,6 +31,7 @@
                   </form>
             </div>
           </div>
+          <p class="notHavelogin mt-2 animate__animated animate__backInRight"> don't have Account / <a href="/signup">SignUp</a> here</p>
           <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -39,7 +40,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form>
+        <form action="/forgetPassword" method="POST">
           <div class="mb-3">
             <label for="recipient-name" class="col-form-label">Enter your Registered Email</label>
             <input type="email" class="form-control" id="forgot-Password" required>
