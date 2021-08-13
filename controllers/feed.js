@@ -268,6 +268,8 @@ exports.getPublicProfile = async (req, res, next) => {
   }
 };
 
+
+
 exports.follow = async (req, res, next) => {
   try {
     const id = req.session.user._id;
@@ -327,6 +329,7 @@ exports.follow = async (req, res, next) => {
     });
   }
 };
+
 
 exports.unfollow = async (req, res, next) => {
   try {

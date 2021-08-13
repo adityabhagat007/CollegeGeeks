@@ -27,12 +27,11 @@
         </div>
 
       <% } else { %>
-
         <% questions.forEach(element=>{%>
           <div class="card mb-1">
             <div class="card-body">
               <div class="author_name">
-                <a href="/PublicProfile"><%=element.authorName%></a>
+                <a href="/PublicProfile?userId=<%= element.author%>"><%=element.authorName%></a>
                 <span style="float: right;"><%= element.createdAt.toLocaleDateString() %></span>
               </div>
 

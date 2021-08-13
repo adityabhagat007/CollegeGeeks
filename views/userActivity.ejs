@@ -8,9 +8,9 @@
         <section id="activity_head">
             <div class="container">
                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                    <button class="nav-link active" id="nav-answers-tab" data-bs-toggle="tab" data-bs-target="#answers"
+                    <button class="nav-link active" id="nav-answers-tab" data-bs-toggle="tab" data-bs-target="#asked"
                         type="button" role="tab" aria-controls="nav-answers" aria-selected="true">Asked</button>
-                    <button class="nav-link" id="nav-asked-tab" data-bs-toggle="tab" data-bs-target="#asked"
+                    <button class="nav-link" id="nav-asked-tab" data-bs-toggle="tab" data-bs-target="#answers"
                         type="button" role="tab" aria-controls="nav-asked" aria-selected="false">Answered</button>
                 </div>
                 </nav>
@@ -19,7 +19,7 @@
 
 
         <div class="tab-content container" id="nav-tabContent">
-            <div class="tab-pane fade show active" role="tabpanel"  aria-labelledby="answers-tab" id="answers" >
+            <div class="tab-pane fade show active" role="tabpanel"  aria-labelledby="answers-tab" id="asked" >
                 <div class="container">
                     <div class="row">
                         <% if(error.length>0) {%>
@@ -44,7 +44,7 @@
 
 
 
-            <div class="tab-pane fade container" role="tabpanel"  aria-labelledby="asked-tab"id="asked"
+            <div class="tab-pane fade" role="tabpanel"  aria-labelledby="asked-tab"id="answers"
             >
             <div class="container">
                 <div class="row">

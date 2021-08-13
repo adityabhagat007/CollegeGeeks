@@ -1,5 +1,5 @@
 <%- include("partials/header.ejs" , {pageTitle : "CollegeGeeks: :: Home" , style: "css/style.css"}); -%>
-
+<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
 
 <%# ADDING NAVBAR %>
 <section class="title_home">
@@ -8,9 +8,9 @@
 
 <body class="body">
 
-<section id="questionPage ">
+<section class="container questionPage ">
       <div class="container">
-            <div class="row container">
+            <div class="row">
                   <% if(error.length > 0) { %>
                         <%= error %>; 
                   <% } else { %>
@@ -18,7 +18,7 @@
                   <div class =" Ans-question card mb-2">
                         <div class="card-body">
                               <div class="card-title"><h3><%= question.statement %>?  </h3></div>
-                              <div style="float: right;" data-bs-toggle="modal" data-bs-target="#ansModal" >Click Here to answer</div>
+                              <div style="float: right;" data-bs-toggle="modal" data-bs-target="#ansModal" >Answer</div>
                         </div>
                   </div>
                   <% if(question.answers.length>0){ %> 
@@ -26,7 +26,7 @@
                   <div class="Answer card mb-2">
                         <div class ="card-body">
                               <div class="author_name">
-                                    <a style="font-size: 20px;"href="/PublicProfile"><%=element.authorName%></a>
+                                    <a style="font-size: 20px;"href="/PublicProfile?userId=<%= element.author  %> "><%=element.authorName%></a>
                                     <span style="float: right;"><%= element.createdAt.toLocaleDateString() %></span>
                               </div>
                               <hr>
@@ -56,9 +56,7 @@
                       <div class="modal-body">
                         <form method="POST" action="/newanswer">
                               <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mb-4">
-                              <div id="answer">
-                                <textarea class="form-control" name="answer" type="text" required>
-                                </textarea>
+                              <div id="answer" name="answer">
                                 </div>
                                 <input type="hidden" name="questionId" value="<%= question._id %>" />
                               </div>
@@ -81,6 +79,7 @@
       integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
       crossorigin="anonymous">
 </script>
+<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 <script>
                         //  ClassicEditor
                         //         .create( document.querySelector( '#answer' ),{
@@ -95,7 +94,9 @@
                         //         } );
 
                               //   'heading','bold', 'italic', 'bulletedList', 'numberedList', 'undo','redo','indent','outdent','blockQuote' 
-                              
+var quill = new Quill('#answer', {
+    theme: 'snow'
+  });                             
 </script>
 </body>
 </html>

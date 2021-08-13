@@ -20,6 +20,8 @@ router.get("/home", isAuth, getHomePageValidator, feedController.getHomePage);
 
 router.get("/myaccount", isAuth, feedController.getProfile);
 
+// router.post("/myaccount", isAuth, feedController.getProfileDp);
+
 router.get("/questionPage", isAuth, feedController.getQuestion);
 
 router.get("/userActivity", isAuth, feedController.getActivity);
