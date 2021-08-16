@@ -7,7 +7,7 @@ module.exports = (req, res, next) => {
     //Checking statement
     if (validator.isEmpty(statement)) {
       req.flash("error", "Please add a valid question");
-      return req.redirect("/home");
+      return res.redirect("/home");
     }
     //Checking category
     if (

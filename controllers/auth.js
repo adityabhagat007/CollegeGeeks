@@ -19,6 +19,14 @@ exports.postLogin = async (req, res, next) => {
   try {
     const email = req.body.email;
     const password = req.body.password;
+    if(email === ""){
+      req.flash("error","Enter the Email ID");
+      return res.redirect("/login");
+    }
+    if(password === ""){
+      req.flash("error","Enter the Password");
+      return res.redirect("/login");
+    }
 
     const user = await User.findOne({ email });
     //If no user is found

@@ -9,6 +9,13 @@ module.exports = async (req, res, next) => {
     const branch = req.body.branch.toLowerCase();
     const password = req.body.password;
     const confirmPassword = req.body.confirmPassword;
+
+    // Branch Validation
+    // if(branch === "error"){
+    //   req.flash("error", "Enter Your Branch Correctly");
+    //   return res.redirect("/Signup");
+    // }
+
     //Email validation
     if (!validator.isEmail(email)) {
       req.flash("error", "Please enter a valid email address");
@@ -31,6 +38,7 @@ module.exports = async (req, res, next) => {
     }
     //Branch validation
     if (
+      // branch !== "error"&&
       branch !== "cse" &&
       branch !== "ece" &&
       branch !== "ee" &&

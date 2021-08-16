@@ -12,13 +12,17 @@
       <div class="container">
             <div class="row">
                   <% if(error.length > 0) { %>
-                        <%= error %>; 
+                        <div class="alert alert-danger d-flex align-items-center" role="alert">
+                              <div>
+                                  <i class="fas fa-exclamation-triangle fa-3x"></i> <b class="display-6"><%=error %></b> 
+                              </div>
+                            </div>
                   <% } else { %>
                   <!-- <%= question %> -->
-                  <div class =" Ans-question card mb-2">
+                  <div class =" Ans-question card mb-2" data-bs-toggle="modal" data-bs-target="#ansModal">
                         <div class="card-body">
                               <div class="card-title"><h3><%= question.statement %>?  </h3></div>
-                              <div style="float: right;" data-bs-toggle="modal" data-bs-target="#ansModal" >Answer</div>
+                              <div style="float: right;">Click to answer</div>
                         </div>
                   </div>
                   <% if(question.answers.length>0){ %> 
@@ -42,10 +46,9 @@
                   <%}%>
                   <% } %> 
             </div>
-
-
-        <!-- modal part  -->
-
+              
+            <!-- modal part  -->
+            <% if(error.length === 0){%> 
             <div class="modal fade" id="ansModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                   <div class="modal-dialog modal-lg">
                     <div class="modal-content">
@@ -65,7 +68,13 @@
                     </div>
                   </div>
                 </div>
-      </div>
+              </div>
+              <% } %> 
+
+
+
+
+ 
 </section>
 
 

@@ -9,8 +9,16 @@
 <section class="main_login">
     <div class="container align-items-center">
      <div class="login-title animate__animated animate__backInDown"> <span class=" display-6"><b>Welcome to CollegeGeeks</b>
-      </span></div>
-        <div class="card shadow login_card animate__animated animate__backInDown">
+      </span>
+    </div>
+        <div class="card shadow login_card  mt-4">
+          <% if(error.length >0){ %>
+            <div class=" alert alert-danger d-flex align-items-center" role="alert">
+                <div>
+                    <i class="fas fa-exclamation-triangle"></i> <b><%=error %></b> 
+                </div>
+              </div>
+            <% } %>
             <div class="card-header">
                 LOGIN   
             </div>
