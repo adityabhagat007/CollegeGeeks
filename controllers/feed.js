@@ -40,9 +40,9 @@ exports.getUserActivity = (req, res, next) => {
   res.render("userActivity");
 };
 
-exports.getEditprofile = (req, res, next) => {
-  res.render("Editprofile");
-};
+// exports.getEditprofile = (req, res, next) => {
+//   res.render("Editprofile");
+// };
 
 exports.getForgetPassword = (req, res, next) => {
   res.render("forgetPassword");
@@ -395,3 +395,54 @@ exports.unfollow = async (req, res, next) => {
     });
   }
 };
+
+// Edit Profile 
+
+exports.getEditProfile = async (req,res,next)=>{
+  try{
+    const id = req.session.user._id;
+    if(id === undefined){
+      const error = new Error("No userId found!");
+      error.statusCode(404);
+      throw error;
+    }
+    const user = await User.findById(id);
+    if(!user){
+      return res.render("Editprofile", { error: "No user is found!" })
+    }else{
+      console.log(user);
+      return res.render("EditProfile",{ error:"", userData :user })
+    }
+  }catch(err){
+    next(err)
+  }
+}
+
+
+// Post Edit Profile
+
+exports.postEditProfile = async (req,res,next) =>{
+  try{
+  const id = req.session.user._id;
+  const name = req.body.name;
+  const  branch = req.body.branch;
+  const bio = req.body.bio;
+  if(name === undefined || bio === undefined || branch === undefined){
+    const error = new Error("No userId found!");
+    error.statusCode(404);
+    throw error;
+  }else{
+    const user = await User.findById(id)
+    user.name = name;
+    user.branch = branch;
+    user.intro = bio;
+    const newUserData= await user.save();
+    // console.log(newUserData);
+    res.redirect('/EditProfile');
+  }
+}catch(error){
+  next(err)
+}
+}
+
+

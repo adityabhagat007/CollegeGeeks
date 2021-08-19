@@ -1,4 +1,4 @@
-<%- include("partials/header.ejs" , {pageTitle : "CollegeGeeks: :: Home" , style: "css/style.css"}); -%>
+<%- include("partials/header.ejs" , {pageTitle : "CollegeGeeks: :: EditProfile" , style: "css/style.css"}); -%>
 
 <section class="title_myaccount">
     <%- include("partials/LoggedNavbar.ejs"); -%>
@@ -10,10 +10,6 @@
         <div class="row">
             <div class="user_profile">
             <i class="user_icon fas fa-user-circle fa-10x"></i>
-            <div class=" upload">
-                <input type="file" id="actual-btn" hidden>
-                <label for="actual-btn" style="cursor: pointer; color: black;"><i class="fas fa-camera fa-2x"></i></label>
-            </div>
             </div>
             <div class="usename">
                     <span class="display-6">UserName</span>
@@ -41,19 +37,19 @@
             <div class="card">
                 <div class="card-body">
                     <div class="container">
-                        <form class="row g-3">
+                        <form class="row g-3" action="/editprofile" method="POST">
                             <div class="col-md-6">
-                              <label for="inputEmail4" class="form-label">Email</label>
-                              <input type="email" name="email" class="form-control" id="inputEmail4">
+                              <label for="inputBranch4" class="form-label">Branch</label>
+                              <input type="text" name="branch" class="form-control" id="inputBranch4" value="<%= userData.branch %> ">
                             </div>
                             <div class="col-md-6">
                               <label for="anme" class="form-label">Name</label>
-                              <input type="text" name="name" class="form-control" >
+                              <input type="text" name="name" class="form-control" value="<%=userData.name  %> " >
                             </div>
                             <div class="col-12">
                               <label for="inputbio" class="form-label">BIO</label>
-                              <textarea type="text" class="form-control" name="bio">
-                                  </textarea>
+                              <textarea type="text" class="form-control" name="bio"><%=userData.intro  %> 
+                            </textarea>
                             </div>
                             <div class="col-12">
                               <button type="submit" class="btn btn-primary">Submit</button>

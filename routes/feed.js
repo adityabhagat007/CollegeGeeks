@@ -28,7 +28,9 @@ router.get("/userActivity", isAuth, feedController.getActivity);
 
 router.get("/PublicProfile", isAuth, feedController.getPublicProfile);
 
-router.get("/Editprofile", isAuth, feedController.getEditprofile);
+router.get("/Editprofile", isAuth, feedController.getEditProfile);
+
+router.post("/editprofile", isAuth, feedController.postEditProfile);
 
 router.get(
   "/questions",
