@@ -97,20 +97,20 @@ a{
   margin-left: 60px;
 }
 
-@media (max-width: 991px) {
+/*@media (max-width: 1000px) {
   .features .image {
     text-align: center;
   }
   .features .image img {
-    max-width: 80%;
+    max-width:200%;
   }
 }
 
-@media (max-width: 667px) {
+@media (max-width: 1000px) {
   .features .image img {
-    max-width: 100%;
+    max-width: 200%;
   }
-}
+}*/
 
 /*--------------------------------------------------------------
 # Sections General
