@@ -12,6 +12,11 @@ exports.getAboutPage = (req, res, next) => {
 
 exports.getHomePage = async (req, res, next) => {
   try {
+    // console.log("line 15", req.flash("error"));
+    // console.log("length ", req.flash("error").length);
+    // console.log("type", typeof Array.from(req.flash("error")));
+    // console.log(req.session.flash);
+    // if (req.flash("error").length === 0) {
     //pulling data out from req
     const page = req.query.page || 1; //Default 1
     const category = req.session.user.branch.toLowerCase();
@@ -26,7 +31,16 @@ exports.getHomePage = async (req, res, next) => {
       return res.render("home", { error: "Can not find any questions" });
     }
     //If we get questions
-    res.render("home", { questions, error: "", totalPages, currentPage: page });
+    res.render("home", {
+      questions,
+      error: req.flash("error"),
+      totalPages,
+      currentPage: page,
+    });
+    // } else {
+    //   console.log("In else", req.flash("error"));
+    //   res.render("home", { error: req.flash("error") });
+    // }
   } catch (err) {
     next(err);
   }
@@ -268,8 +282,6 @@ exports.getPublicProfile = async (req, res, next) => {
   }
 };
 
-
-
 exports.follow = async (req, res, next) => {
   try {
     const id = req.session.user._id;
@@ -329,7 +341,6 @@ exports.follow = async (req, res, next) => {
     });
   }
 };
-
 
 exports.unfollow = async (req, res, next) => {
   try {
@@ -396,53 +407,50 @@ exports.unfollow = async (req, res, next) => {
   }
 };
 
-// Edit Profile 
+// Edit Profile
 
-exports.getEditProfile = async (req,res,next)=>{
-  try{
+exports.getEditProfile = async (req, res, next) => {
+  try {
     const id = req.session.user._id;
-    if(id === undefined){
+    if (id === undefined) {
       const error = new Error("No userId found!");
       error.statusCode(404);
       throw error;
     }
     const user = await User.findById(id);
-    if(!user){
-      return res.render("Editprofile", { error: "No user is found!" })
-    }else{
+    if (!user) {
+      return res.render("Editprofile", { error: "No user is found!" });
+    } else {
       console.log(user);
-      return res.render("EditProfile",{ error:"", userData :user })
+      return res.render("EditProfile", { error: "", userData: user });
     }
-  }catch(err){
-    next(err)
+  } catch (err) {
+    next(err);
   }
-}
-
+};
 
 // Post Edit Profile
 
-exports.postEditProfile = async (req,res,next) =>{
-  try{
-  const id = req.session.user._id;
-  const name = req.body.name;
-  const  branch = req.body.branch;
-  const bio = req.body.bio;
-  if(name === undefined || bio === undefined || branch === undefined){
-    const error = new Error("No userId found!");
-    error.statusCode(404);
-    throw error;
-  }else{
-    const user = await User.findById(id)
-    user.name = name;
-    user.branch = branch;
-    user.intro = bio;
-    const newUserData= await user.save();
-    // console.log(newUserData);
-    res.redirect('/EditProfile');
+exports.postEditProfile = async (req, res, next) => {
+  try {
+    const id = req.session.user._id;
+    const name = req.body.name;
+    const branch = req.body.branch;
+    const bio = req.body.bio;
+    if (name === undefined || bio === undefined || branch === undefined) {
+      const error = new Error("No userId found!");
+      error.statusCode(404);
+      throw error;
+    } else {
+      const user = await User.findById(id);
+      user.name = name;
+      user.branch = branch;
+      user.intro = bio;
+      const newUserData = await user.save();
+      // console.log(newUserData);
+      res.redirect("/EditProfile");
+    }
+  } catch (error) {
+    next(err);
   }
-}catch(error){
-  next(err)
-}
-}
-
-
+};
