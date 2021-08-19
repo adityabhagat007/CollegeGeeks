@@ -12,11 +12,6 @@ exports.getAboutPage = (req, res, next) => {
 
 exports.getHomePage = async (req, res, next) => {
   try {
-    // console.log("line 15", req.flash("error"));
-    // console.log("length ", req.flash("error").length);
-    // console.log("type", typeof Array.from(req.flash("error")));
-    // console.log(req.session.flash);
-    // if (req.flash("error").length === 0) {
     //pulling data out from req
     const page = req.query.page || 1; //Default 1
     const category = req.session.user.branch.toLowerCase();
@@ -37,10 +32,6 @@ exports.getHomePage = async (req, res, next) => {
       totalPages,
       currentPage: page,
     });
-    // } else {
-    //   console.log("In else", req.flash("error"));
-    //   res.render("home", { error: req.flash("error") });
-    // }
   } catch (err) {
     next(err);
   }
