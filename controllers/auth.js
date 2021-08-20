@@ -171,6 +171,7 @@ exports.postChangePassword = async (req, res, next) => {
 
 exports.forgetPassword = async (req, res, next) => {
   try {
+    console.log("inside forget password");
     const email = req.body.email;
     //If email is not passed
     if (!email) {
