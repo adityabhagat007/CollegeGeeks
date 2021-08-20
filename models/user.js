@@ -26,6 +26,10 @@ const userSchema = Schema({
     type: String,
     default: "/images/user.png",
   },
+  // token: {
+  //   type: Schema.Types.ObjectId,
+  //   ref: "Token",
+  // },
   questions: [{ type: Schema.Types.ObjectId, ref: "Question" }],
   followers: [{ type: Schema.Types.ObjectId, ref: "User" }],
   likedQuestions: [{ type: Schema.Types.ObjectId, ref: "Question" }],
