@@ -424,10 +424,11 @@ exports.getEditProfile = async (req,res,next)=>{
 exports.postEditProfile = async (req,res,next) =>{
   try{
   const id = req.session.user._id;
-  const name = req.body.name;
+  const name = req.body.name.trim();
   const  branch = req.body.branch;
-  const bio = req.body.bio;
-  if(name === undefined || bio === undefined || branch === undefined){
+  const bio = req.body.bio.trim();
+  req.session.user.branch = branch;
+  if(id==undefined || name === undefined || bio === undefined || branch === undefined){
     const error = new Error("No userId found!");
     error.statusCode(404);
     throw error;
@@ -437,7 +438,7 @@ exports.postEditProfile = async (req,res,next) =>{
     user.branch = branch;
     user.intro = bio;
     const newUserData= await user.save();
-    // console.log(newUserData);
+    console.log(newUserData);
     res.redirect('/EditProfile');
   }
 }catch(error){

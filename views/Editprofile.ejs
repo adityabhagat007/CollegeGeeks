@@ -3,7 +3,7 @@
 <section class="title_myaccount">
     <%- include("partials/LoggedNavbar.ejs"); -%>
 </section>
-
+<% let stream ="selected"%> 
 <body>
 <section class="my_acc">
     <div class="container">
@@ -38,12 +38,34 @@
                 <div class="card-body">
                     <div class="container">
                         <form class="row g-3" action="/editprofile" method="POST">
+                          <div class="col-md-6">
+                            <label For="branch "class="form-label">Stream</label>
+                            <select class="form-select" aria-label="Default select example" name="branch">
+                              <option value="null" >None</option>
+                                <option value="CSE" <%if(userData.branch === "CSE")  {%> <%= stream
+                                 %> <% } %>   >Computer Science Engineering OR IT</option>
+                                <option value="ECE" <%if(userData.branch === "ECE")  {%> <%= stream
+                                  %> <% } %> >Electronic and Communication Engineering</option>
+                                <option value="EE" <%if(userData.branch === "EE")  {%> <%= stream
+                                  %> <% } %> >Electrical Engineering</option>
+                                <option value="ME" <%if(userData.branch === "ME")  {%> <%= stream
+                                  %> <% } %> >Mechanical Engineering</option>
+                                <option value="CE" <%if(userData.branch === "CE")  {%> <%= stream
+                                  %> <% } %> > Chemical Engineering</option>
+                                <option value="CT" <%if(userData.branch === "CT")  {%> <%= stream
+                                  %> <% } %> >Ceramic Engineering</option>
+                                <option value="LT"<%if(userData.branch === "LT")  {%> <%= stream
+                                  %> <% } %> >Leather Technology</option>
+                                <option value="FT" <%if(userData.branch === "FT")  {%> <%= stream
+                                  %> <% } %> >Food Technology</option>
+                              </select>
+                        </div>
+                        <!-- <div class="col-md-6">
+                          <label for="name" class="form-label">Name</label>
+                          <input type="text" name="branch" class="form-control" value="<%=userData.branch%>" >
+                        </div> -->
                             <div class="col-md-6">
-                              <label for="inputBranch4" class="form-label">Branch</label>
-                              <input type="text" name="branch" class="form-control" id="inputBranch4" value="<%= userData.branch %> ">
-                            </div>
-                            <div class="col-md-6">
-                              <label for="anme" class="form-label">Name</label>
+                              <label for="name" class="form-label">Name</label>
                               <input type="text" name="name" class="form-control" value="<%=userData.name  %> " >
                             </div>
                             <div class="col-12">
@@ -88,8 +110,6 @@
             </div>
         </div>
     </div>
-
-
   </div>
 
 
