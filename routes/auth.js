@@ -20,6 +20,15 @@ router.post("/login", authController.postLogin);
 
 router.get("/logout", isAuth, authController.logout);
 
+router.post("/forgetPassword, authController.forgetPassword");
+
+router.get("/auth/forget-password/:token", authController.getForgetPassword);
+
+router.post(
+  "/auth/forget-password/:token",
+  authController.verifyFogetPasswordToken
+);
+
 router.post(
   "/changepassword",
   isAuth,
