@@ -445,3 +445,28 @@ exports.postEditProfile = async (req, res, next) => {
     next(err);
   }
 };
+
+exports.getMyNetwork = async (req, res, next) => {
+  try {
+    const id = req.session.user._id;
+    //Finding user
+    const user = await User.findById(id)
+      .select("followings followers")
+      .populate({
+        path: "folowings followers",
+        select: "name",
+      });
+    if (!user) {
+      const error = new Error("User not found");
+      error.statusCode = 404;
+      throw error;
+    }
+    //If we get user
+    console.log(user);
+  } catch (err) {
+    if (!err.statusCode) {
+      err.statusCode = 500;
+    }
+    next(err);
+  }
+};

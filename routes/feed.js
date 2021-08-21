@@ -53,4 +53,6 @@ router.post(
 
 router.post("/newanswer", isAuth, feedController.postNewAnswer);
 
+router.get("/mynetwork", feedController.getMyNetwork);
+
 module.exports = router;
