@@ -15,16 +15,16 @@
                <a href="/Editprofile" ><button class="edit_profile btn btn-sm btn-secondary" type="button">Edit Profile</button></a>
             </div>
             <div class="user_profile">
-                <!-- <%=profile.dp%> -->
+                <!-- <img src="images/<%=profile.dp%>" alt=".."/> -->
                 <i class="user_icon fas fa-user-circle fa-10x"></i>
             <div class=" upload">
-                <form action='/'>
-                <input type="file" id="actual-btn" hidden>
-                <label for="actual-btn" style="cursor: pointer; color: black;"><i class="fas fa-camera fa-2x"></i></label>
+                <form action='/profileDp' method="POST" id="jsform">
+                <input type="file" name="profilePic" id="actual-btn" hidden required>
+                <label for="actual-btn" id="from" style="cursor: pointer; color: black;"> <i class="fas fa-camera fa-2x"></i></label>
                 </form>
             </div>
             </div>
-            <div class="usename">
+            <div class="usename" style="text-transform: capitalize;">
                     <span class="display-6"><%=profile.name%></span>
                     <p><%=profile.intro%></p>
             </div>
@@ -222,7 +222,10 @@
             }
         },
     });
-    </script>
+    document.querySelector('input[type=file]').addEventListener('change', function(){
+    this.form.submit();
+});
+</script>
 
 </body>
 </html>
