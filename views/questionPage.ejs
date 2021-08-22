@@ -14,7 +14,7 @@
                   <% if(error.length > 0) { %>
                         <div class="alert alert-danger d-flex align-items-center" role="alert">
                               <div>
-                                  <i class="fas fa-exclamation-triangle fa-3x"></i> <b class="display-6"><%=error %></b> 
+                                  <i class="fas fa-exclamation-triangle fa-2x"></i> <b ><%=error %></b> 
                               </div>
                             </div>
                   <% } else { %>
@@ -35,7 +35,9 @@
                               </div>
                               <hr>
                               <div class = "answer_content">
-                                    <p><%= element.content %> </p>
+                              <main>
+                                    <%- element.content %> 
+                              </main>
                               </div>
                         </div>
                   </div>
@@ -59,8 +61,7 @@
                       <div class="modal-body">
                         <form method="POST" action="/newanswer">
                               <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mb-4">
-                              <div id="answer" name="answer">
-                                </div>
+                                    <textarea name="answer"></textarea>
                                 <input type="hidden" name="questionId" value="<%= question._id %>" />
                               </div>
                               <button type="submit" value="submit" class="btn btn-primary" style="float: right;">Send message</button>
@@ -70,14 +71,7 @@
                 </div>
               </div>
               <% } %> 
-
-
-
-
- 
 </section>
-
-
 
 
 
@@ -88,24 +82,11 @@
       integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
       crossorigin="anonymous">
 </script>
-<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
-<script>
-                        //  ClassicEditor
-                        //         .create( document.querySelector( '#answer' ),{
-                        //             removePlugins: ["uploadImage","insertTable","mediaEmbed"],
-                        //             toolbar: ['heading','bold', 'italic', 'bulletedList', 'numberedList', 'undo','redo','indent','outdent','blockQuote']
-                        //         })
-                        //         .then( editor => {
-                        //                 console.log( editor );
-                        //         } )
-                        //         .catch( error => {
-                        //                 console.error( error );
-                        //         } );
 
-                              //   'heading','bold', 'italic', 'bulletedList', 'numberedList', 'undo','redo','indent','outdent','blockQuote' 
-var quill = new Quill('#answer', {
-    theme: 'snow'
-  });                             
-</script>
+<script>
+  CKEDITOR.replace('answer',{
+      removePlugins : 'image,link,scayt',
+   }); 
+ </script>
 </body>
 </html>

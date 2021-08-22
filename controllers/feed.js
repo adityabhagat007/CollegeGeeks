@@ -260,13 +260,15 @@ exports.getPublicProfile = async (req, res, next) => {
       followings: user.followings.length,
       answers: user.answers.length,
     };
-    const isFound = user.followings.find((followingUser) => {
-      followingUser === userId;
-    });
+    const isFound = user.followings.find((followingUser) => 
+      followingUser.toString() === userId.toString()
+    );
+    // console.log(followingUser);
 
     const isFollowing = isFound === undefined ? false : true;
+    console.log(isFound);
     console.log(isFollowing);
-    console.log(userDetails);
+    // console.log(userDetails);
     res.render("PublicProfile", { profile: userDetails, isFollowing });
   } catch (err) {
     next(err);
@@ -410,10 +412,10 @@ exports.getEditProfile = async (req, res, next) => {
     }
     const user = await User.findById(id);
     if (!user) {
-      return res.render("Editprofile", { error: "No user is found!" });
+      return res.render("Editprofile", { errors: "No user is found!" });
     } else {
       console.log(user);
-      return res.render("EditProfile", { error: "", userData: user });
+      return res.render("EditProfile", { errors: "", userData: user, success:""});
     }
   } catch (err) {
     next(err);
@@ -429,21 +431,68 @@ exports.postEditProfile = async (req,res,next) =>{
   const  branch = req.body.branch;
   const bio = req.body.bio.trim();
   req.session.user.branch = branch;
+
   if(id==undefined || name === undefined || bio === undefined || branch === undefined){
     const error = new Error("No userId found!");
-    error.statusCode(404);
     throw error;
-  }else{
-    const user = await User.findById(id)
-    user.name = name;
+  }
+
+  else if(name === "")
+  {
+    const user = await User.findById(id).select("name branch intro");
     user.branch = branch;
     user.intro = bio;
     const newUserData= await user.save();
     console.log(newUserData);
     res.redirect('/EditProfile');
   }
+
+  else if( branch !== "CSE" &&
+  branch !== "ECE" &&
+  branch !== "EE" &&
+  branch !== "ME" &&
+  branch !== "CE" &&
+  branch !== "CT" &&
+  branch !== "LT" &&
+  branch !== "FT")
+  {
+    req.flash("error", "Select Your Branch Correctly")
+    res.render('EditProfile',{errors : req.flash("error")});
+  }
+  else
+  {
+    const user = await User.findById(id).select("name branch intro");
+    user.name = name;
+    user.branch = branch;
+    user.intro = bio;
+    const newUserData= await user.save();
+    console.log(newUserData);
+    req.flash("success", "You have Successfully Updated the your info")
+    res.render('EditProfile',{userData:newUserData, errors:"", success: req.flash("success")});
+  }
 }
 catch(error){
   next(error);
 }
 };
+
+exports.postProfileDp = async (req,res,next) =>{
+  try{
+  const dp = req.body.profilePic
+  const id = req.session.user._id;
+  const user = await User.findById(id);
+  if(id==undefined){
+    const error = new Error("No userId found!");
+    error.statusCode(404);
+    throw error;
+  }else{
+   user.dp= dp;
+   const newUser = await user.save();
+   console.log(newUser);
+  }
+  res.redirect('/myaccount')
+  }
+  catch(error){
+    next(error);
+  }
+}
