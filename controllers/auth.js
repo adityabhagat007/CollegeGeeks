@@ -202,7 +202,7 @@ exports.forgetPassword = async (req, res, next) => {
     //Sending the email
     const result = await sendEmail(email, "Password Recovery", text);
     //If email is send successfully
-    res.render("verification");
+    res.render("verification", { token: token });
   } catch (err) {
     if (!err.stausCode) {
       err.stausCode = 500;
@@ -211,7 +211,7 @@ exports.forgetPassword = async (req, res, next) => {
   }
 };
 
-exports.verifyFogetPasswordToken = async (req, res, next) => {
+exports.verifyForgetPasswordToken = async (req, res, next) => {
   try {
     const token = req.params.token;
     const password = req.body.password;

@@ -18,7 +18,7 @@
                 <!-- <img src="images/<%=profile.dp%>" alt=".."/> -->
                 <i class="user_icon fas fa-user-circle fa-10x"></i>
             <div class=" upload">
-                <form action='/profileDp' method="POST" id="jsform">
+                <form action='/profileDp' method="POST" id="jsform" enctype="multipart/form-data">
                 <input type="file" name="profilePic" id="actual-btn" hidden required>
                 <label for="actual-btn" id="from" style="cursor: pointer; color: black;"> <i class="fas fa-camera fa-2x"></i></label>
                 </form>
