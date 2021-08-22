@@ -26,7 +26,7 @@ router.get("/auth/forget-password/:token", authController.getForgetPassword);
 
 router.post(
   "/auth/forget-password/:token",
-  authController.verifyFogetPasswordToken
+  authController.verifyForgetPasswordToken
 );
 
 router.post(

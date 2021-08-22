@@ -246,28 +246,29 @@ exports.getPublicProfile = async (req, res, next) => {
       return res.redirect("/myaccount");
     }
     //If it's not his/her own profile
-    const user = await User.findById(userId).select(
+    //The public profile
+    const publicUser = await User.findById(userId).select(
       "-password -likedQuestions -likedAnswers -email -answeredQuestions"
     );
-    if (!user) {
+    //Own account
+    const user = await User.findById(id).select("followings");
+    if (!publicUser || !user) {
       const error = new Error("No user found!");
       next(error);
     }
-    const userDetails = {
+    const publicUserDetails = {
       ...user._doc,
-      questions: user.questions.length,
-      followers: user.followers.length,
-      followings: user.followings.length,
-      answers: user.answers.length,
+      questions: publicUser.questions.length,
+      followers: publicUser.followers.length,
+      followings: publicUser.followings.length,
+      answers: publicUser.answers.length,
     };
-    const isFound = user.followings.find((followingUser) => {
-      followingUser === userId;
-    });
+    const isFound = user.followings.find(
+      (followingUser) => followingUser.toString() === userId
+    );
 
     const isFollowing = isFound === undefined ? false : true;
-    console.log(isFollowing);
-    console.log(userDetails);
-    res.render("PublicProfile", { profile: userDetails, isFollowing });
+    res.render("PublicProfile", { profile: publicUserDetails, isFollowing });
   } catch (err) {
     next(err);
   }
@@ -453,16 +454,19 @@ exports.getMyNetwork = async (req, res, next) => {
     const user = await User.findById(id)
       .select("followings followers")
       .populate({
-        path: "folowings followers",
+        path: "followings followers",
         select: "name",
       });
     if (!user) {
-      const error = new Error("User not found");
-      error.statusCode = 404;
-      throw error;
+      return res.status(404).json({
+        error: "User not found",
+      });
     }
     //If we get user
-    console.log(user);
+    res.status(200).json({
+      message: "Successfull",
+      network: user,
+    });
   } catch (err) {
     if (!err.statusCode) {
       err.statusCode = 500;
