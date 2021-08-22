@@ -1,3 +1,6 @@
+const { unlink } = require("fs/promises");
+const path = require("path");
+
 const Answer = require("../models/answer");
 const Question = require("../models/question");
 const User = require("../models/user");
@@ -246,30 +249,29 @@ exports.getPublicProfile = async (req, res, next) => {
       return res.redirect("/myaccount");
     }
     //If it's not his/her own profile
-    const user = await User.findById(userId).select(
+    //The public profile
+    const publicUser = await User.findById(userId).select(
       "-password -likedQuestions -likedAnswers -email -answeredQuestions"
     );
-    if (!user) {
+    //Own account
+    const user = await User.findById(id).select("followings");
+    if (!publicUser || !user) {
       const error = new Error("No user found!");
       next(error);
     }
-    const userDetails = {
-      ...user._doc,
-      questions: user.questions.length,
-      followers: user.followers.length,
-      followings: user.followings.length,
-      answers: user.answers.length,
+    const publicUserDetails = {
+      ...publicUser._doc,
+      questions: publicUser.questions.length,
+      followers: publicUser.followers.length,
+      followings: publicUser.followings.length,
+      answers: publicUser.answers.length,
     };
-    const isFound = user.followings.find((followingUser) => 
-      followingUser.toString() === userId.toString()
+    const isFound = user.followings.find(
+      (followingUser) => followingUser.toString() === userId
     );
-    // console.log(followingUser);
 
     const isFollowing = isFound === undefined ? false : true;
-    console.log(isFound);
-    console.log(isFollowing);
-    // console.log(userDetails);
-    res.render("PublicProfile", { profile: userDetails, isFollowing });
+    res.render("PublicProfile", { profile: publicUserDetails, isFollowing });
   } catch (err) {
     next(err);
   }
@@ -415,7 +417,11 @@ exports.getEditProfile = async (req, res, next) => {
       return res.render("Editprofile", { errors: "No user is found!" });
     } else {
       console.log(user);
-      return res.render("EditProfile", { errors: "", userData: user, success:""});
+      return res.render("EditProfile", {
+        errors: "",
+        userData: user,
+        success: "",
+      });
     }
   } catch (err) {
     next(err);
@@ -424,75 +430,115 @@ exports.getEditProfile = async (req, res, next) => {
 
 // Post Edit Profile
 
-exports.postEditProfile = async (req,res,next) =>{
-  try{
-  const id = req.session.user._id;
-  const name = req.body.name.trim();
-  const  branch = req.body.branch;
-  const bio = req.body.bio.trim();
-  req.session.user.branch = branch;
+exports.postEditProfile = async (req, res, next) => {
+  try {
+    const id = req.session.user._id;
+    const name = req.body.name.trim();
+    const branch = req.body.branch;
+    const bio = req.body.bio.trim();
+    req.session.user.branch = branch;
 
-  if(id==undefined || name === undefined || bio === undefined || branch === undefined){
-    const error = new Error("No userId found!");
-    throw error;
-  }
-
-  else if(name === "")
-  {
-    const user = await User.findById(id).select("name branch intro");
-    user.branch = branch;
-    user.intro = bio;
-    const newUserData= await user.save();
-    console.log(newUserData);
-    res.redirect('/EditProfile');
-  }
-
-  else if( branch !== "CSE" &&
-  branch !== "ECE" &&
-  branch !== "EE" &&
-  branch !== "ME" &&
-  branch !== "CE" &&
-  branch !== "CT" &&
-  branch !== "LT" &&
-  branch !== "FT")
-  {
-    req.flash("error", "Select Your Branch Correctly")
-    res.render('EditProfile',{errors : req.flash("error")});
-  }
-  else
-  {
-    const user = await User.findById(id).select("name branch intro");
-    user.name = name;
-    user.branch = branch;
-    user.intro = bio;
-    const newUserData= await user.save();
-    console.log(newUserData);
-    req.flash("success", "You have Successfully Updated the your info")
-    res.render('EditProfile',{userData:newUserData, errors:"", success: req.flash("success")});
-  }
-}
-catch(error){
-  next(error);
-}
-};
-
-exports.postProfileDp = async (req,res,next) =>{
-  try{
-  const dp = req.body.profilePic
-  const id = req.session.user._id;
-  const user = await User.findById(id);
-  if(id==undefined){
-    const error = new Error("No userId found!");
-    error.statusCode(404);
-    throw error;
-  }else{
-   user.dp= dp;
-   const newUser = await user.save();
-   console.log(newUser);
-  }
-  res.redirect('/myaccount')
-  }
-  catch(error){
+    if (
+      id == undefined ||
+      name === undefined ||
+      bio === undefined ||
+      branch === undefined
+    ) {
+      const error = new Error("No userId found!");
+      throw error;
+    } else if (name === "") {
+      const user = await User.findById(id).select("name branch intro");
+      user.branch = branch;
+      user.intro = bio;
+      const newUserData = await user.save();
+      console.log(newUserData);
+      res.redirect("/EditProfile");
+    } else if (
+      branch !== "CSE" &&
+      branch !== "ECE" &&
+      branch !== "EE" &&
+      branch !== "ME" &&
+      branch !== "CE" &&
+      branch !== "CT" &&
+      branch !== "LT" &&
+      branch !== "FT"
+    ) {
+      req.flash("error", "Select Your Branch Correctly");
+      res.render("EditProfile", { errors: req.flash("error") });
+    } else {
+      const user = await User.findById(id).select("name branch intro");
+      user.name = name;
+      user.branch = branch;
+      user.intro = bio;
+      const newUserData = await user.save();
+      console.log(newUserData);
+      req.flash("success", "You have Successfully Updated the your info");
+      res.render("EditProfile", {
+        userData: newUserData,
+        errors: "",
+        success: req.flash("success"),
+      });
+    }
+  } catch (error) {
     next(error);
   }
-}
+};
+
+exports.getMyNetwork = async (req, res, next) => {
+  try {
+    const id = req.session.user._id;
+    //Finding user
+    const user = await User.findById(id)
+      .select("followings followers")
+      .populate({
+        path: "followings followers",
+        select: "name",
+      });
+    if (!user) {
+      return res.status(404).json({
+        error: "User not found",
+      });
+    }
+    //If we get user
+    res.status(200).json({
+      message: "Successfull",
+      network: user,
+    });
+  } catch (err) {
+    if (!err.statusCode) {
+      err.statusCode = 500;
+    }
+    next(err);
+  }
+};
+
+exports.postProfileDp = async (req, res, next) => {
+  try {
+    const id = req.session.user._id;
+    const finalName = req.finalName;
+    const newPath = "/uploads/" + req.finalName;
+    //finding dpPath
+    const user = await User.findById(id).select("dp");
+    //If no user is found
+    if (!user) {
+      return redirect("/404");
+    }
+    //Extracting old path
+    const oldPath = user.dp;
+    //If the photo is not the default photo then deleting it
+    if (oldPath !== "/images/user.png") {
+      await unlink(path.join(__dirname, "../public", oldPath));
+    }
+    //If path is found then replacing
+    user.dp = newPath;
+    //Saving updated doc
+    const updatedPath = await user.save();
+
+    res.redirect("/myaccount");
+  } catch (err) {
+    if (!err.statusCode) {
+      err.statusCode = 500;
+    }
+    next(err);
+  }
+};

@@ -7,6 +7,7 @@ const loginStatus = require("../middleware/loginStatus");
 const newQuestionValidator = require("../middleware/validators/newQuestion");
 const getHomePageValidator = require("../middleware/validators/getHome");
 const getQuestionsValidator = require("../middleware/validators/getQuestions");
+const upload = require("../middleware/multerConfig");
 
 const router = express.Router();
 
@@ -20,7 +21,12 @@ router.get("/home", isAuth, getHomePageValidator, feedController.getHomePage);
 
 router.get("/myaccount", isAuth, feedController.getProfile);
 
-router.post("/profileDp", isAuth, feedController.postProfileDp);
+router.post(
+  "/profileDp",
+  isAuth,
+  upload.single("profilePic"),
+  feedController.postProfileDp
+);
 
 router.get("/questionPage", isAuth, feedController.getQuestion);
 
@@ -52,5 +58,7 @@ router.post(
 );
 
 router.post("/newanswer", isAuth, feedController.postNewAnswer);
+
+router.get("/mynetwork", feedController.getMyNetwork);
 
 module.exports = router;
