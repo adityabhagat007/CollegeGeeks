@@ -1,3 +1,6 @@
+const { unlink } = require("fs/promises");
+const path = require("path");
+
 const Answer = require("../models/answer");
 const Question = require("../models/question");
 const User = require("../models/user");
@@ -257,7 +260,7 @@ exports.getPublicProfile = async (req, res, next) => {
       next(error);
     }
     const publicUserDetails = {
-      ...user._doc,
+      ...publicUser._doc,
       questions: publicUser.questions.length,
       followers: publicUser.followers.length,
       followings: publicUser.followings.length,
@@ -411,10 +414,14 @@ exports.getEditProfile = async (req, res, next) => {
     }
     const user = await User.findById(id);
     if (!user) {
-      return res.render("Editprofile", { error: "No user is found!" });
+      return res.render("Editprofile", { errors: "No user is found!" });
     } else {
       console.log(user);
-      return res.render("EditProfile", { error: "", userData: user });
+      return res.render("EditProfile", {
+        errors: "",
+        userData: user,
+        success: "",
+      });
     }
   } catch (err) {
     next(err);
@@ -426,24 +433,54 @@ exports.getEditProfile = async (req, res, next) => {
 exports.postEditProfile = async (req, res, next) => {
   try {
     const id = req.session.user._id;
-    const name = req.body.name;
+    const name = req.body.name.trim();
     const branch = req.body.branch;
-    const bio = req.body.bio;
-    if (name === undefined || bio === undefined || branch === undefined) {
+    const bio = req.body.bio.trim();
+    req.session.user.branch = branch;
+
+    if (
+      id == undefined ||
+      name === undefined ||
+      bio === undefined ||
+      branch === undefined
+    ) {
       const error = new Error("No userId found!");
-      error.statusCode(404);
       throw error;
+    } else if (name === "") {
+      const user = await User.findById(id).select("name branch intro");
+      user.branch = branch;
+      user.intro = bio;
+      const newUserData = await user.save();
+      console.log(newUserData);
+      res.redirect("/EditProfile");
+    } else if (
+      branch !== "CSE" &&
+      branch !== "ECE" &&
+      branch !== "EE" &&
+      branch !== "ME" &&
+      branch !== "CE" &&
+      branch !== "CT" &&
+      branch !== "LT" &&
+      branch !== "FT"
+    ) {
+      req.flash("error", "Select Your Branch Correctly");
+      res.render("EditProfile", { errors: req.flash("error") });
     } else {
-      const user = await User.findById(id);
+      const user = await User.findById(id).select("name branch intro");
       user.name = name;
       user.branch = branch;
       user.intro = bio;
       const newUserData = await user.save();
-      // console.log(newUserData);
-      res.redirect("/EditProfile");
+      console.log(newUserData);
+      req.flash("success", "You have Successfully Updated the your info");
+      res.render("EditProfile", {
+        userData: newUserData,
+        errors: "",
+        success: req.flash("success"),
+      });
     }
   } catch (error) {
-    next(err);
+    next(error);
   }
 };
 
@@ -467,6 +504,37 @@ exports.getMyNetwork = async (req, res, next) => {
       message: "Successfull",
       network: user,
     });
+  } catch (err) {
+    if (!err.statusCode) {
+      err.statusCode = 500;
+    }
+    next(err);
+  }
+};
+
+exports.postProfileDp = async (req, res, next) => {
+  try {
+    const id = req.session.user._id;
+    const finalName = req.finalName;
+    const newPath = "/uploads/" + req.finalName;
+    //finding dpPath
+    const user = await User.findById(id).select("dp");
+    //If no user is found
+    if (!user) {
+      return redirect("/404");
+    }
+    //Extracting old path
+    const oldPath = user.dp;
+    //If the photo is not the default photo then deleting it
+    if (oldPath !== "/images/user.png") {
+      await unlink(path.join(__dirname, "../public", oldPath));
+    }
+    //If path is found then replacing
+    user.dp = newPath;
+    //Saving updated doc
+    const updatedPath = await user.save();
+
+    res.redirect("/myaccount");
   } catch (err) {
     if (!err.statusCode) {
       err.statusCode = 500;

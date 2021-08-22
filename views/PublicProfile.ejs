@@ -6,13 +6,17 @@
     <%- include("partials/LoggedNavbar.ejs");  -%>
 </section>
 
-
+<%= isFollowing  %> 
 <body class="body">
 <section class="my_acc">
     <div class="container">
         <div class="row">
             <div class = "my_background rounded">
-               <a href="#" ><button class="edit_profile btn btn-sm btn-secondary" type="button">Follow</button></a>
+                <%if(isFollowing === false){%>
+               <button class="edit_profile btn btn-sm btn-secondary" type="button" id="follow" >Follow</button>
+                <%}else{%>
+                    <button class="edit_profile btn btn-sm btn-secondary" type="button" id="follow" >unFollow</button>
+                <%}%>
             </div>
             <div class="user_profile">
                 <i class="user_icon fas fa-user-circle fa-10x"></i>
@@ -109,7 +113,6 @@
                                 </div>
                              </div>
                         </div>
-                        
                        </div>
                    </div>
                </div>
@@ -187,13 +190,13 @@
 </script>
 <script>
     let following = document.getElementById('following').textContent
-    following = Number(following)+0.1;
+    following = Number(following);
     let followers = document.getElementById('followers').textContent
-    followers = Number(followers)+0.1;
+    followers = Number(followers);
     let answered = document.getElementById('answered').textContent
-    answered = Number(answered)+0.1;
+    answered = Number(answered);
     let asked = document.getElementById('asked').textContent
-    asked = Number(asked)+0.1;
+    asked = Number(asked);
 
     
     var ctx = document.getElementById('myChart').getContext('2d');
@@ -233,6 +236,32 @@
             }
         },
     });
+    const follow =document.getElementById("follow");
+    const result = false;
+    follow.addEventListener("click",()=>{
+        fetch('http://localhost:3000/follow?userId=<%= profile._id %>').then((result)=>{
+            return result.json()
+        })
+        .then(data=>{
+            console.log(data);
+        })
+        .catch((error)=>{
+            console.log(error);
+        })
+    })
+    const unFollow = document.getElementById("Unfollow");
+    unFollow.addEventListener("click",()=>{
+        fetch('http://localhost:3000/unfollow?userId=<%= profile._id %>').then(result=>{
+             return  result.json()
+        })
+        .then((response)=>{
+            console.log(response);
+        })
+        .catch((error)=>{
+            console.log(error);
+        });
+    }) 
+ 
     </script>
 </body>
 </html>
