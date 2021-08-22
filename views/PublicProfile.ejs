@@ -6,17 +6,18 @@
     <%- include("partials/LoggedNavbar.ejs");  -%>
 </section>
 
-<%= isFollowing  %> 
 <body class="body">
 <section class="my_acc">
     <div class="container">
         <div class="row">
             <div class = "my_background rounded">
+                
                 <%if(isFollowing === false){%>
                <button class="edit_profile btn btn-sm btn-secondary" type="button" id="follow" >Follow</button>
                 <%}else{%>
-                    <button class="edit_profile btn btn-sm btn-secondary" type="button" id="follow" >unFollow</button>
+                    <button class="edit_profile btn btn-sm btn-secondary" type="button" id="Unfollow" >UnFollow</button>
                 <%}%>
+                
             </div>
             <div class="user_profile">
                 <i class="user_icon fas fa-user-circle fa-10x"></i>
@@ -236,31 +237,38 @@
             }
         },
     });
-    const follow =document.getElementById("follow");
-    const result = false;
+   
+    const result = document.getElementById("follow") === null ? true : false ;
+    if(result === false)
+    {
+    const follow = document.getElementById("follow");
     follow.addEventListener("click",()=>{
+        const follow = document.getElementById("follow")
         fetch('http://localhost:3000/follow?userId=<%= profile._id %>').then((result)=>{
             return result.json()
         })
         .then(data=>{
-            console.log(data);
+            swal(data.message, "Refresh the page to see change content");
         })
         .catch((error)=>{
-            console.log(error);
+            swal(error, "Refresh the page");
         })
     })
+    }
+    else{
     const unFollow = document.getElementById("Unfollow");
     unFollow.addEventListener("click",()=>{
         fetch('http://localhost:3000/unfollow?userId=<%= profile._id %>').then(result=>{
              return  result.json()
         })
-        .then((response)=>{
-            console.log(response);
+        .then((data)=>{
+            swal(data.message, "Refresh the page to see change content");
         })
         .catch((error)=>{
-            console.log(error);
+            swal(error, "Refresh the page");
         });
     }) 
+}
  
     </script>
 </body>

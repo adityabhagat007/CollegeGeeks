@@ -237,6 +237,8 @@ exports.postNewAnswer = async (req, res, next) => {
   }
 };
 
+
+
 exports.getPublicProfile = async (req, res, next) => {
   try {
     const id = req.session.user._id;
@@ -246,34 +248,35 @@ exports.getPublicProfile = async (req, res, next) => {
       return res.redirect("/myaccount");
     }
     //If it's not his/her own profile
-    const user = await User.findById(userId).select(
+    //The public profile
+    const publicUser = await User.findById(userId).select(
       "-password -likedQuestions -likedAnswers -email -answeredQuestions"
     );
-    if (!user) {
+    //Own account
+    const user = await User.findById(id).select("followings");
+    if (!publicUser || !user) {
       const error = new Error("No user found!");
       next(error);
     }
-    const userDetails = {
-      ...user._doc,
-      questions: user.questions.length,
-      followers: user.followers.length,
-      followings: user.followings.length,
-      answers: user.answers.length,
+    const publicUserDetails = {
+      ...publicUser._doc,
+      questions: publicUser.questions.length,
+      followers: publicUser.followers.length,
+      followings: publicUser.followings.length,
+      answers: publicUser.answers.length,
     };
-    const isFound = user.followings.find((followingUser) => 
-      followingUser.toString() === userId.toString()
+    const isFound = user.followings.find(
+      (followingUser) => followingUser.toString() === userId
     );
-    // console.log(followingUser);
-
+    console.log(publicUserDetails);
     const isFollowing = isFound === undefined ? false : true;
-    console.log(isFound);
-    console.log(isFollowing);
-    // console.log(userDetails);
-    res.render("PublicProfile", { profile: userDetails, isFollowing });
+    res.render("PublicProfile", { profile: publicUserDetails, isFollowing });
   } catch (err) {
     next(err);
   }
 };
+
+
 
 exports.follow = async (req, res, next) => {
   try {
@@ -323,7 +326,7 @@ exports.follow = async (req, res, next) => {
     const updatedFollowingUser = await followingUser.save();
 
     res.status(200).json({
-      message: "successfull",
+      message: "Successfully Followed",
     });
   } catch (err) {
     if (!err.statusCode) {
@@ -388,7 +391,7 @@ exports.unfollow = async (req, res, next) => {
     const updatedFollowingUser = await followingUser.save();
 
     res.status(200).json({
-      message: "successfull",
+      message: "Successfully Unfollowed",
     });
   } catch (err) {
     if (!err.statusCode) {
@@ -476,23 +479,23 @@ catch(error){
 }
 };
 
-exports.postProfileDp = async (req,res,next) =>{
-  try{
-  const dp = req.body.profilePic
-  const id = req.session.user._id;
-  const user = await User.findById(id);
-  if(id==undefined){
-    const error = new Error("No userId found!");
-    error.statusCode(404);
-    throw error;
-  }else{
-   user.dp= dp;
-   const newUser = await user.save();
-   console.log(newUser);
-  }
-  res.redirect('/myaccount')
-  }
-  catch(error){
-    next(error);
-  }
-}
+// exports.postProfileDp = async (req,res,next) =>{
+//   try{
+//   const dp = req.body.profilePic
+//   const id = req.session.user._id;
+//   const user = await User.findById(id);
+//   if(id==undefined){
+//     const error = new Error("No userId found!");
+//     error.statusCode(404);
+//     throw error;
+//   }else{
+//    user.dp= dp;
+//    const newUser = await user.save();
+//    console.log(newUser);
+//   }
+//   res.redirect('/myaccount')
+//   }
+//   catch(error){
+//     next(error);
+//   }
+// }
