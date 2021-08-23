@@ -11,19 +11,27 @@
     <div class="container">
         <div class="row">
             <div class = "my_background rounded">
-                
-                <%if(isFollowing === false){%>
+                <button class="edit_profile btn btn-sm btn-secondary d-none" type="button" id="hidefollow" >Follow</button>
+                <button class="edit_profile btn btn-sm btn-secondary d-none" type="button" id="hideunfollow" >UnFollow</button>
+
+               <% if(isFollowing === false){ %>
                <button class="edit_profile btn btn-sm btn-secondary" type="button" id="follow" >Follow</button>
-                <%}else{%>
-                    <button class="edit_profile btn btn-sm btn-secondary" type="button" id="Unfollow" >UnFollow</button>
-                <%}%>
-                
+               <% } else{ %> 
+                <button class="edit_profile btn btn-sm btn-secondary" type="button" id="Unfollow" >UnFollow</button>
+                <% } %> 
             </div>
             <div class="user_profile">
-                <i class="user_icon fas fa-user-circle fa-10x"></i>
-            </div>
-            <div class="usename">
-                    <span class="display-6"><%= profile.name  %> </span>
+                <div class="profile_pic" >
+                    <% if( profile.dp.length>0 && profile.dp !== "/images/user.png"){%> 
+                <img
+                src="http://localhost:3000/<%=profile.dp%>" alt=".." 
+                class=" img-fluid" id="dp"/> 
+                </div>
+                <% }else{ %> 
+                 <i class="user_icon fas fa-user-circle fa-10x"></i>
+                 <% } %> 
+            <div class="usename" style="text-transform: capitalize;">
+                    <span class="display-6" ><%= profile.name  %> </span>
                     <p><%=profile.intro %></p>
             </div>
         </div>
@@ -190,6 +198,7 @@
       crossorigin="anonymous">
 </script>
 <script>
+    
     let following = document.getElementById('following').textContent
     following = Number(following);
     let followers = document.getElementById('followers').textContent
@@ -237,39 +246,79 @@
             }
         },
     });
-   
-    const result = document.getElementById("follow") === null ? true : false ;
-    if(result === false)
-    {
+    const result = document.getElementById("follow") === null ? true : false;
+    if(result !== true ){
     const follow = document.getElementById("follow");
+
     follow.addEventListener("click",()=>{
         const follow = document.getElementById("follow")
+        const unFollow = document.getElementById("Unfollow");
         fetch('http://localhost:3000/follow?userId=<%= profile._id %>').then((result)=>{
             return result.json()
         })
         .then(data=>{
-            swal(data.message, "Refresh the page to see change content");
+            swal(data.message);
+            document.getElementById("hideunfollow").classList.remove("d-none");
+            document.getElementById("follow").classList.add("d-none");
+            followers = followers +1;
+            document.getElementById("followers").innerHTML = followers;
         })
         .catch((error)=>{
-            swal(error, "Refresh the page");
+            swal(error);
         })
     })
-    }
-    else{
-    const unFollow = document.getElementById("Unfollow");
+}else{
+    let unFollow = document.getElementById("Unfollow");
     unFollow.addEventListener("click",()=>{
         fetch('http://localhost:3000/unfollow?userId=<%= profile._id %>').then(result=>{
              return  result.json()
         })
         .then((data)=>{
-            swal(data.message, "Refresh the page to see change content");
+            swal(data.message);
+            document.getElementById("hidefollow").classList.remove("d-none");
+            document.getElementById("Unfollow").classList.add("d-none");
+            followers = followers -1;
+            document.getElementById("followers").innerHTML = followers;
         })
         .catch((error)=>{
-            swal(error, "Refresh the page");
+            swal(error);
         });
     }) 
 }
- 
+    const follow = document.getElementById("hidefollow");
+    follow.addEventListener("click",()=>{
+        const follow = document.querySelector("hidefollow")
+        const unFollow = document.getElementById("hideunfollow");
+        fetch('http://localhost:3000/follow?userId=<%= profile._id %>').then((result)=>{
+            return result.json()
+        })
+        .then(data=>{
+            swal(data.message);
+            document.getElementById("hideunfollow").classList.remove("d-none");
+            document.getElementById("hidefollow").classList.add("d-none");
+            followers = followers +1;
+            document.getElementById("followers").innerHTML = followers;
+        })
+        .catch((error)=>{
+            swal(error);
+        })
+    })
+    let unFollow = document.getElementById("hideunfollow");
+    unFollow.addEventListener("click",()=>{
+        fetch('http://localhost:3000/unfollow?userId=<%= profile._id %>').then(result=>{
+             return  result.json()
+        })
+        .then((data)=>{
+            swal(data.message);
+            document.getElementById("hidefollow").classList.remove("d-none");
+            document.getElementById("hideunfollow").classList.add("d-none");
+            followers= followers -1;
+            document.getElementById("followers").innerHTML = followers;
+        })
+        .catch((error)=>{
+            swal(error);
+        });
+    }) 
     </script>
 </body>
 </html>

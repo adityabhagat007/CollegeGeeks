@@ -11,14 +11,7 @@
 <section class="container mainpage">
     <div class="container">
     <div class="row">
-      <div class="card mb-2">
-        <div class="card-body">
-          <span><b>UserName</b></span>
-          <div class="card-title display-6" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo" style="color: gray;"><b>Ask Your Question</b></div>
-        </div>
-      </div>
       <% if(error.length > 0) { %>
-
         <div class="alert alert-danger d-flex align-items-center" role="alert">
           <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
           <div>
@@ -27,8 +20,17 @@
         </div>
 
       <% } else { %>
+        <!-- <%=questions%>  -->
+        <div class="card mb-2">
+          <div class="card-body">
+            <div class="card-title display-6" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo" style="color: gray;">
+              <h5 style="text-transform:capitalize"><%= user.name  %> </h5>
+              <b>Ask Your Question</b>
+            </div>
+          </div>
+        </div>
         <% questions.forEach(element=>{%>
-          <div class="card mb-1">
+          <div class="card mb-1" style="text-transform: capitalize;">
             <div class="card-body">
               <div class="author_name">
                 <a href="/PublicProfile?userId=<%= element.author%>"><%=element.authorName%></a>

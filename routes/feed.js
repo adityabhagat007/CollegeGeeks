@@ -21,16 +21,12 @@ router.get("/home", isAuth, getHomePageValidator, feedController.getHomePage);
 
 router.get("/myaccount", isAuth, feedController.getProfile);
 
-<<<<<<< HEAD
-//router.post("/profileDp", isAuth, feedController.postProfileDp);
-=======
 router.post(
   "/profileDp",
   isAuth,
   upload.single("profilePic"),
   feedController.postProfileDp
 );
->>>>>>> a713a0c3dfab995a191754e186f6877aa4182cc4
 
 router.get("/questionPage", isAuth, feedController.getQuestion);
 
@@ -63,6 +59,6 @@ router.post(
 
 router.post("/newanswer", isAuth, feedController.postNewAnswer);
 
-router.get("/mynetwork", feedController.getMyNetwork);
+router.get("/mynetwork", isAuthAPI,feedController.getMyNetwork);
 
 module.exports = router;

@@ -7,7 +7,7 @@
     <!-- <p>answers ::: <%=profile.answers%></p>
     <p>likedAnswers ::: <%=profile.likedAnswers%></p> -->
 </section>
-<body class="body">
+<body style="background-color:#f0f2f5;">
 <section class="my_acc">
     <div class="container">
         <div class="row">
@@ -15,8 +15,15 @@
                <a href="/Editprofile" ><button class="edit_profile btn btn-sm btn-secondary" type="button">Edit Profile</button></a>
             </div>
             <div class="user_profile">
-                <!-- <img src="images/<%=profile.dp%>" alt=".."/> -->
-                <i class="user_icon fas fa-user-circle fa-10x"></i>
+                <div class="profile_pic" >
+                    <% if( profile.dp.length>0 && profile.dp !== "/images/user.png"){%> 
+                <img
+                src="http://localhost:3000/<%=profile.dp%>" alt="Profile Pic" 
+                class=" img-fluid" id="dp"/> 
+                </div>
+                <% }else{ %> 
+                 <i class="user_icon fas fa-user-circle fa-10x"></i>
+                 <% } %> 
             <div class=" upload">
                 <form action='/profileDp' method="POST" id="jsform" enctype="multipart/form-data">
                 <input type="file" name="profilePic" id="actual-btn" hidden required>
@@ -39,7 +46,7 @@
                 <div class="card">
                     <div class="card-body">
                     <div class ="card-title mt-1">
-                        <h4>Following</h4>
+                        <h4 data-bs-toggle="modal" data-bs-target="#exampleModal1" data-bs-whatever="@mdo" style="cursor: pointer;"  id="showfollowing"> Following <i class="fas fa-angle-double-right"></i></h4>
                         <hr>
                     </div>
                       <h3> <span id ="following"> <%=profile.followings%> </span></h3>
@@ -50,7 +57,7 @@
                 <div class="card">
                     <div class="card-body">
                     <div class ="card-title mt-1">
-                        <h4>Followers</h4>
+                        <h4 data-bs-toggle="modal" data-bs-target="#exampleModal2" data-bs-whatever="@mdo" style="cursor: pointer;" id="showfollowers">Followers <i class="fas fa-angle-double-right" ></i></h4>
                         <hr>
                     </div>
                       <h3> <span id ="followers"> <%=profile.followers%></span></h3>
@@ -83,6 +90,40 @@
     </div> 
 </section>
 
+<!-- modal -->
+<div  class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel"></h5>
+          <button type="button" id="close_button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="modal_element">
+            <div id="following_name" class="list-group">
+                
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div  class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Followers</h5>
+          <button id="close_button2" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class=" modal-body" id="modal_element2">
+             <div id="followers_name" class="list-group">
+                
+            </div> 
+        </div>
+      </div>
+    </div>
+  </div>
+
 
 
 
@@ -91,23 +132,24 @@
  <section class="my_acc_body">
     <div class="container-sm">
         <div class="row">
-            <div class="col-lg-8 col-md-8 col-12">
-               <div class="card mb-4">
+            <div class="col-lg-6 col-md-6 col-12">
+               <div class="card mb-4" style="height: 18rem;">
                    <div class="card-body">
                        <div class="card-title"><h4>INFO</h4></div><hr>
                        <div class="row gy-2 g-2">
-                        <div class="col-lg-4 col-md-4 col-12 mb-3">
+                        <div class=" col-12 mb-3">
                             
                             <div class ="row">
                             <div class="col-4">
-                                <b>Name: </b>
+                                <b>Name :</b>
                             </div>
                             <div class="col-8">
-                                <b><%= profile.name%></b>
+                                <b style="text-transform: capitalize;"><%= profile.name%></b>
                             </div>
                             </div>
                         </div>
-                        <div class="col-lg-4 col-md-4 col-12 mb-3">
+                        <hr>
+                        <div class=" col-12 mb-3">
                             <div class ="row">
                             <div class="col-4">
                                 <b>Email:</b>
@@ -117,7 +159,8 @@
                             </div>
                             </div>
                         </div>
-                        <div class="col-lg-4 col-md-4 col-12 mb-3">
+                        <hr>
+                        <div class=" col-12 mb-3">
                             <div class ="row">
                                 <div class="col-4">
                                     <b>Stream:</b>
@@ -132,8 +175,8 @@
                    </div>
                </div>
                </div>
-               <div class="col-lg-4 col-md-4 col-12">
-                <div class="card mb-4">
+               <div class="col-lg-6 col-md-6 col-12">
+                <div class="card mb-4" style="width: 20rem;">
                     <div class="card-body">
                         <div class="card-title"><h4>INFO</h4></div><hr>
                         <canvas id="myChart"></canvas>
@@ -174,57 +217,8 @@
       integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
       crossorigin="anonymous">
 </script>
+<script src="js/myaccount.js"></script>
 <script>
-    let following = document.getElementById('following').textContent
-    following = Number(following)
-    let followers = document.getElementById('followers').textContent
-    followers = Number(followers)
-    let answered = document.getElementById('answered').textContent
-    answered = Number(answered);
-    let asked = document.getElementById('asked').textContent
-    asked = Number(asked);
-
-    
-    var ctx = document.getElementById('myChart').getContext('2d');
-    var myChart = new Chart(ctx, {
-        type: 'doughnut',
-        data: {
-            labels: ['followers' ,'following', 'Answered', 'Asked'],
-            datasets: [{
-                label: '# of Actions',
-                data: [followers,following ,answered ,asked ],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(153, 102, 255, 1)',
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(153, 102, 255, 1)',
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            tooltips: {
-                enabled: false,
-            },
-            animation:{
-                duration: 1000,
-                easing:'easeInOutCubic',
-            },
-            title : {
-                display: true,
-                text: "your activity",
-            }
-        },
-    });
-    document.querySelector('input[type=file]').addEventListener('change', function(){
-    this.form.submit();
-});
 </script>
 
 </body>

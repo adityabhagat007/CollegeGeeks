@@ -18,6 +18,7 @@ exports.getHomePage = async (req, res, next) => {
     //pulling data out from req
     const page = req.query.page || 1; //Default 1
     const category = req.session.user.branch.toLowerCase();
+    const id = req.session.user._id;
     //Calculating total number of pages
     const totalQuestions = await Question.countDocuments({ category });
     const totalPages = Math.ceil(totalQuestions / 10);
@@ -25,11 +26,16 @@ exports.getHomePage = async (req, res, next) => {
     const questions = await Question.find({ category })
       .skip((page - 1) * 10)
       .limit(10);
+    const user = await User.findById(id).select("name");
     if (!questions) {
-      return res.render("home", { error: "Can not find any questions" });
+      return res.render("home", { user: user, error: "Can not find any questions" });
+    }
+    if(!user){
+      return res.render("home" ,{user:"" , error: "Can not find user"});
     }
     //If we get questions
     res.render("home", {
+      user:user,
       questions,
       error: req.flash("error"),
       totalPages,
@@ -40,9 +46,9 @@ exports.getHomePage = async (req, res, next) => {
   }
 };
 
-exports.getMyAccount = (req, res, next) => {
-  res.render("myaccount");
-};
+// exports.getMyAccount = (req, res, next) => {
+//   res.render("myaccount");
+// };
 
 exports.getUserActivity = (req, res, next) => {
   res.render("userActivity");
@@ -487,6 +493,34 @@ exports.postEditProfile = async (req, res, next) => {
   }
 };
 
+// exports.getMyNetwork = async (req, res, next) => {
+//   try {
+//     const id = req.session.user._id;
+//     //Finding user
+//     const user = await User.findById(id)
+//       .select("followings followers")
+//       .populate({
+//         path: "followings followers",
+//         select: "name",
+//       });
+//     if (!user) {
+//       return res.status(404).json({
+//         error: "User not found",
+//       });
+//     }
+//     //If we get user
+//     res.status(200).json({
+//       message: "Successfull",
+//       network: user,
+//     });
+//   } catch (err) {
+//     if (!err.statusCode) {
+//       err.statusCode = 500;
+//     }
+//     next(err);
+//   }
+// };
+
 exports.getMyNetwork = async (req, res, next) => {
   try {
     const id = req.session.user._id;
@@ -514,6 +548,10 @@ exports.getMyNetwork = async (req, res, next) => {
     next(err);
   }
 };
+
+
+
+
 
 exports.postProfileDp = async (req, res, next) => {
   try {
