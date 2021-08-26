@@ -46,7 +46,7 @@
                 <div class="card">
                     <div class="card-body">
                     <div class ="card-title mt-1">
-                        <h4 data-bs-toggle="modal" data-bs-target="#exampleModal1" data-bs-whatever="@mdo" style="cursor: pointer;"  id="showfollowing"> Following <i class="fas fa-angle-double-right"></i></h4>
+                        <h4 data-bs-toggle="modal" data-bs-target="#exampleModal1" data-bs-whatever="@mdo" style="cursor: pointer;"  id="showfollowing" data-bs-backdrop="static" data-bs-keyboard="false"> Following <i class="fas fa-angle-double-right"></i></h4>
                         <hr>
                     </div>
                       <h3> <span id ="following"> <%=profile.followings%> </span></h3>
@@ -57,7 +57,7 @@
                 <div class="card">
                     <div class="card-body">
                     <div class ="card-title mt-1">
-                        <h4 data-bs-toggle="modal" data-bs-target="#exampleModal2" data-bs-whatever="@mdo" style="cursor: pointer;" id="showfollowers">Followers <i class="fas fa-angle-double-right" ></i></h4>
+                        <h4 data-bs-toggle="modal" data-bs-target="#exampleModal2"  style="cursor: pointer;" id="showfollowers" data-bs-backdrop="static" data-bs-keyboard="false">Followers <i class="fas fa-angle-double-right" ></i></h4>
                         <hr>
                     </div>
                       <h3> <span id ="followers"> <%=profile.followers%></span></h3>
@@ -91,14 +91,14 @@
 </section>
 
 <!-- modal -->
-<div  class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div  class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel"></h5>
           <button type="button" id="close_button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body" id="modal_element">
+        <div class="modal-body" id="modal_element" style="text-transform: capitalize;">
             <div id="following_name" class="list-group">
                 
             </div>
@@ -108,14 +108,14 @@
   </div>
 
 
-  <div  class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div  class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Followers</h5>
           <button id="close_button2" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class=" modal-body" id="modal_element2">
+        <div class=" modal-body" id="modal_element2" style="text-transform: capitalize;">
              <div id="followers_name" class="list-group">
                 
             </div> 
@@ -210,12 +210,7 @@
 
 
 <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
-<script>
-  function addDarkmodeWidget() {
-    new Darkmode().showWidget();
-  }
-  window.addEventListener('load', addDarkmodeWidget);
-</script>
+
 
 
 
@@ -225,8 +220,7 @@
       crossorigin="anonymous">
 </script>
 <script src="js/myaccount.js"></script>
-<script>
-</script>
+
 
 </body>
 </html>

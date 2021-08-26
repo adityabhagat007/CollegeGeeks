@@ -8,6 +8,7 @@ const newQuestionValidator = require("../middleware/validators/newQuestion");
 const getHomePageValidator = require("../middleware/validators/getHome");
 const getQuestionsValidator = require("../middleware/validators/getQuestions");
 const upload = require("../middleware/multerConfig");
+const editProfileValidator = require('../middleware/validators/editprofile');
 
 const router = express.Router();
 
@@ -36,7 +37,7 @@ router.get("/PublicProfile", isAuth, feedController.getPublicProfile);
 
 router.get("/Editprofile", isAuth, feedController.getEditProfile);
 
-router.post("/editprofile", isAuth, feedController.postEditProfile);
+router.post("/editprofile", isAuth, editProfileValidator, feedController.postEditProfile);
 
 router.get(
   "/questions",

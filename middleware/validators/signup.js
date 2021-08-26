@@ -59,7 +59,7 @@ module.exports = async (req, res, next) => {
     if (!validator.isStrongPassword(password)) {
       req.flash(
         "error",
-        "Password should contain atleast a special charactor an uppercase letter a lowercase letter a number and it must be atleaset 8 charactors long."
+        "Password should contain at least a special character an uppercase letter a lowercase letter a number and it must be at least 8 characters long."
       );
       return res.redirect("/Signup");
     }

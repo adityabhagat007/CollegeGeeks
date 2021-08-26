@@ -100,7 +100,7 @@ window.onload=function(){
             // console.log(data.network.followings)
             const length = data.network.followers.length;
             data.network.followers.forEach(element => {
-                console.log(element);
+                //console.log(element);
                 let tag = document.createElement(`a`)
                 let text = document.createTextNode(`${element.name}`);
                 tag.appendChild(text);

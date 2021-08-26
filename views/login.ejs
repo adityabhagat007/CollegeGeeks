@@ -35,6 +35,13 @@
                       <label for="exampleInputPassword1" class="form-label">Password</label>
                       <input name="password" type="password" id="password" class="form-control" autocomplete="off" required>
                     </div>
+                    <div class="mb-3">
+                      <div class="form-check ">
+                        <input id="showPassowrd" class="form-check-input" type="checkbox"  value="true" style="width: 1.2rem; height:1.2rem" onclick="showPassword()">
+                        <label for="showPassowrd" class="form-check-label">Show Password</label>
+                    </div>
+                    </div>
+                    
                     <button type="submit" id="submit" class="btn btn-primary">Submit</button>
                   </form>
             </div>
@@ -47,6 +54,12 @@
         <h5 class="modal-title" id="exampleModalLabel">Verification form</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
+
+
+
+
+      <!-- modal body -->
+
       <div class="modal-body">
         <form action="/forgetPassword" method="POST" >
           <div class="mb-3">
@@ -64,17 +77,24 @@
 </section>
 
 <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
-<script>
-  function addDarkmodeWidget() {
-    new Darkmode().showWidget();
-  }
-  window.addEventListener('load', addDarkmodeWidget);
-</script>
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous">
     </script>
+
+
+<script>
+  function showPassword() { 
+      x= document.getElementById("password");
+      if(x.type === "password"){
+          x.type = "text";
+      }
+      else{
+          x.type ="password";
+      }
+   }
+</script>
 </body>
 
 </html>

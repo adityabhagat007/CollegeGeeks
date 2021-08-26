@@ -414,7 +414,7 @@ color: gray;
   width: 200px;
   height: 200px;
   object-fit: cover;
-  border: 2px solid black;
+  border: 2px solid gainsboro;
   box-shadow: 1px 1px #343a40;
 }
 

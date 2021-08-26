@@ -290,7 +290,8 @@ exports.follow = async (req, res, next) => {
   try {
     const id = req.session.user._id;
     const userId = req.query.userId;
-
+    console.log('id:',id);
+    console.log('Userid',userId);
     if (userId === undefined) {
       const error = new Error("No userId found!");
       error.statusCode(404);
@@ -350,7 +351,8 @@ exports.unfollow = async (req, res, next) => {
   try {
     const id = req.session.user._id;
     const userId = req.query.userId;
-
+    console.log('un id:',id);
+    console.log('un Userid',userId);
     if (userId === undefined) {
       const error = new Error("No userId found!");
       error.statusCode(404);
@@ -390,10 +392,12 @@ exports.unfollow = async (req, res, next) => {
     const updatedFollowings = followerUser.followings;
     updatedFollowings.splice(followingIndex, 1);
     followerUser.followings = updatedFollowings;
+    console.log('1',updatedFollowings)
 
     const updatedFollowers = followingUser.followers;
     updatedFollowers.splice(followerIndex, 1);
     followingUser.followers = updatedFollowers;
+    console.log('2',updatedFollowers)
 
     const updatedFollowerUser = await followerUser.save();
     const updatedFollowingUser = await followingUser.save();
@@ -442,41 +446,13 @@ exports.getEditProfile = async (req, res, next) => {
 exports.postEditProfile = async (req, res, next) => {
   try {
     const id = req.session.user._id;
-    const name = req.body.name.trim();
     const branch = req.body.branch;
     const bio = req.body.bio.trim();
+
+    // set up new branch for user
     req.session.user.branch = branch;
 
-    if (
-      id == undefined ||
-      name === undefined ||
-      bio === undefined ||
-      branch === undefined
-    ) {
-      const error = new Error("No userId found!");
-      throw error;
-    } else if (name === "") {
-      const user = await User.findById(id).select("name branch intro");
-      user.branch = branch;
-      user.intro = bio;
-      const newUserData = await user.save();
-      console.log(newUserData);
-      res.redirect("/EditProfile");
-    } else if (
-      branch !== "CSE" &&
-      branch !== "ECE" &&
-      branch !== "EE" &&
-      branch !== "ME" &&
-      branch !== "CE" &&
-      branch !== "CT" &&
-      branch !== "LT" &&
-      branch !== "FT"
-    ) {
-      req.flash("error", "Select Your Branch Correctly");
-      res.render("EditProfile", { errors: req.flash("error") });
-    } else {
-      const user = await User.findById(id).select("name branch intro");
-      user.name = name;
+    const user = await User.findById(id).select("name branch intro");
       user.branch = branch;
       user.intro = bio;
       const newUserData = await user.save();
@@ -487,8 +463,7 @@ exports.postEditProfile = async (req, res, next) => {
         errors: "",
         success: req.flash("success"),
       });
-    }
-  } catch (error) {
+  }catch (error) {
     next(error);
   }
 };
@@ -536,6 +511,7 @@ exports.getMyNetwork = async (req, res, next) => {
         error: "User not found",
       });
     }
+    console.log('Mynetwork',user);
     //If we get user
     res.status(200).json({
       message: "Successfull",

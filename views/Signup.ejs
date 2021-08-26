@@ -103,7 +103,13 @@
                         </div>
                         <input id="passwordConfirmation" type="password" name="confirmPassword" placeholder="Confirm Password" autocomplete="off" class="form-control bg-white border-left-0 border-md" required>
                     </div>
-
+                    <div class="input-group col-lg-6 mb-4">
+                        <div class="form-check ">
+                            <input id="showPassowrd" class="form-check-input" type="checkbox"  value="true" style="width: 1.2rem; height:1.2rem" onclick="showPassword()">
+                            <label for="showPassowrd" class="form-check-label">Show Password</label>
+                        </div>
+                    </div>
+                    
                     <!-- Submit Button -->
                     <div class="form-group col-lg-12 mx-auto mb-0">
                         <button type="submit" id="submit" class="btn btn-primary btn-block py-2">
@@ -130,16 +136,24 @@
     </div>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
-<script>
-  function addDarkmodeWidget() {
-    new Darkmode().showWidget();
-  }
-  window.addEventListener('load', addDarkmodeWidget);
-</script>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  <!-- <script src="js/signup.js"></script> -->
+  
+  <script>
+      function showPassword() { 
+          x= document.getElementById("password");
+          y= document.getElementById("passwordConfirmation")
+          if(x.type === "password"){
+              x.type = "text";
+              y.type ="text";
+          }
+          else{
+              x.type ="password";
+              y.type ="password";
+          }
+       }
+  </script>
 </body>
 </html>
 

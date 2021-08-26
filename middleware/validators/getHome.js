@@ -7,7 +7,7 @@ module.exports = (req, res, next) => {
         error: "Please enter a correct page value!",
       });
     }
-    //If validation is successfull the moving to next
+    //If validation is successful the moving to next
     next();
   } catch (err) {
     next(err);

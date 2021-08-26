@@ -7,7 +7,7 @@ module.exports = (req, res, next) => {
       req.flash("error", "Please use a strong password!");
       return res.redirect("/myaccount");
     }
-    //If everything is successfull
+    //If everything is successful
     next();
   } catch (err) {
     next(err);
