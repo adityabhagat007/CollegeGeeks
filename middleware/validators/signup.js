@@ -64,7 +64,7 @@ module.exports = async (req, res, next) => {
       );
       return res.redirect("/Signup");
     }
-    //If everything is successfull
+    //If everything is successful
     next();
   } catch (err) {
     if (!err.statusCode) {

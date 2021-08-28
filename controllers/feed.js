@@ -422,7 +422,7 @@ exports.getEditProfile = async (req, res, next) => {
         if (!user) {
             return res.render("Editprofile", { errors: "No user is found!" });
         } else {
-            return res.render("EditProfile", {
+            return res.render("Editprofile", {
                 errors: "",
                 userData: user,
                 success: "",
@@ -450,7 +450,7 @@ exports.postEditProfile = async (req, res, next) => {
         const newUserData = await user.save();
 
         req.flash("success", "You have Successfully Updated the your info");
-        res.render("EditProfile", {
+        res.render("Editprofile", {
             userData: newUserData,
             errors: "",
             success: req.flash("success"),

@@ -26,7 +26,7 @@ module.exports = (req, res, next) => {
       req.flash("error", "Invalid category");
       return res.redirect("/home");
     }
-    //If validation is successfull
+    //If validation is successful
     next();
   } catch (err) {
     next(err);

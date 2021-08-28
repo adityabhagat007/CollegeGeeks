@@ -27,7 +27,7 @@ module.exports = (req, res, next) => {
         isLoggedIn: req.loginStatus,
       });
     }
-    //If validation is successfull then moving to next
+    //If validation is successful then moving to next
     next();
   } catch (err) {
     next(err);

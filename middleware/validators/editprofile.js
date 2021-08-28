@@ -20,7 +20,7 @@ module.exports = (req, res, next) =>{
         branch !== "FT"
      ){
         req.flash("error", "Select Your Branch Correctly");
-        res.render("EditProfile", { errors: req.flash("error") });
+        res.render("Editprofile", { errors: req.flash("error") });
     }
     // all fine then 
     next();
