@@ -16,6 +16,7 @@ module.exports = (req, res, next) =>{
         branch !== "CE" &&
         branch !== "CT" &&
         branch !== "LT" &&
+        branch !== "CV" &&
         branch !== "FT"
      ){
         req.flash("error", "Select Your Branch Correctly");

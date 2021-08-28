@@ -8,8 +8,20 @@
     <p>likedAnswers ::: <%=profile.likedAnswers%></p> -->
 </section>
 
-<%= error %> 
 <body style="background-color:#f0f2f5;">
+    
+<%if(error.length>0){%>
+
+        <div class="container mt-2">
+        <div class=" alert alert-danger d-flex align-items-center" role="alert">
+            <div>
+                <i class="fas fa-exclamation-triangle"></i> <b><%= error %></b> 
+            </div>
+          </div>
+        </div>
+
+<%} else {%>
+
 <section class="my_acc">
     <div class="container">
         <div class="row">
@@ -168,7 +180,33 @@
                                     <b>Stream:</b>
                                 </div>
                                 <div class="col-8">
-                                    <b><%= profile.branch%></b>
+                                    <% if(profile.branch === "CV"){ %>
+                                        <b>Civil Engineering</b>
+                                    <%}%>
+                                    <% if(profile.branch === "CSE"){ %>
+                                        <b>Computer Science or IT</b>
+                                    <%}%>
+                                    <% if(profile.branch === "ME"){ %>
+                                        <b>Mechanical or Automobile Engineering </b>
+                                    <%}%>
+                                    <% if(profile.branch === "CE"){ %>
+                                        <b>Chemical Engineering</b>
+                                    <%}%>
+                                    <% if(profile.branch === "CT"){ %>
+                                        <b>Ceramic  Engineering</b>
+                                    <%}%>
+                                    <% if(profile.branch === "LT"){ %>
+                                        <b>Leather Technology</b>
+                                    <%}%>
+                                    <% if(profile.branch === "FT"){ %>
+                                        <b>Food Technology</b>
+                                    <%}%>
+                                    <% if(profile.branch === "ECE"){ %>
+                                        <b>Electronics and telecommunication</b>
+                                    <%}%>
+                                    <% if(profile.branch === "EE"){ %>
+                                        <b>Electrical Engineering</b>
+                                    <%}%>
                                 </div>
                              </div>
                         </div>
@@ -190,7 +228,7 @@
     </div> 
 </section>
 
-
+<% } %> 
 
 
 
@@ -222,7 +260,6 @@
       crossorigin="anonymous">
 </script>
 <script src="js/myaccount.js"></script>
-
 
 </body>
 </html>

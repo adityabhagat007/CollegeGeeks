@@ -23,7 +23,14 @@
                 <div class="container">
                     <div class="row">
                         <% if(error.length>0) {%>
-                            <%= error %>
+                            
+                        <div class="alert alert-danger d-flex align-items-center" role="alert">
+                                <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+                                <div>
+                                  <%= error %> 
+                                </div>
+                        </div>
+
                         <%} else {%>
                         <!-- <%= activity %> -->
                         <% activity.questions.forEach(element=>{%>
@@ -49,7 +56,14 @@
             <div class="container">
                 <div class="row">
                    <% if(error.length>0) {%>
-                        <%= error %>
+
+                    <div class="alert alert-danger d-flex align-items-center" role="alert">
+                        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+                        <div>
+                          <%= error %> 
+                        </div>
+                     </div>
+
                     <%} else {%>
                         <%if(activity.answeredQuestions.length === 0){ %>
                             <span class="display-5 mt-5">You have not answered any Questions</span>

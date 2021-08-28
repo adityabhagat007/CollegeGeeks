@@ -118,7 +118,33 @@
                                     <b>Stream:</b>
                                 </div>
                                 <div class="col-8">
-                                    <b><%= profile.branch%></b>
+                                    <% if(profile.branch === "CV"){ %>
+                                        <b>Civil Engineering</b>
+                                    <%}%>
+                                    <% if(profile.branch === "CSE"){ %>
+                                        <b>Computer Science or IT</b>
+                                    <%}%>
+                                    <% if(profile.branch === "ME"){ %>
+                                        <b>Mechanical or Automobile Engineering </b>
+                                    <%}%>
+                                    <% if(profile.branch === "CE"){ %>
+                                        <b>Chemical Engineering</b>
+                                    <%}%>
+                                    <% if(profile.branch === "CT"){ %>
+                                        <b>Ceramic  Engineering</b>
+                                    <%}%>
+                                    <% if(profile.branch === "LT"){ %>
+                                        <b>Leather Technology</b>
+                                    <%}%>
+                                    <% if(profile.branch === "FT"){ %>
+                                        <b>Food Technology</b>
+                                    <%}%>
+                                    <% if(profile.branch === "ECE"){ %>
+                                        <b>Electronics and telecommunication</b>
+                                    <%}%>
+                                    <% if(profile.branch === "EE"){ %>
+                                        <b>Electrical Engineering</b>
+                                    <%}%>
                                 </div>
                              </div>
                         </div>

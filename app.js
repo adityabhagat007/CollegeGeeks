@@ -11,6 +11,7 @@ const mongoose = require("mongoose");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
 const flash = require("connect-flash");
+const PORT = process.env.PORT || 3000
 /************* CUSTOM MODULES  *************/
 
 const feedRoutes = require("./routes/feed");
@@ -78,9 +79,9 @@ mongoose
     useUnifiedTopology: true,
   })
   .then(() => {
-    console.log("Conneted to DB server");
-    app.listen(3000, () => {
-      console.log("Server started on port 3000");
+    console.log("Connected to DB server");
+    app.listen(PORT, () => {
+      console.log(`Server started on port ${PORT}`);
     });
   })
   .catch((err) => {

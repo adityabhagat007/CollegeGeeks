@@ -46,7 +46,8 @@ module.exports = async (req, res, next) => {
       branch !== "ce" &&
       branch !== "ct" &&
       branch !== "lt" &&
-      branch !== "ft"
+      branch !== "ft" &&
+      branch !== "cv"
     ) {
       req.flash("error", "Invalid branch");
       return res.redirect("/Signup");

@@ -14,7 +14,7 @@
                   <% if(error.length > 0) { %>
                         <div class="alert alert-danger d-flex align-items-center" role="alert">
                               <div>
-                                  <i class="fas fa-exclamation-triangle fa-2x"></i> <b ><%=error %></b> 
+                                  <i class="fas fa-exclamation-triangle"></i> <b ><%=error %></b> 
                               </div>
                             </div>
                   <% } else { %>
@@ -82,7 +82,8 @@
 
 <script>
   CKEDITOR.replace('answer',{
-      removePlugins : 'image,link,scayt',
+      removePlugins : 'image,link,h1,h2',
+      format_tags: 'p;h4;h5;h6;pre;address;div'
    }); 
  </script>
 </body>

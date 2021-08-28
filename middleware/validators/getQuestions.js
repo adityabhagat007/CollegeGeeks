@@ -19,6 +19,7 @@ module.exports = (req, res, next) => {
       category !== "ct" &&
       category !== "lt" &&
       category !== "ft" &&
+      category !== "cv" &&
       category !== "ot"
     ) {
       return res.render("questions", {

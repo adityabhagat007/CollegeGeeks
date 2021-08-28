@@ -56,6 +56,7 @@
                             <option value="ME">Mechanical Engineering</option>
                             <option value="CE"> Chemical Engineering</option>
                             <option value="CT">Ceramic Engineering</option>
+                            <option value="CV">Civil Engineering</option>
                             <option value="LT">Leather Technology</option>
                             <option value="FT">Food Technology</option>
                           </select>
@@ -69,20 +70,7 @@
                             </span>
                         </div>
                         <input id="email" type="email" name="email" placeholder="Email Address" autocomplete="email" class="form-control bg-white border-left-0 border-md" required>
-                        <br>
                     </div>
-                    
-
-                    <!-- Phone Number -->
-                    <!-- <div class="input-group col-lg-12 mb-4">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text bg-white px-4 border-md border-right-0">
-                                <i class="fa fa-phone-square text-muted"></i>
-                            </span>
-                        </div>
-                        <input id="phoneNumber" type="tel" name="phone" placeholder="Phone Number" 
-                        autocomplete="off" class="form-control bg-white border-md border-left-0 pl-3" required>
-                    </div>. -->
 
                     <!-- Password -->
                     <div class="input-group col-lg-6 mb-4">
@@ -109,7 +97,6 @@
                             <label for="showPassowrd" class="form-check-label">Show Password</label>
                         </div>
                     </div>
-                    
                     <!-- Submit Button -->
                     <div class="form-group col-lg-12 mx-auto mb-0">
                         <button type="submit" id="submit" class="btn btn-primary btn-block py-2">
@@ -128,18 +115,93 @@
                     <!-- Already Registered -->
                     <div class="text-center w-100">
                         <p class="text-muted font-weight-bold">Already Registered? <a href="/login" class="text-primary ml-2">Login</a></p>
+
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#privacy" class="text-primary ml-2">Privacy Policy</a> and 
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#terms" class="text-primary ml-2">Terms & Conditions</a>
                     </div>
 
                 </div>
             </form>
         </div>
     </div>
+
+      <!-- Modal -->
+
+      <div class="modal fade" id="privacy" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="staticBackdropLabel">Privacy Policy</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                
+   <p>Your privacy is important to us. It is CollegeGeeks policy to respect your privacy regarding any information we may collect from you across our website,and other sites we own and operate.
+   </p>
+  <p>
+  We only ask for personal information when we truly need it to provide a service to you. We collect it by fair and lawful means, with your knowledge and consent. We also let you know why we’re collecting it and how it will be used.
+  </p>
+  <p>
+    We only retain collected information for as long as necessary to provide you with your requested service. What data we store, we’ll try to protect within commercially acceptable means to prevent loss and theft, as well as unauthorized access, disclosure, copying, use or modification.
+ </p>
+  <p><b>Tracking Cookies Data</b></p>
+   <p>We use cookies and similar tracking technologies to track the activity on our Service and we hold certain information.</p>
+  <p>Cookies are files with a small amount of data which may include an anonymous unique identifier. Cookies are sent to your browser from a website and stored on your device. Other tracking technologies are also used such as beacons, tags and scripts to collect and track information and to improve and analyze our Service.</p>
+  <p>You can instruct your browser to refuse all cookies or to indicate when a cookie is being sent. However, if you do not accept cookies, you may not be able to use some portions of our Service.</p>
+  <p><b>Types of Data Collected</b></p>
+ <p><b>Personal Data</b></p>
+  <p>While using our Service, we may ask you to provide us with certain personally identifiable information that can be used to contact or identify you (<b>“Personal Data”</b>). Personally identifiable information may include, but is not limited to:</p>
+  <p>0.1. Email address for verification</p>
+   <p>0.2. Name</p>
+ <p>0.4. Your Education details </p>
+ <p>0.5. Cookies and Usage Data</p>
+  <p>
+  We don’t share any personally identifying information publicly or with third-parties, except when required to by law.
+  </p>
+  <p>
+   Our website may link to external sites that are not operated by us. Please be aware that we have no control over the content and practices of these sites, and cannot accept responsibility or liability for their respective privacy policies.
+ </p>
+  <p>
+  You are free to refuse our request for your personal information, with the understanding that we may be unable to provide you with some of your desired services.
+  </p>
+  <p>
+  Your continued use of our website will be regarded as acceptance of our practices around privacy and personal information. If you have any questions about how we handle user data and personal information, feel free to contact us 
+   </p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Understood</button>
+            </div>
+          </div>
+        </div>
+</div>
+
+        <div class="modal fade" id="terms" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="staticBackdropLabel">Terms and Conditions</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Understood</button>
+              </div>
+            </div>
   </div>
+
+
+
   <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   
+
+
+
+
   <script>
       function showPassword() { 
           x= document.getElementById("password");

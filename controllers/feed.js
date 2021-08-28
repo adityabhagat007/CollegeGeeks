@@ -46,17 +46,10 @@ exports.getHomePage = async(req, res, next) => {
     }
 };
 
-// exports.getMyAccount = (req, res, next) => {
-//   res.render("myaccount");
-// };
-
 exports.getUserActivity = (req, res, next) => {
     res.render("userActivity");
 };
 
-// exports.getEditprofile = (req, res, next) => {
-//   res.render("Editprofile");
-// };
 
 exports.getForgetPassword = (req, res, next) => {
     res.render("forgetPassword");
@@ -390,18 +383,16 @@ exports.unfollow = async(req, res, next) => {
         }
         //If the user following already
         const updatedFollowings = followerUser.followings;
-        console.log("followings", updatedFollowings);
-        console.log("following index = ", followingIndex);
+     
         updatedFollowings.splice(followingIndex, 1);
         followerUser.followings = updatedFollowings;
-        console.log("updatedFollowings", updatedFollowings);
+    
 
         const updatedFollowers = followingUser.followers;
-        console.log("Followers", updatedFollowers);
-        console.log("follower index = ", followerIndex);
+     
         updatedFollowers.splice(followerIndex, 1);
         followingUser.followers = updatedFollowers;
-        console.log("updatedFolloers", updatedFollowers);
+        
 
         const updatedFollowerUser = await followerUser.save();
         const updatedFollowingUser = await followingUser.save();
@@ -472,33 +463,7 @@ exports.postEditProfile = async (req, res, next) => {
   }
 };
 
-// exports.getMyNetwork = async (req, res, next) => {
-//   try {
-//     const id = req.session.user._id;
-//     //Finding user
-//     const user = await User.findById(id)
-//       .select("followings followers")
-//       .populate({
-//         path: "followings followers",
-//         select: "name",
-//       });
-//     if (!user) {
-//       return res.status(404).json({
-//         error: "User not found",
-//       });
-//     }
-//     //If we get user
-//     res.status(200).json({
-//       message: "Successfull",
-//       network: user,
-//     });
-//   } catch (err) {
-//     if (!err.statusCode) {
-//       err.statusCode = 500;
-//     }
-//     next(err);
-//   }
-// };
+
 
 exports.getMyNetwork = async (req, res, next) => {
   try {
@@ -518,7 +483,7 @@ exports.getMyNetwork = async (req, res, next) => {
     console.log('Mynetwork',user);
     //If we get user
     res.status(200).json({
-      message: "Successfull",
+      message: "Successful",
       network: user,
     });
   } catch (err) {
