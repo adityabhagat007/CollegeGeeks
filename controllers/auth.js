@@ -99,7 +99,7 @@ exports.verifyToken = async (req, res, next) => {
   try {
     const token = req.params.token;
     const currDate = new Date();
-    console.log(currDate);
+
     const tempUser = await TempUser.findOne({
       token,
       expirationTime: { $gte: currDate },
@@ -171,7 +171,7 @@ exports.postChangePassword = async (req, res, next) => {
 
 exports.forgetPassword = async (req, res, next) => {
   try {
-    console.log("inside forget password");
+    
     const email = req.body.email;
     //If email is not passed
     if (!email) {
@@ -216,7 +216,7 @@ exports.verifyForgetPasswordToken = async (req, res, next) => {
     const token = req.params.token;
     const password = req.body.password;
     const currDate = new Date();
-    console.log(currDate);
+    
     const tokenDetails = await Token.findOne({
       value: token,
       expirationTime: { $gte: currDate },

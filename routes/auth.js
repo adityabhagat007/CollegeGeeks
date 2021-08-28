@@ -5,6 +5,7 @@ const authController = require("../controllers/auth");
 const loginStatus = require("../middleware/loginStatus");
 const isAuth = require("../middleware/isAuth");
 const changePasswordValidator = require("../middleware/validators/changePassword");
+const forgetPasswordValidator = require("../middleware/validators/forgetPassword");
 
 const router = express.Router();
 
@@ -26,6 +27,7 @@ router.get("/auth/forget-password/:token", authController.getForgetPassword);
 
 router.post(
   "/auth/forget-password/:token",
+  forgetPasswordValidator,
   authController.verifyForgetPasswordToken
 );
 
