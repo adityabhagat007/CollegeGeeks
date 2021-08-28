@@ -13,7 +13,7 @@ exports.getAboutPage = (req, res, next) => {
     res.render("aboutus", { isLoggedIn: req.loginStatus });
 };
 
-exports.getHomePage = async(req, res, next) => {
+exports.getHomePage = async (req, res, next) => {
     try {
         //pulling data out from req
         const page = req.query.page || 1; //Default 1
@@ -42,6 +42,9 @@ exports.getHomePage = async(req, res, next) => {
             currentPage: page,
         });
     } catch (err) {
+        if (!err.statusCode) {
+            err.statusCode = 500;
+        }
         next(err);
     }
 };
@@ -50,12 +53,11 @@ exports.getUserActivity = (req, res, next) => {
     res.render("userActivity");
 };
 
-
 exports.getForgetPassword = (req, res, next) => {
     res.render("forgetPassword");
 };
 
-exports.postAskQuestion = async(req, res, next) => {
+exports.postAskQuestion = async (req, res, next) => {
     try {
         //Pulling the data out from request body
         const statement = req.body.statement;
@@ -80,11 +82,14 @@ exports.postAskQuestion = async(req, res, next) => {
         //If everything goes alright
         res.redirect("/home");
     } catch (err) {
+        if (!err.statusCode) {
+            err.statusCode = 500;
+        }
         next(err);
     }
 };
 
-exports.getQuestions = async(req, res, next) => {
+exports.getQuestions = async (req, res, next) => {
     try {
         //pulling data out from req
         const page = req.query.page || 1; //Default 1
@@ -115,8 +120,7 @@ exports.getQuestions = async(req, res, next) => {
     }
 };
 
-exports.getQuestion = async(req, res, next) => {
-    console.log(req.body);
+exports.getQuestion = async (req, res, next) => {
     try {
         const questionId = req.query.questionId;
         if (questionId === undefined || questionId.length !== 24) {
@@ -133,12 +137,14 @@ exports.getQuestion = async(req, res, next) => {
         }
         //If we get a question
         res.render("questionPage", { question, error: req.flash("error") });
+
+
     } catch (err) {
         next(err);
     }
 };
 
-exports.getProfile = async(req, res, next) => {
+exports.getProfile = async (req, res, next) => {
     try {
         const userId = req.session.user._id;
 
@@ -146,7 +152,7 @@ exports.getProfile = async(req, res, next) => {
         if (!user) {
             return res.render("myaccount", { error: "No user is found!" });
         }
-        //console.log(user);
+
         const profile = {
             ...user._doc,
             questions: user.questions.length,
@@ -163,7 +169,7 @@ exports.getProfile = async(req, res, next) => {
     }
 };
 
-exports.getActivity = async(req, res, next) => {
+exports.getActivity = async (req, res, next) => {
     try {
         const userId = req.session.user._id;
 
@@ -178,14 +184,13 @@ exports.getActivity = async(req, res, next) => {
             return res.render("userActivity", { error: "no activity found!" });
         }
         //If activity is found;
-        console.log(activity);
         res.render("userActivity", { error: "", activity });
     } catch (err) {
         next(err);
     }
 };
 
-exports.postNewAnswer = async(req, res, next) => {
+exports.postNewAnswer = async (req, res, next) => {
     try {
         const answerContent = req.body.answer;
         const questionId = req.body.questionId;
@@ -241,7 +246,7 @@ exports.postNewAnswer = async(req, res, next) => {
 
 
 
-exports.getPublicProfile = async(req, res, next) => {
+exports.getPublicProfile = async (req, res, next) => {
     try {
         const id = req.session.user._id;
         const userId = req.query.userId;
@@ -278,7 +283,7 @@ exports.getPublicProfile = async(req, res, next) => {
 };
 
 
-exports.follow = async(req, res, next) => {
+exports.follow = async (req, res, next) => {
     try {
         const id = req.session.user._id;
         const userId = req.query.userId;
@@ -338,13 +343,10 @@ exports.follow = async(req, res, next) => {
     }
 };
 
-exports.unfollow = async(req, res, next) => {
+exports.unfollow = async (req, res, next) => {
     try {
         const id = req.session.user._id;
         const userId = req.query.userId;
-
-        console.log("id = ", id);
-        console.log("userId = ", userId);
 
         if (userId === undefined) {
             const error = new Error("No userId found!");
@@ -383,17 +385,13 @@ exports.unfollow = async(req, res, next) => {
         }
         //If the user following already
         const updatedFollowings = followerUser.followings;
-     
         updatedFollowings.splice(followingIndex, 1);
         followerUser.followings = updatedFollowings;
-    
 
         const updatedFollowers = followingUser.followers;
-     
         updatedFollowers.splice(followerIndex, 1);
         followingUser.followers = updatedFollowers;
         
-
         const updatedFollowerUser = await followerUser.save();
         const updatedFollowingUser = await followingUser.save();
 
@@ -412,7 +410,7 @@ exports.unfollow = async(req, res, next) => {
 
 // Edit Profile
 
-exports.getEditProfile = async(req, res, next) => {
+exports.getEditProfile = async (req, res, next) => {
     try {
         const id = req.session.user._id;
         if (id === undefined) {
@@ -424,7 +422,6 @@ exports.getEditProfile = async(req, res, next) => {
         if (!user) {
             return res.render("Editprofile", { errors: "No user is found!" });
         } else {
-            console.log(user);
             return res.render("EditProfile", {
                 errors: "",
                 userData: user,
@@ -439,64 +436,64 @@ exports.getEditProfile = async(req, res, next) => {
 // Post Edit Profile
 
 exports.postEditProfile = async (req, res, next) => {
-  try {
-    const id = req.session.user._id;
-    const branch = req.body.branch;
-    const bio = req.body.bio.trim();
+    try {
+        const id = req.session.user._id;
+        const branch = req.body.branch;
+        const bio = req.body.bio.trim();
 
-    // set up new branch for user
-    req.session.user.branch = branch;
+        // set up new branch for user
+        req.session.user.branch = branch;
 
-    const user = await User.findById(id).select("name branch intro");
-      user.branch = branch;
-      user.intro = bio;
-      const newUserData = await user.save();
-      console.log(newUserData);
-      req.flash("success", "You have Successfully Updated the your info");
-      res.render("EditProfile", {
-        userData: newUserData,
-        errors: "",
-        success: req.flash("success"),
-      });
-  }catch (error) {
-    next(error);
-  }
+        const user = await User.findById(id).select("name branch intro");
+        user.branch = branch;
+        user.intro = bio;
+        const newUserData = await user.save();
+
+        req.flash("success", "You have Successfully Updated the your info");
+        res.render("EditProfile", {
+            userData: newUserData,
+            errors: "",
+            success: req.flash("success"),
+        });
+    } catch (error) {
+        next(error);
+    }
 };
 
 
 
 exports.getMyNetwork = async (req, res, next) => {
-  try {
-    const id = req.session.user._id;
-    //Finding user
-    const user = await User.findById(id)
-      .select("followings followers")
-      .populate({
-        path: "followings followers",
-        select: "name",
-      });
-    if (!user) {
-      return res.status(404).json({
-        error: "User not found",
-      });
-    }
-    console.log('Mynetwork',user);
-    //If we get user
-    res.status(200).json({
-      message: "Successful",
-      network: user,
-    });
-  } catch (err) {
-    if (!err.statusCode) {
-      err.statusCode = 500;
-    }
-};
+    try {
+        const id = req.session.user._id;
+        //Finding user
+        const user = await User.findById(id)
+            .select("followings followers")
+            .populate({
+                path: "followings followers",
+                select: "name",
+            });
+        if (!user) {
+            return res.status(404).json({
+                error: "User not found",
+            });
+        }
+
+        //If we get user
+        res.status(200).json({
+            message: "Successfull",
+            network: user,
+        });
+    } catch (err) {
+        if (!err.statusCode) {
+            err.statusCode = 500;
+        }
+    };
 }
 
 
 
 
-exports.postProfileDp = async(req, res, next) => {
+exports.postProfileDp = async (req, res, next) => {
     try {
         const id = req.session.user._id;
         const finalName = req.finalName;

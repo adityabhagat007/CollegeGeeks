@@ -89,7 +89,7 @@ exports.postSignup = async (req, res, next) => {
     res.render("verification");
   } catch (err) {
     if (!err.stausCode) {
-      err.stausCode = 500;
+      err.statusCode = 500;
     }
     next(err);
   }
@@ -99,7 +99,7 @@ exports.verifyToken = async (req, res, next) => {
   try {
     const token = req.params.token;
     const currDate = new Date();
-    console.log(currDate);
+
     const tempUser = await TempUser.findOne({
       token,
       expirationTime: { $gte: currDate },
@@ -171,7 +171,7 @@ exports.postChangePassword = async (req, res, next) => {
 
 exports.forgetPassword = async (req, res, next) => {
   try {
-    console.log("inside forget password");
+    
     const email = req.body.email;
     //If email is not passed
     if (!email) {
@@ -204,8 +204,8 @@ exports.forgetPassword = async (req, res, next) => {
     //If email is send successfully
     res.render("verification", { token: token });
   } catch (err) {
-    if (!err.stausCode) {
-      err.stausCode = 500;
+    if (!err.statusCode) {
+      err.statusCode = 500;
     }
     next(err);
   }
@@ -216,7 +216,7 @@ exports.verifyForgetPasswordToken = async (req, res, next) => {
     const token = req.params.token;
     const password = req.body.password;
     const currDate = new Date();
-    console.log(currDate);
+    
     const tokenDetails = await Token.findOne({
       value: token,
       expirationTime: { $gte: currDate },
@@ -246,8 +246,8 @@ exports.verifyForgetPasswordToken = async (req, res, next) => {
     req.flash("success", "Password recovered successfully.");
     res.redirect("/login");
   } catch (err) {
-    if (!err.stausCode) {
-      err.stausCode = 500;
+    if (!err.statusCode) {
+      err.statusCode = 500;
     }
     next(err);
   }
@@ -258,8 +258,8 @@ exports.getForgetPassword = async (req, res, next) => {
     const token = req.params.token;
     res.render("forgetPassword", { token: token, error: req.flash("error") });
   } catch (err) {
-    if (!err.stausCode) {
-      err.stausCode = 500;
+    if (!err.statusCode) {
+      err.statusCode = 500;
     }
     next(err);
   }

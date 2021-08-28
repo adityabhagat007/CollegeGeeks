@@ -19,6 +19,13 @@
                 </div>
               </div>
             <% } %>
+            <% if(success.length >0){ %>
+              <div class=" alert alert-success d-flex align-items-center" role="alert">
+                <div>
+                    <i class="fas fa-exclamation-triangle"></i> <b><%=success %></b> 
+                </div>
+              </div>
+              <% } %>  
             <div class="card-header">
                 LOGIN   
             </div>
