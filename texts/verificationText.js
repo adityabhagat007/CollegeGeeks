@@ -36,7 +36,7 @@ module.exports = (token) => {
             your Account
           </p>
           <div style="text-align: center; padding: 5% 0%;">
-            Click <a href='http://localhost:3000/auth/${token}'>this</a> to verify your account
+            Click <a href='https://collegegeeks.herokuapp.com/auth/${token}'>this</a> to verify your account
           </div>
         </div>
       </section>

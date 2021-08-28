@@ -24,7 +24,7 @@
                 <div class="profile_pic" >
                     <% if( profile.dp.length>0 && profile.dp !== "/images/user.png"){%> 
                 <img
-                src="http://localhost:3000/<%=profile.dp%>" alt=".." 
+                src="https://collegegeeks.herokuapp.com/<%=profile.dp%>" alt=".." 
                 class=" img-fluid" id="dp"/> 
                 </div>
                 <% }else{ %> 
@@ -281,7 +281,7 @@
     follow.addEventListener("click",()=>{
         const follow = document.getElementById("follow")
         const unFollow = document.getElementById("Unfollow");
-        fetch('http://localhost:3000/follow?userId=<%= profile._id %>').then((result)=>{
+        fetch('https://collegegeeks.herokuapp.com/follow?userId=<%= profile._id %>').then((result)=>{
             return result.json()
         })
         .then(data=>{
@@ -298,7 +298,7 @@
 }else{
     let unFollow = document.getElementById("Unfollow");
     unFollow.addEventListener("click",()=>{
-        fetch('http://localhost:3000/unfollow?userId=<%= profile._id %>').then(result=>{
+        fetch('https://collegegeeks.herokuapp.com/unfollow?userId=<%= profile._id %>').then(result=>{
              return  result.json()
         })
         .then((data)=>{
@@ -317,7 +317,7 @@
     follow.addEventListener("click",()=>{
         const follow = document.querySelector("hidefollow")
         const unFollow = document.getElementById("hideunfollow");
-        fetch('http://localhost:3000/follow?userId=<%= profile._id %>').then((result)=>{
+        fetch('https://collegegeeks.herokuapp.com/follow?userId=<%= profile._id %>').then((result)=>{
             return result.json()
         })
         .then(data=>{
@@ -333,7 +333,7 @@
     })
     let unFollow = document.getElementById("hideunfollow");
     unFollow.addEventListener("click",()=>{
-        fetch('http://localhost:3000/unfollow?userId=<%= profile._id %>').then(result=>{
+        fetch('https://collegegeeks.herokuapp.com/unfollow?userId=<%= profile._id %>').then(result=>{
              return  result.json()
         })
         .then((data)=>{

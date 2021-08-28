@@ -34,7 +34,7 @@ module.exports = (token) => {
             Hello !!! you have requested for password recovery.
           </p>
           <div style="text-align: center; padding: 5% 0%;">
-            Click <a href='http://localhost:3000/auth/forget-password/${token}'>this</a> to set a new password.
+            Click <a href='https://collegegeeks.herokuapp.com/auth/forget-password/${token}'>this</a> to set a new password.
           </div>
         </div>
       </section>

@@ -12,19 +12,19 @@ module.exports = (req, res, next) => {
     if(newPassword === "" || confirmPassword === ""){
       req.flash("error", "Please fill the form correctly ");
       return res.redirect(
-        "http://localhost:3000/auth/forget-password/${token}"
+        "https://collegegeeks.herokuapp.com/auth/forget-password/${token}"
       );
     }
     if (!validator.isStrongPassword(newPassword)) {
       req.flash("error", "Please use a strong password!");
       return res.redirect(
-        "http://localhost:3000/auth/forget-password/${token}"
+        "https://collegegeeks.herokuapp.com/auth/forget-password/${token}"
       );
     }
     if (newPassword !== confirmPassword) {
       req.flash("error", "Password and confirm password does not matched.");
       return res.redirect(
-        `http://localhost:3000/auth/forget-password/${token}`
+        `https://collegegeeks.herokuapp.com/forget-password/${token}`
       );
     }
     //If everything is successful

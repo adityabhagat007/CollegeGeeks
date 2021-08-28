@@ -56,7 +56,7 @@ window.onload=function(){
     const showFollowers = document.getElementById("showfollowers");
     
     showFollowing.addEventListener("click" ,()=>{
-         fetch('http://localhost:3000/mynetwork')
+         fetch('https://collegegeeks.herokuapp.com/mynetwork')
         .then((response)=>{
             return response.json();
         })
@@ -92,7 +92,7 @@ window.onload=function(){
     })
 
     showFollowers.addEventListener("click" ,()=>{
-        fetch('http://localhost:3000/mynetwork')
+        fetch('https://collegegeeks.herokuapp.com/mynetwork')
         .then((response)=>{
             return response.json();
         })
