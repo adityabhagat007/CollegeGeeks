@@ -52,7 +52,7 @@ module.exports = (token) => {
       >
         <div class="head" style="text-align: center; padding-top: 10px">
           <h1 style="font-weight: lighter; font-size: 40px ; padding-top:2%; padding-bottom: 10vh;">
-            Welcome To CollegeGeeks
+            Greetings from CollegeGeeks
           </h1>
         </div>
         <div class="email_body" style="font-size: 20px; padding: 0 5%; text-align: center">
@@ -63,7 +63,7 @@ module.exports = (token) => {
           <div style="text-align: center; padding: 5% 0%;">
           Click below to verify<br>
           <br> 
-          <a href='https://collegegeeks.herokuapp.com/auth/${token}'><button class="btn">Verify</button></a>
+          <a href='https://collegegeeks.herokuapp.com/auth/forget-password/${token}'><button class="btn">Verify</button></a>
           </div>
         </div>
       </section>

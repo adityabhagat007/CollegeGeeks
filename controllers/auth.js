@@ -179,7 +179,7 @@ exports.forgetPassword = async (req, res, next) => {
       return res.redirect("/login");
     }
     const user = await User.findOne({ email });
-    //If email is not registred yet
+    //If email is not registered yet
     if (!user) {
       req.flash(
         "error",
@@ -202,7 +202,7 @@ exports.forgetPassword = async (req, res, next) => {
     //Sending the email
     const result = await sendEmail(email, "Password Recovery", text);
     //If email is send successfully
-    res.render("verification", { token: token });
+    res.render("forgetverification", { token: token });
   } catch (err) {
     if (!err.statusCode) {
       err.statusCode = 500;
