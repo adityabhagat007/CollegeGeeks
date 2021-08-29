@@ -23,6 +23,10 @@ style: "css/style.css"}); -%>
       <div class = "col-lg-6 col-md-6 col-12 order-lg-1 order-2  order-md-1 flex-lg-column animate__animated animate__backInLeft mb-2 home_page_content ">
        <p><h4><span class="display-6 Welcome_msg"><b>Welcome To CollegeGeeks</b></span> </h4></p>
        <h4>Free , Simple , Easy to Use Question Answer Platform</h4>
+       <% if(isLoggedIn === false) {%>
+        <a href="/signup"> <button class="btn btn-primary"> SignUP </button> </a>
+        <a href="/login"> <button class="btn btn-outline-primary"> Login </button> </a>
+        <% } %>  
       </div>
     </div>
   </div>
@@ -74,7 +78,7 @@ style: "css/style.css"}); -%>
         </div>
       </div>
       <div class="image col-xl-5 d-flex align-items-stretch justify-content-center order-1 order-lg-2" data-aos="fade-left" data-aos-delay="100">
-        <img src="images/features.png" class="img-fluid" alt="">
+        <img src="images/features.png" class="img-fluid" alt="image of student searching for questions">
       </div>
     </div>
 
@@ -87,7 +91,7 @@ style: "css/style.css"}); -%>
 
     <div class="row content">
       <div class="col-md-4" data-aos="fade-right">
-        <img src="images/details-1.svg" class="img-fluid" alt="">
+        <img src="images/details-1.svg" class="img-fluid" alt="images of student answering questions ">
       </div>
       <div class="col-md-8 pt-4" data-aos="fade-up">
         <h3 class="fs-1">A platform for your love to answer questions.</h3>
@@ -116,7 +120,7 @@ style: "css/style.css"}); -%>
 
     <div class="row content">
       <div class="col-md-4 order-1 order-md-2" data-aos="fade-left">
-        <img src="images/details-2.svg" class="img-fluid" alt="">
+        <img src="images/details-2.svg" class="img-fluid" alt="image of student asking questions in CollegeGeeks ">
       </div>
       <div class="col-md-8 pt-5 order-2 order-md-1" data-aos="fade-up">
         <h3 class="fs-1">Get answers of every Query</h3>
@@ -135,7 +139,7 @@ style: "css/style.css"}); -%>
     
     <div class="row content">
       <div class="col-md-4" data-aos="fade-right">
-        <img src="images/details-3.svg" class="img-fluid" alt="">
+        <img src="images/details-3.svg" class="img-fluid" alt= "engineering filed related details">
       </div>
       <div class="col-md-8 pt-5 order-2 order-md-1" data-aos="fade-up">
         <h3 class="display-1">Comming Soon</h3>

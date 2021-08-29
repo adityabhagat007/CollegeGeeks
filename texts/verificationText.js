@@ -12,16 +12,42 @@ module.exports = (token) => {
           box-sizing: border-box;
           font-family: sans-serif;
         }
+        .btn {
+        background: #3498db;
+        background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
+        background-image: -moz-linear-gradient(top, #3498db, #2980b9);
+        background-image: -ms-linear-gradient(top, #3498db, #2980b9);
+        background-image: -o-linear-gradient(top, #3498db, #2980b9);
+        background-image: linear-gradient(to bottom, #3498db, #2980b9);
+        -webkit-border-radius: 28;
+        -moz-border-radius: 28;
+        border-radius: 28px;
+        font-family: Arial;
+        color: #ffffff;
+        font-size: 20px;
+        padding: 10px 20px 10px 20px;
+        text-decoration: none;
+      }
+      
+      .btn:hover {
+        background: #3cb0fd;
+        background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
+        background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
+        background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
+        background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
+        background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+        text-decoration: none;
+      }
       </style>
     </head>
     <body>
-      <section
-        class="email"
-        style="
-          margin: 10% 10% 10% 10%;
-          background-color: #f1f1f1;
-          border: 1px solid #f1f1f1;
-          border-radius: 20px 20px;
+    <section
+      class="email"
+      style="
+        margin: 5% 3% 5% 3%;
+        background-color: #f1f1f1;
+        border: 1px solid #f1f1f1;
+        border-radius: 20px 20px; 
         "
       >
         <div class="head" style="text-align: center; padding-top: 10px">
@@ -29,14 +55,17 @@ module.exports = (token) => {
             Welcome To CollegeGeeks
           </h1>
         </div>
-        <div class="email_body" style="font-size: 20px; padding: 0 5%">
-          <p>
-            Hello !!! thanks for creating your account in CollegeGeeks. We are
-            really happy to see you here Please click the link given below to verify
-            your Account
-          </p>
+        <div class="email_body" style="font-size: 20px; padding: 0 5%; text-align: center;">
+        <p>
+        <h5 style="font-size: 40px;">Hello Geek !!!</h5><br>
+          Thanks for creating your account in CollegeGeeks. We Are
+          really happy to see you here Please click link given below to verify
+          your Account See you Soon 
+        </p>
           <div style="text-align: center; padding: 5% 0%;">
-            Click <a href='https://collegegeeks.herokuapp.com/auth/${token}'>this</a> to verify your account
+          Click below to verify<br>
+          <br> 
+          <a href='https://collegegeeks.herokuapp.com/auth/${token}'><button class="btn">Get started</button></a>
           </div>
         </div>
       </section>
