@@ -30,6 +30,10 @@ const userSchema = Schema({
   //   type: Schema.Types.ObjectId,
   //   ref: "Token",
   // },
+  dpFilename:{
+    type:String,
+    default:"collegegeeks",
+  },
   questions: [{ type: Schema.Types.ObjectId, ref: "Question" }],
   followers: [{ type: Schema.Types.ObjectId, ref: "User" }],
   likedQuestions: [{ type: Schema.Types.ObjectId, ref: "Question" }],

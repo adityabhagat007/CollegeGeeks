@@ -11,7 +11,6 @@
 <body style="background-color:#f0f2f5;">
     
 <%if(error.length>0){%>
-
         <div class="container mt-2">
         <div class=" alert alert-danger d-flex align-items-center" role="alert">
             <div>
@@ -19,9 +18,7 @@
             </div>
           </div>
         </div>
-
 <%} else {%>
-
 <section class="my_acc">
     <div class="container">
         <div class="row">
@@ -32,7 +29,7 @@
                 <div class="profile_pic" >
                     <% if( profile.dp.length>0 && profile.dp !== "/images/user.png"){%> 
                 <img
-                src="https://collegegeeks.herokuapp.com<%=profile.dp%>" alt="Profile Pic" 
+                src="<%=profile.dp%>" alt="Profile Pic" 
                 class=" img-fluid" id="dp"/> 
                 </div>
                 <% }else{ %> 

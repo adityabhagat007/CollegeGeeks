@@ -1,4 +1,5 @@
 const express = require("express");
+const multer = require("multer");
 
 const feedController = require("../controllers/feed");
 const isAuth = require("../middleware/isAuth");
@@ -7,7 +8,8 @@ const loginStatus = require("../middleware/loginStatus");
 const newQuestionValidator = require("../middleware/validators/newQuestion");
 const getHomePageValidator = require("../middleware/validators/getHome");
 const getQuestionsValidator = require("../middleware/validators/getQuestions");
-const upload = require("../middleware/multerConfig");
+const { storage } = require("../middleware/multerConfig");
+const upload = multer({storage});
 const editProfileValidator = require('../middleware/validators/editprofile');
 
 const router = express.Router();

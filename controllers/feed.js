@@ -4,6 +4,7 @@ const path = require("path");
 const Answer = require("../models/answer");
 const Question = require("../models/question");
 const User = require("../models/user");
+const {cloudinary} =require("../middleware/multerConfig");
 
 exports.getLandingPage = (req, res, next) => {
     res.render("index", { isLoggedIn: req.loginStatus });
@@ -493,33 +494,53 @@ exports.getMyNetwork = async (req, res, next) => {
 
 
 
+
 exports.postProfileDp = async (req, res, next) => {
-    try {
+    // try {
+    //     const id = req.session.user._id;
+    //     const finalName = req.finalName;
+    //     const newPath = "/uploads/" + req.finalName;
+    //     //finding dpPath
+    //     const user = await User.findById(id).select("dp");
+    //     //If no user is found
+    //     if (!user) {
+    //         return redirect("/404");
+    //     }
+    //     //Extracting old path
+    //     const oldPath = user.dp;
+    //     //If the photo is not the default photo then deleting it
+    //     if (oldPath !== "/images/user.png") {
+    //         await unlink(path.join(__dirname, "../public", oldPath));
+    //     }
+    //     //If path is found then replacing
+    //     user.dp = newPath;
+    //     //Saving updated doc
+    //     const updatedPath = await user.save();
+
+    //     res.redirect("/myaccount");
+    // } catch (err) {
+    //     if (!err.statusCode) {
+    //         err.statusCode = 500;
+    //     }
+    //     next(err);
+    // }
+    try{
         const id = req.session.user._id;
-        const finalName = req.finalName;
-        const newPath = "/uploads/" + req.finalName;
-        //finding dpPath
-        const user = await User.findById(id).select("dp");
+        const finalName = req.file;
+        console.log(finalName)
+        const user = await User.findById(id).select("dp dpFilename");
         //If no user is found
         if (!user) {
             return redirect("/404");
         }
-        //Extracting old path
-        const oldPath = user.dp;
-        //If the photo is not the default photo then deleting it
-        if (oldPath !== "/images/user.png") {
-            await unlink(path.join(__dirname, "../public", oldPath));
+        if(user.dp!=="/images/user.png" && user.dpFilename !== "collegegeeks"){
+            cloudinary.uploader.destroy(user.dpFilename);
         }
-        //If path is found then replacing
-        user.dp = newPath;
-        //Saving updated doc
-        const updatedPath = await user.save();
-
-        res.redirect("/myaccount");
-    } catch (err) {
-        if (!err.statusCode) {
-            err.statusCode = 500;
-        }
-        next(err);
+        user.dp = finalName.path;
+        user.dpFilename = finalName.filename;
+        const newDp = await user.save();
+        res.redirect('/myaccount');
+    }catch(error){
+        console.log(error);
     }
 }
