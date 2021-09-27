@@ -6,7 +6,7 @@
   <%- include("partials/LoggedNavbar.ejs"); -%>
 </section>
 
-
+<% let question %> 
 <body class="body">
 <section class="container mainpage">
     <div class="container">
@@ -30,6 +30,7 @@
           </div>
         </div>
         <% questions.forEach(element=>{%>
+          <% question = element.statement %> 
           <div class="card mb-1" style="text-transform: capitalize;">
             <div class="card-body">
               <div class="author_name">
@@ -37,14 +38,58 @@
                 <span style="float: right;"><%= element.createdAt.toLocaleDateString() %></span>
               </div>
 
-              <div class="card-title"><h5><%= element.statement%>?</h5> </div><hr>
-
+              <div class="card-title" id="question_statement"><h5><%= element.statement%>?</h5> </div><hr>
+              <!-- edit question -->
+              
+              <% if(String(userId) === String(element.author)) {%> 
+              <button type="button" class="openanswer btn btn-sm btn-light rounded-pill m-1" data-bs-toggle="modal" data-bs-target="#exampleModaledit" data-bs-whatever="@mdo"><i class="far fa-edit"></i></button>
+              <% } %> 
               
               <button type="button" class="openanswer btn btn-sm btn-light rounded-pill m-1"><a href="/questionPage?questionId=<%=element._id  %> ">Read more</a></button>
             </div>
           </div>
+
+
+          <% if(String(userId) === String(element.author)) {%> 
+
+          <!-- Edit question -->
+          <div class="modal fade" id="exampleModaledit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Edit Question</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <form action="/editquestion" method="POST">
+                    <div class="mb-3">
+                        <label for="question-type" class="mb-2">Enter your Subject of your Question </label>
+                        <select id="question-type" class="form-select" name="category" required>
+                          <option value="CSE">Computer Science Engineering OR IT</option>
+                                      <option value="ECE">Electronic and Communication Engineering</option>
+                                      <option value="EE">Electrical Engineering</option>
+                                      <option value="ME">Mechanical Engineering</option>
+                                      <option value="CE"> Chemical Engineering</option>
+                                      <option value="CT">Ceramic Engineering</option>
+                                      <option value="LT">Leather Technology</option>
+                                      <option value="FT">Food Technology</option>
+                                      <option value="CV">Civil Engineering</option>
+                                      <option value="OT">Others</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                      <label for="recipient-name" class="col-form-label">Edit</label>
+                      <input name="statement" type="text" class="form-control" id="question_edit" value= "<%= element.statement%> "   required>
+                    </div>
+                    <input name="editId" type="text" class="form-control" hidden value="<%=element._id%>">
+                    <button style="float: right;"type="submit" class="btn btn-outline-success rounded-pill">Add Question</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          <% } %> 
          <% }) %> 
-       <% } %> 
     </div>
     </div>
 </section>
@@ -85,7 +130,8 @@
           </div>
           <div class="mb-3">
             <label for="recipient-name" class="col-form-label">Ask Here</label>
-            <input name="statement" type="text" class="form-control" id="question" required>
+            <input name="statement" type="text" class="form-control"id="question" value=""
+            required>
           </div>
           <button style="float: right;"type="submit" class="btn btn-outline-success rounded-pill">Add Question</button>
         </form>
@@ -93,6 +139,11 @@
     </div>
   </div>
 </div>
+
+
+
+
+
   
 <!-- pagination part -->
 
@@ -120,7 +171,7 @@
       </li>
      <% }else{ %>
       <li class="page-item disabled">
-        <a class="page-link" href='?page=<%=Number(currentPage)+1%>'>Next</a>
+        <a class="page-link" href='#'>Next</a>
       </li>
      <% } %> 
     </ul> 
@@ -129,6 +180,8 @@
 </footer>
 
 
+
+<% } %> 
 
 
 
@@ -139,6 +192,13 @@
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
       crossorigin="anonymous">
+</script>
+
+<script>
+
+  //   const question = document.getElementById('question_statement').textContent;
+  //   console.log(question)
+  //  document.getElementById('question_edit').value = question
 </script>
 </body>
 </html>

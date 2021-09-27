@@ -37,6 +37,7 @@ exports.getHomePage = async (req, res, next) => {
         //If we get questions
         res.render("home", {
             user: user,
+            userId:id,
             questions,
             error: req.flash("error"),
             totalPages,
@@ -543,4 +544,23 @@ exports.postProfileDp = async (req, res, next) => {
     }catch(error){
         console.log(error);
     }
+}
+// Edit question
+
+exports.postEditQuestion = async (req,res,next)=>{
+
+    const editedQuestion = req.body.statement.trim();
+    const branch = req.body.category.toLowerCase();
+    const questionId = req.body.editId;
+    
+    const question = await Question.findById(questionId);
+    if(!question){
+        return res.render('home',{error:"Question not Found"});
+    }
+
+    question.statement = editedQuestion;
+    question.category = branch ;
+
+    const newQuestion = await question.save();
+    res.redirect('home')
 }

@@ -8,6 +8,7 @@ const loginStatus = require("../middleware/loginStatus");
 const newQuestionValidator = require("../middleware/validators/newQuestion");
 const getHomePageValidator = require("../middleware/validators/getHome");
 const getQuestionsValidator = require("../middleware/validators/getQuestions");
+const editQuestionValidator = require('../middleware/validators/editquestion');
 const { storage } = require("../middleware/multerConfig");
 const upload = multer({storage});
 const editProfileValidator = require('../middleware/validators/editprofile');
@@ -40,6 +41,8 @@ router.get("/PublicProfile", isAuth, feedController.getPublicProfile);
 router.get("/Editprofile", isAuth, feedController.getEditProfile);
 
 router.post("/editprofile", isAuth, editProfileValidator, feedController.postEditProfile);
+
+router.post('/editquestion', isAuth, editQuestionValidator, feedController.postEditQuestion);
 
 router.get(
   "/questions",
