@@ -41,49 +41,47 @@
                                 </span>
                                <a href="/questionPage?questionId=<%=element._id %>"><h5> <%= element.statement %> ? <i class="fas fa-angle-double-right"></i></h5></a><hr>
 
-                               <button type="button" class="openanswer btn btn-sm btn-light rounded-pill m-1" data-bs-toggle="modal" data-bs-target="#exampleModaledit" data-bs-whatever="@mdo"><i class="far fa-edit"></i></button>
+                               <button type="button" class="openanswer btn btn-sm btn-light rounded-pill m-1" data-bs-toggle="modal" data-bs-target="#question<%=element._id%>" data-bs-whatever="@mdo"><i class="far fa-edit"></i></button>
                             </div>
+
+                            <div class="modal fade" id="question<%=element._id%>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-lg">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <h5 class="modal-title" id="exampleModalLabel">Edit Question</h5>
+                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                      <form action="/editquestion" method="POST">
+                                        <div class="mb-3">
+                                            <label for="question-type" class="mb-2">Enter your Subject of your Question </label>
+                                            <select id="question-type" class="form-select" name="category" required>
+                                              <option value="CSE">Computer Science Engineering OR IT</option>
+                                                          <option value="ECE">Electronic and Communication Engineering</option>
+                                                          <option value="EE">Electrical Engineering</option>
+                                                          <option value="ME">Mechanical Engineering</option>
+                                                          <option value="CE"> Chemical Engineering</option>
+                                                          <option value="CT">Ceramic Engineering</option>
+                                                          <option value="LT">Leather Technology</option>
+                                                          <option value="FT">Food Technology</option>
+                                                          <option value="CV">Civil Engineering</option>
+                                                          <option value="OT">Others</option>
+                                            </select>
+                                        </div>
+                                        <div class="mb-3">
+                                          <label for="recipient-name" class="col-form-label">Edit</label>
+                                          <input name="statement" type="text" class="form-control" id="question_edit" value= "<%= element.statement%> "   required>
+                                        </div>
+                                        <input name="editId" type="text" class="form-control" hidden value="<%=element._id%>">
+                                        <button style="float: right;"type="submit" class="btn btn-outline-success rounded-pill">Add Question</button>
+                                      </form>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
                         </div>
                          
                         <!-- Edit question -->
-            <div class="modal fade" id="exampleModaledit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Edit Question</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                  <form action="/editquestion" method="POST">
-                    <div class="mb-3">
-                        <label for="question-type" class="mb-2">Enter your Subject of your Question </label>
-                        <select id="question-type" class="form-select" name="category" required>
-                          <option value="CSE">Computer Science Engineering OR IT</option>
-                                      <option value="ECE">Electronic and Communication Engineering</option>
-                                      <option value="EE">Electrical Engineering</option>
-                                      <option value="ME">Mechanical Engineering</option>
-                                      <option value="CE"> Chemical Engineering</option>
-                                      <option value="CT">Ceramic Engineering</option>
-                                      <option value="LT">Leather Technology</option>
-                                      <option value="FT">Food Technology</option>
-                                      <option value="CV">Civil Engineering</option>
-                                      <option value="OT">Others</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                      <label for="recipient-name" class="col-form-label">Edit</label>
-                      <input name="statement" type="text" class="form-control" id="question_edit" value= "<%= element.statement%> "   required>
-                    </div>
-                    <input name="editId" type="text" class="form-control" hidden value="<%=element._id%>">
-                    <button style="float: right;"type="submit" class="btn btn-outline-success rounded-pill">Add Question</button>
-                  </form>
-                </div>
-              </div>
-            </div>
-          </div>
-
-
-                        
                         <%})%>
                         <%}%>
                     </div>

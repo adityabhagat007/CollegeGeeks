@@ -41,17 +41,17 @@
               <!-- edit question -->
               
               <% if(String(userId) === String(element.author)) {%> 
-              <button type="button" class="openanswer btn btn-sm btn-light rounded-pill m-1" data-bs-toggle="modal" data-bs-target="#exampleModaledit" data-bs-whatever="@mdo"><i class="far fa-edit"></i></button>
+              <button type="button" class="openanswer btn btn-sm btn-light rounded-pill m-1" data-bs-toggle="modal" data-bs-target="#question<%=element._id %>" data-bs-whatever="@mdo"><i class="far fa-edit"></i></button>
               <% } %> 
               
-              <button type="button" class="openanswer btn btn-sm btn-light rounded-pill m-1"><a href="/questionPage?questionId=<%=element._id  %> ">Read more</a></button>
+              <button type="button" class="openanswer btn btn-sm btn-light rounded-pill m-1"><a href="/questionPage?questionId=<%=element._id  %>">Read more</a></button>
               
               <% if(String(userId) === String(element.author)) {%> 
 
                 <!-- Edit question model -->
 
 
-                <div class="modal fade" id="exampleModaledit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal fade" id="question<%=element._id%>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                   <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                       <div class="modal-header">
