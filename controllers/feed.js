@@ -221,7 +221,7 @@ exports.postNewAnswer = async (req, res, next) => {
 
         const user = await User.findById(userId);
         const question = await Question.findById(questionId);
-
+        const authorEmail = await Question.findById(questionId).populate('author','email');
         if (!user) {
             req.flash("error", "User not found!");
             return res.redirect(`/questionPage?questionId=${questionId}`);
@@ -255,7 +255,8 @@ exports.postNewAnswer = async (req, res, next) => {
         const updatedUser = await user.save();
         const updatedQuestion = await question.save();
 
-        const authorEmail = await question.populate('author','email');
+       
+        // console.log(authorEmail,'one')
         if(!authorEmail){
             return res.redirect(`/questionPage?questionId=${questionId}`);
         }
@@ -266,6 +267,7 @@ exports.postNewAnswer = async (req, res, next) => {
         // sending mail to the author
 
         const questionAuthorEmail = authorEmail.author.email;
+        console.log(questionAuthorEmail);
         const text = answerText(question.statement);
         const informEmail = await sendEmail(questionAuthorEmail,"Question Update", text);
         
