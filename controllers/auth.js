@@ -88,7 +88,7 @@ exports.postSignup = async (req, res, next) => {
     //If email is sent successfully
     res.render("verification");
   } catch (err) {
-    if (!err.stausCode) {
+    if (!err.statusCode) {
       err.statusCode = 500;
     }
     next(err);

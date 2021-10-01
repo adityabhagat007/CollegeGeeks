@@ -4,6 +4,8 @@ const path = require("path");
 const Answer = require("../models/answer");
 const Question = require("../models/question");
 const User = require("../models/user");
+const sendEmail = require("../utils/sendEmail");
+const answerText = require('../texts/answerNotification')
 const {cloudinary} =require("../middleware/multerConfig");
 
 exports.getLandingPage = (req, res, next) => {
@@ -59,6 +61,8 @@ exports.getForgetPassword = (req, res, next) => {
     res.render("forgetPassword");
 };
 
+// Adding Question
+
 exports.postAskQuestion = async (req, res, next) => {
     try {
         //Pulling the data out from request body
@@ -91,6 +95,8 @@ exports.postAskQuestion = async (req, res, next) => {
     }
 };
 
+// Stream page
+
 exports.getQuestions = async (req, res, next) => {
     try {
         //pulling data out from req
@@ -122,6 +128,8 @@ exports.getQuestions = async (req, res, next) => {
     }
 };
 
+// Question page
+
 exports.getQuestion = async (req, res, next) => {
     try {
         const questionId = req.query.questionId;
@@ -145,6 +153,8 @@ exports.getQuestion = async (req, res, next) => {
         next(err);
     }
 };
+
+// User Account 
 
 exports.getProfile = async (req, res, next) => {
     try {
@@ -171,6 +181,8 @@ exports.getProfile = async (req, res, next) => {
     }
 };
 
+// User Activity 
+
 exports.getActivity = async (req, res, next) => {
     try {
         const userId = req.session.user._id;
@@ -192,6 +204,8 @@ exports.getActivity = async (req, res, next) => {
     }
 };
 
+// Adding New Answer
+
 exports.postNewAnswer = async (req, res, next) => {
     try {
         const answerContent = req.body.answer;
@@ -204,8 +218,10 @@ exports.postNewAnswer = async (req, res, next) => {
         }
 
         //Getting the user and the question
+
         const user = await User.findById(userId);
         const question = await Question.findById(questionId);
+
         if (!user) {
             req.flash("error", "User not found!");
             return res.redirect(`/questionPage?questionId=${questionId}`);
@@ -239,14 +255,30 @@ exports.postNewAnswer = async (req, res, next) => {
         const updatedUser = await user.save();
         const updatedQuestion = await question.save();
 
-        //If everything is successfull;
+        const authorEmail = await question.populate('author','email');
+        if(!authorEmail){
+            return res.redirect(`/questionPage?questionId=${questionId}`);
+        }
+        //If everything is good;
+
         res.redirect(`/questionPage?questionId=${questionId}`);
+
+        // sending mail to the author
+
+        const questionAuthorEmail = authorEmail.author.email;
+        const text = answerText(question.statement);
+        const informEmail = await sendEmail(questionAuthorEmail,"Question Update", text);
+        
+        if(!informEmail){
+            return  res.redirect(`/questionPage?questionId=${questionId}`);
+        }
+        
     } catch (err) {
         next(err);
     }
 };
 
-
+// public Profile
 
 exports.getPublicProfile = async (req, res, next) => {
     try {
@@ -284,6 +316,7 @@ exports.getPublicProfile = async (req, res, next) => {
     }
 };
 
+// follow
 
 exports.follow = async (req, res, next) => {
     try {
@@ -344,6 +377,8 @@ exports.follow = async (req, res, next) => {
         });
     }
 };
+
+// Unfollow 
 
 exports.unfollow = async (req, res, next) => {
     try {
@@ -463,6 +498,7 @@ exports.postEditProfile = async (req, res, next) => {
 };
 
 
+// USer Network 
 
 exports.getMyNetwork = async (req, res, next) => {
     try {
@@ -545,3 +581,5 @@ exports.postEditQuestion = async (req,res,next)=>{
     next(error);
 }
 }
+
+// Edit Answer 
